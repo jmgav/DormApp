@@ -1,0 +1,15 @@
+</div>
+
+<footer class="footer">
+    <div class="container">
+      <p>Copyright 2009-2014 UPV Dorm Application System for CMSC 151</p>
+      <ul class="footer-links">
+        <li><a href="http://crs.upv.edu.ph">UPV Website</a></li>
+        <li class="muted">·</li>
+        <li><a href="https://github.com/jiaoliness/DormApp">View Project on GitHub</a></li>
+      </ul>
+    </div>
+  </footer>
+  
+  </body>
+  </html>

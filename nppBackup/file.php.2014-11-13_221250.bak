@@ -1,0 +1,14 @@
+<?php
+require_once 'functions.php';
+
+?>
+
+<div class="alert alert-info fade in" data-alert="alert">
+      <h3>
+        <strong>
+         Application for Admission to UPV Dormitories 
+        </strong>
+      </h3>
+  </div>
+
+

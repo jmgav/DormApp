@@ -1,0 +1,7 @@
+<?php
+require_once 'functions.php';
+
+?>
+
+Application for Admission to UPV Dormitories 
+
