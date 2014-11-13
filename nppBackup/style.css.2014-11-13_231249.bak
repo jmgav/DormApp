@@ -2,17 +2,6 @@ body{
 padding-top: 0px;
 }
 
-.login-row{
-width: 30%;
-margin: 0 auto;
-margin-top: 15%;
-}
-
-#wronglogin{
-margin-top: 20px;
-width: 100%;
-}
-
 .footer {
 padding: 70px 0;
 margin-top: 70px;

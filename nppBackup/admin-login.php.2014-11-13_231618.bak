@@ -11,14 +11,14 @@ include 'head.php';
  
        }else{ ?> <!--else if user is not logged in, displays the login now box-->
 	   
-	   <div class="row login-row">
-    	    <div class="col-xs-12">
+	   <div class="row">
+    	    <div class="col-xs-4">
         	    <div class="form-wrap text-center">
-                <h2>Admin Login</h2>
-                    <form action="admin-login.php" method="post">
+                <h4>Admin Login</h4>
+                    <form role="form" action="index.php" method="post" id="login-form" autocomplete="off">
 	
                         <div class="form-group">
-                            <label for="username" class="sr-only">Username</label>
+                            <label for="email" class="sr-only">Username</label>
                             <input type="text" name="username" class="form-control" placeholder="Username" />
                         </div>
                         <div class="form-group">
@@ -26,27 +26,24 @@ include 'head.php';
                             <input type="password" name="password" class="form-control" placeholder="Password" />
                         </div>
                        
-                        <input type="submit" id="btn-login" class="btn btn-custom btn-block" value="Log in" />
+                        <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Log in">
                     </form>
                    
-        
-    	
-    	
+        	    </div>
+    		</div> <!-- /.col-xs-12 -->
+    	</div>
 	      
         <?php }
 
 if($_SERVER['REQUEST_METHOD']=='POST'){  login_class::login($_POST['username'],$_POST['password']); /*login function*/
  
     if(login_class::is_logged_in()){
-       head(adminindex,""); 
+        echo 'successfully logged-in!';  /*after sucesfull login, redirects to profile*/
     }
     else{
-        echo "<button type='button' class='btn btn-danger' id='wronglogin'>Wrong Username or Password!</button>"; /*unsecesfull login displays error message*/
+        echo "<p id=\"loginerror\">&nbspWrong Email or Password!</p>"; /*unsecesfull login displays error message*/
     }
  
  }
 
  ?> 
- 	    </div>
- 	</div> <!-- /.col-xs-12 -->
-</div>
