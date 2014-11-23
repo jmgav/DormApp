@@ -61,16 +61,11 @@ $income=$in;
   
   if(preg_match('/^[a-zA-Z ]{2,30}$/', $middlename)) {}
  else {
- 	echo  "<li class='list-group-item list-group-item-danger'>Invalid middle name!</li>" ;
+ 	echo  "<p id=\"error\">&nbsp&nbspInvalid last name!</p>" ;
+
   } 
- if(preg_match('/^[\d]-{8,11}$/', $student_number))  {}
- else {
- 	echo  "<li class='list-group-item list-group-item-danger'>Invalid student number!</li>" ;
-  }
-  
-  
-  
-  echo'</ul></div><div class="col-sm-4"><ul class="list-group">';
+
+  echo'</ul></div><div class="col-sm-6"><ul class="list-group">';
 
  if(preg_match('/^[\w\d]{4,30}$/', $password)) {}
  else {
@@ -85,8 +80,6 @@ $income=$in;
  else {
  	echo  "<p id=\"error\">&nbspPasswords don't match!</p>" ;
   }
- 
-   echo'</ul></div><div class="col-sm-4"><ul class="list-group">';
  
  if(preg_match('/^[\w\d ,#.]{4,50}$/',$home)) {}
  else {
@@ -104,8 +97,6 @@ if(preg_match('/^[a-zA-Z ]{6,50}$/',$occupation)) {}
  	echo  "<p id=\"error\">&nbsp&nbspInvalid occupation!</p>" ;
  return false;
   }
-  
-
  
  if(preg_match('/^[\d]{3,8}$/', $income)) {}
  else {

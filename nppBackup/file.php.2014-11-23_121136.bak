@@ -4,22 +4,9 @@ require_once 'class_application.php';
 include 'head.php'
 ?>
 
-<div class="alert alert-info fade in" data-alert="alert">
-      <h3>
-        <strong>
-         Application for Admission to UPV Dormitories 
-        </strong>
-      </h3>
-  </div>
-  <div class="row">
-  <div class="col-sm-4">
-<ul class="list-group">
   <?php
- if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['agree'])){
+ if($_SERVER['REQUEST_METHOD']=='POST'){
           
-		  $coverage = isset($_POST['coverage']) ? $_POST['coverage'] : 'none' ;
-	
-		  
      class_application::submit_app(trim($_POST['first_name']),
         trim($_POST['last_name']),
 		trim($_POST['middle_name']),
@@ -47,24 +34,26 @@ include 'head.php'
 		trim($_POST['guardian_landline']),
 		trim($_POST['guardian_mobile']),
 		trim($_POST['scholarship']),
-		$coverage,
+		$_POST['coverage'],
 		$_POST['bracket'],
-		$_POST['income']		
+		$_POST['income'],
+		$_POST['agree']
+		
 		);    
  }
- 
- else if($_SERVER['REQUEST_METHOD']=='POST' && empty($_POST['agree'])){
-
- echo '<div class="alert alert-danger" role="alert">
-  You must Agree to the Terms & Conditions
-</div>';
- }
     ?>
-</ul>
-</div>
-</div>
+
 <form action="file.php" method="post"> 
-	  
+	
+<div class="alert alert-info fade in" data-alert="alert">
+      <h3>
+        <strong>
+         Application for Admission to UPV Dormitories 
+        </strong>
+      </h3>
+  </div>
+
+  
  <div class="row">
   <div class="col-md-6">
   <div class="panel panel-info">
@@ -277,31 +266,31 @@ include 'head.php'
 <div class="col-sm-7">
 		<div class="checkbox">
       <label>
-        <input type="checkbox" name="coverage[]" value="Tuition and Miscellaneous">
+        <input type="checkbox" name="coverage[]" value="coverage_1">
          Tuition and Miscellaneous
       </label>
     </div>
 	<div class="checkbox">
       <label>
-        <input type="checkbox" name="coverage[]" value="Accommodation">
+        <input type="checkbox" name="coverage[]" value="coverage_2">
         Accommodation
       </label>
     </div>
 	<div class="checkbox">
       <label>
-        <input type="checkbox" name="coverage[]" value="Food">
+        <input type="checkbox" name="coverage[]" value="coverage_3">
         Food
       </label>
     </div>
 	<div class="checkbox">
       <label>
-        <input type="checkbox" name="coverage[]" value="Transportation">
+        <input type="checkbox" name="coverage[]" value="coverage_4">
         Transportation
       </label>
     </div>
 	<div class="checkbox">
       <label>
-        <input type="checkbox" name="coverage[]" value="Books">
+        <input type="checkbox" name="coverage[]" value="coverage_5">
        Books
       </label>
 	  </div>
@@ -310,11 +299,11 @@ include 'head.php'
 
  <div class="form-group">
 
-<label class="col-sm-5 control-label" for="scholarship">Assigned STFAP bracket</label>
-<div class="col-sm-7">
+<label class="col-sm-4 control-label" for="scholarship">Assigned STFAP bracket</label>
+<div class="col-sm-8">
 		<div class="radio">
       <label>
-        <input type="radio" name="bracket" value="A" checked>
+        <input type="radio" name="bracket" value="A">
          A
       </label>
     </div>
@@ -347,11 +336,11 @@ include 'head.php'
 
  <div class="form-group">
 
-<label class="col-sm-5 control-label" for="scholarship">Annual Family income</label>
-<div class="col-sm-7">
+<label class="col-sm-4 control-label" for="scholarship">Annual Family income</label>
+<div class="col-sm-8">
 		<div class="radio">
       <label>
-        <input type="radio" name="income" value="80" checked>
+        <input type="radio" name="income" value="80">
           Below 80,00 
       </label>
     </div>
@@ -403,7 +392,7 @@ non-refundable unless refused admission to the College or upon withdrawal of app
 <p>3. Submit myself to a personal interview (as scheduled).</p>
 <p>I am fully responsible for the information I voluntarily provided. </p>
   
-    <input  name="agree" type="checkbox" checked />
+    <input  name="agree" type="checkbox"/>
         <label for="agree">I agree to the terms and conditions.</label> <br/>
 		
   <input class="btn btn-default" name="commit" type="submit" value="Submit Application">

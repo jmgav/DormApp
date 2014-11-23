@@ -12,7 +12,6 @@ include 'head.php'
       </h3>
   </div>
   <div class="row">
-  <div class="col-sm-4">
 <ul class="list-group">
   <?php
  if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['agree'])){
@@ -61,7 +60,6 @@ include 'head.php'
  }
     ?>
 </ul>
-</div>
 </div>
 <form action="file.php" method="post"> 
 	  
@@ -403,7 +401,7 @@ non-refundable unless refused admission to the College or upon withdrawal of app
 <p>3. Submit myself to a personal interview (as scheduled).</p>
 <p>I am fully responsible for the information I voluntarily provided. </p>
   
-    <input  name="agree" type="checkbox" checked />
+    <input  name="agree" type="checkbox"/>
         <label for="agree">I agree to the terms and conditions.</label> <br/>
 		
   <input class="btn btn-default" name="commit" type="submit" value="Submit Application">

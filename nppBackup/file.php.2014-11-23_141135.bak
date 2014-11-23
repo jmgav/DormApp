@@ -12,7 +12,7 @@ include 'head.php'
       </h3>
   </div>
   <div class="row">
-  <div class="col-sm-4">
+  <div class="col-sm-6">
 <ul class="list-group">
   <?php
  if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['agree'])){

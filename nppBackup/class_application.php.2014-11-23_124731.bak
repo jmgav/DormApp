@@ -13,80 +13,60 @@ class class_application {
         return self::$instance;
     }    
 
-public static function submit_app($fn,$ln,$mn,$sn,$co,$yl,$un,$pa,$ma,$la,$mo,$mon,$fan,$moa,$faa,
-								  $mol,$mom,$fal,$fam,$gn,$ga,$re,$gl,$gm,$sc,$cov,$br,$in){    
+public static function submit_app($fn,$ln,$mn,$sn,$co,$yl,$un,$pa,$ma,$la,$mo,$mn,$fn,$ma,$fa,
+								  $ml,$mm,$fl,$fm,$gn,$ga,$re,$gl,$gm,$sc,$cov,$br,$in){    
    
 $firstname = ucwords(strtolower(filter_var($fn,FILTER_SANITIZE_STRING)));
 $lastname = ucwords(strtolower(filter_var($ln,FILTER_SANITIZE_STRING)));
 $middlename = ucwords(strtolower(filter_var($mn,FILTER_SANITIZE_STRING)));
 $student_number = filter_var($sn,FILTER_VALIDATE_INT);
-$course = ucwords(strtolower(filter_var($co,FILTER_SANITIZE_STRING)));
+$course = ucwords(strtolower(filter_var($h,FILTER_SANITIZE_STRING)));
 $year_level = filter_var($yl,FILTER_VALIDATE_INT);
 $units = filter_var($un,FILTER_VALIDATE_INT);
-$perm_address=ucwords(strtolower(filter_var($pa,FILTER_SANITIZE_STRING)));
-$mailing_address=ucwords(strtolower(filter_var($ma,FILTER_SANITIZE_STRING)));
-$landline=filter_var($la,FILTER_VALIDATE_INT);
-$mobile=filter_var($mo,FILTER_VALIDATE_INT);
 
-$mother_name= ucwords(strtolower(filter_var($mon,FILTER_SANITIZE_STRING)));
-$father_name= ucwords(strtolower(filter_var($fan,FILTER_SANITIZE_STRING)));
-$mother_address= ucwords(strtolower(filter_var($moa,FILTER_SANITIZE_STRING)));
-$father_address= ucwords(strtolower(filter_var($faa,FILTER_SANITIZE_STRING)));
-$mother_landline= filter_var($mol,FILTER_VALIDATE_INT);
-$mother_mobile= filter_var($mom,FILTER_VALIDATE_INT);
-$father_landline= filter_var($fal,FILTER_VALIDATE_INT);
-$father_mobile= filter_var($fam,FILTER_VALIDATE_INT);
 
-$guardian_name= ucwords(strtolower(filter_var($gn,FILTER_SANITIZE_STRING)));
-$guardian_address= ucwords(strtolower(filter_var($ga,FILTER_SANITIZE_STRING)));
-$relationship = ucwords(strtolower(filter_var($re,FILTER_SANITIZE_STRING)));
-$guardian_landline= filter_var($gl,FILTER_VALIDATE_INT);
-$guardian_mobile= filter_var($gm,FILTER_VALIDATE_INT);
+$occupation = ucwords(strtolower(filter_var($o,FILTER_SANITIZE_STRING)));
+$income = filter_var($i,FILTER_SANITIZE_NUMBER_FLOAT);
+$creditno =filter_var($cn,FILTER_VALIDATE_INT);
+$email = filter_var($e,FILTER_VALIDATE_EMAIL);
+$creditcard=$c;
 
-$scholarship= ucwords(strtolower(filter_var($sc,FILTER_SANITIZE_STRING)));
-$coverage=$cov;
-$bracket=$br;
-$income=$in;
 
         
- if(preg_match('/^[a-zA-Z ]{1,30}$/', $firstname )) { }  /*checks for valid input, otherwise displays error*/
+ if(preg_match('/^[a-zA-Z ]{3,30}$/', $firstname )) { }  /*checks for valid input, otherwise displays error*/
  else {
- 	echo  "<li class='list-group-item list-group-item-danger'>Invalid first name!</li>" ;
+ 	echo  "<p id=\"error\">&nbsp&nbspInvalid first name!</p>" ;
+ return false;
   } 
 
  if(preg_match('/^[a-zA-Z ]{2,30}$/', $lastname)) {}
  else {
- 	echo  "<li class='list-group-item list-group-item-danger'>Invalid last name!</li>" ;
+ 	echo  "<p id=\"error\">&nbsp&nbspInvalid last name!</p>" ;
+ return false;
   } 
-  
-  if(preg_match('/^[a-zA-Z ]{2,30}$/', $middlename)) {}
+
+   if($email) {}
  else {
- 	echo  "<li class='list-group-item list-group-item-danger'>Invalid middle name!</li>" ;
-  } 
- if(preg_match('/^[\d]-{8,11}$/', $student_number))  {}
- else {
- 	echo  "<li class='list-group-item list-group-item-danger'>Invalid student number!</li>" ;
+ 	echo  "<p id=\"error\">&nbsp&nbspInvalid email!</p>" ;
+ return false;
   }
-  
-  
-  
-  echo'</ul></div><div class="col-sm-4"><ul class="list-group">';
 
  if(preg_match('/^[\w\d]{4,30}$/', $password)) {}
  else {
  	echo  "<p id=\"error\">&nbsp&nbspInvalid password!</p>" ;
+ return false;
   }
   
   if(preg_match('/^[\w\d]{4,30}$/', $password2)) {}
  else {
  	echo  "<p id=\"error\">&nbsp&nbspConfirm password!</p>" ;
+ return false;
   }
    if($password==$password2) {}
  else {
  	echo  "<p id=\"error\">&nbspPasswords don't match!</p>" ;
+ return false;
   }
- 
-   echo'</ul></div><div class="col-sm-4"><ul class="list-group">';
  
  if(preg_match('/^[\w\d ,#.]{4,50}$/',$home)) {}
  else {
@@ -104,8 +84,6 @@ if(preg_match('/^[a-zA-Z ]{6,50}$/',$occupation)) {}
  	echo  "<p id=\"error\">&nbsp&nbspInvalid occupation!</p>" ;
  return false;
   }
-  
-
  
  if(preg_match('/^[\d]{3,8}$/', $income)) {}
  else {

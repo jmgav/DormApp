@@ -86,8 +86,6 @@ $income=$in;
  	echo  "<p id=\"error\">&nbspPasswords don't match!</p>" ;
   }
  
-   echo'</ul></div><div class="col-sm-4"><ul class="list-group">';
- 
  if(preg_match('/^[\w\d ,#.]{4,50}$/',$home)) {}
  else {
  	echo  "<p id=\"error\">&nbsp&nbspInvalid home address!</p>" ;
@@ -105,7 +103,7 @@ if(preg_match('/^[a-zA-Z ]{6,50}$/',$occupation)) {}
  return false;
   }
   
-
+  echo'</ul></div><div class="col-sm-4"><ul class="list-group">';
  
  if(preg_match('/^[\d]{3,8}$/', $income)) {}
  else {

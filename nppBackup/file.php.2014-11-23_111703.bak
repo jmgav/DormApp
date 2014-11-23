@@ -1,9 +1,32 @@
 <?php
 require_once 'functions.php';
-require_once 'class_application.php';
 include 'head.php'
 ?>
 
+  <?php
+ if($_SERVER['REQUEST_METHOD']=='POST'){
+          
+     class_application::submit_app(
+	 
+		trim($_POST['']),
+        trim($_POST['lastname']),  
+		trim($_POST['email']),
+        trim($_POST['password']), 
+		trim($_POST['password2']), 
+		trim($_POST['home']),
+        trim($_POST['bday']),
+		trim($_POST['occupation']),
+        trim($_POST['income']), 
+		($_POST['creditcard']), 
+		trim($_POST['creditno'])
+		
+		);    
+ 
+ }
+    ?>
+
+<form action="file.php" method="post"> 
+	
 <div class="alert alert-info fade in" data-alert="alert">
       <h3>
         <strong>
@@ -11,60 +34,8 @@ include 'head.php'
         </strong>
       </h3>
   </div>
-  <div class="row">
-  <div class="col-sm-4">
-<ul class="list-group">
-  <?php
- if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['agree'])){
-          
-		  $coverage = isset($_POST['coverage']) ? $_POST['coverage'] : 'none' ;
-	
-		  
-     class_application::submit_app(trim($_POST['first_name']),
-        trim($_POST['last_name']),
-		trim($_POST['middle_name']),
-		trim($_POST['student_number']),
-		trim($_POST['course']),
-		trim($_POST['year_level']),
-		trim($_POST['units']),
-		trim($_POST['perm_address']),
-		trim($_POST['mail_address']),
-		trim($_POST['landline']),
-		trim($_POST['mobile']),
-		trim($_POST['mother_name']),
-		trim($_POST['father_name']),
-		trim($_POST['mother_address']),
-		trim($_POST['father_address']),
-		trim($_POST['mother_occupation']),
-		trim($_POST['father_occupation']),
-		trim($_POST['mother_landline']),
-		trim($_POST['mother_mobile']),
-		trim($_POST['father_landline']),
-		trim($_POST['father_mobile']),
-		trim($_POST['guardian_name']),
-		trim($_POST['guardian_address']),
-		trim($_POST['relationship']),
-		trim($_POST['guardian_landline']),
-		trim($_POST['guardian_mobile']),
-		trim($_POST['scholarship']),
-		$coverage,
-		$_POST['bracket'],
-		$_POST['income']		
-		);    
- }
- 
- else if($_SERVER['REQUEST_METHOD']=='POST' && empty($_POST['agree'])){
 
- echo '<div class="alert alert-danger" role="alert">
-  You must Agree to the Terms & Conditions
-</div>';
- }
-    ?>
-</ul>
-</div>
-</div>
-<form action="file.php" method="post"> 
-	  
+  
  <div class="row">
   <div class="col-md-6">
   <div class="panel panel-info">
@@ -118,11 +89,11 @@ include 'head.php'
 
 
  <div class="form-group">
-		<input type="text" name="perm_address" class="form-control input-md" placeholder="Permanent Address" tabindex="8">
+		<input type="text" name="units" class="form-control input-md" placeholder="Permanent Address" tabindex="8">
 </div>
 
  <div class="form-group">
-		<input type="text" name="mail_address" class="form-control input-md" placeholder="Mailing Address" tabindex="9">
+		<input type="text" name="units" class="form-control input-md" placeholder="Mailing Address" tabindex="9">
 </div>
 
 	<div class="row">
@@ -267,41 +238,41 @@ include 'head.php'
  
 
 <div class="form-group">
-<label class="col-sm-5 control-label" for="scholarship">Name of Scholarship</label>
-<div class="col-sm-7"><input class="form-control" name="scholarship" placeholder="(leave blank if none)" /></div>
+<label class="col-sm-4 control-label" for="scholarship">Name of Scholarship</label>
+<div class="col-sm-8"><input class="form-control" name="scholarship" placeholder="(leave blank if none)" /></div>
 </div>
 
  <div class="form-group">
 
-<label class="col-sm-5 control-label" for="scholarship">Coverage</label>
-<div class="col-sm-7">
+<label class="col-sm-4 control-label" for="scholarship">Coverage</label>
+<div class="col-sm-8">
 		<div class="checkbox">
       <label>
-        <input type="checkbox" name="coverage[]" value="Tuition and Miscellaneous">
-         Tuition and Miscellaneous
+        <input type="checkbox" name="coverage_1">
+         Tuition and miscellaneous
       </label>
     </div>
 	<div class="checkbox">
       <label>
-        <input type="checkbox" name="coverage[]" value="Accommodation">
+        <input type="checkbox" name="coverage_2">
         Accommodation
       </label>
     </div>
 	<div class="checkbox">
       <label>
-        <input type="checkbox" name="coverage[]" value="Food">
+        <input type="checkbox" name="coverage_3">
         Food
       </label>
     </div>
 	<div class="checkbox">
       <label>
-        <input type="checkbox" name="coverage[]" value="Transportation">
+        <input type="checkbox" name="coverage_4">
         Transportation
       </label>
     </div>
 	<div class="checkbox">
       <label>
-        <input type="checkbox" name="coverage[]" value="Books">
+        <input type="checkbox" name="coverage_5">
        Books
       </label>
 	  </div>
@@ -310,35 +281,35 @@ include 'head.php'
 
  <div class="form-group">
 
-<label class="col-sm-5 control-label" for="scholarship">Assigned STFAP bracket</label>
-<div class="col-sm-7">
-		<div class="radio">
+<label class="col-sm-4 control-label" for="scholarship">Assigned STFAP bracket</label>
+<div class="col-sm-8">
+		<div class="checkbox">
       <label>
-        <input type="radio" name="bracket" value="A" checked>
+        <input type="checkbox" name="bracket_1">
          A
       </label>
     </div>
-	<div class="radio">
+	<div class="checkbox">
       <label>
-        <input type="radio" name="bracket" value="B">
+        <input type="checkbox" name="bracket_2">
         B
       </label>
     </div>
-	<div class="radio">
+	<div class="checkbox">
       <label>
-        <input type="radio" name="bracket" value="C">
+        <input type="checkbox" name="bracket_3">
         C
       </label>
     </div>
-	<div class="radio">
+	<div class="checkbox">
       <label>
-        <input type="radio" name="bracket" value="D">
+        <input type="checkbox" name="bracket_4">
        D
       </label>
     </div>
-	<div class="radio">
+	<div class="checkbox">
       <label>
-        <input type="radio" name="bracket" value="E">
+        <input type="checkbox" name="bracket_5">
       E1/E2
       </label>
 	  </div>
@@ -347,35 +318,35 @@ include 'head.php'
 
  <div class="form-group">
 
-<label class="col-sm-5 control-label" for="scholarship">Annual Family income</label>
-<div class="col-sm-7">
-		<div class="radio">
+<label class="col-sm-4 control-label" for="scholarship">Annual Family income</label>
+<div class="col-sm-8">
+		<div class="checkbox">
       <label>
-        <input type="radio" name="income" value="80" checked>
+        <input type="checkbox" name="income_1">
           Below 80,00 
       </label>
     </div>
-	<div class="radio">
+	<div class="checkbox">
       <label>
-        <input type="radio" name="income" value="135">
+        <input type="checkbox" name="income_2">
        80,000-135,000 
       </label>
     </div>
-	<div class="radio">
+	<div class="checkbox">
       <label>
-        <input type="radio" name="income" value="500">
+        <input type="checkbox" name="income_3">
        135,001-500,000 
       </label>
     </div>
-	<div class="radio">
+	<div class="checkbox">
       <label>
-        <input type="radio" name="income" value="1000">
+        <input type="checkbox" name="income_4">
         500,001-1,000,000
       </label>
     </div>
-	<div class="radio">
+	<div class="checkbox">
       <label>
-        <input type="radio" name="income" value="1m">
+        <input type="checkbox" name="income_5">
       Above 1 million
       </label>
 	  </div>
@@ -403,9 +374,12 @@ non-refundable unless refused admission to the College or upon withdrawal of app
 <p>3. Submit myself to a personal interview (as scheduled).</p>
 <p>I am fully responsible for the information I voluntarily provided. </p>
   
-    <input  name="agree" type="checkbox" checked />
+    <input  name="agree" type="checkbox" value="active"/>
         <label for="agree">I agree to the terms and conditions.</label> <br/>
 		
+
+
+  
   <input class="btn btn-default" name="commit" type="submit" value="Submit Application">
   
   		

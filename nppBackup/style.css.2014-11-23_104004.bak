@@ -19,13 +19,3 @@ margin-top: 70px;
 border-top: 1px solid #e5e5e5;
 background-color: #f5f5f5;
 }
-
-@media (min-width: 768px) {
-.right{
-padding-left: 3px;
-}
-
-.left{
-padding-right: 3px;
-}
-}
