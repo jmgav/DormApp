@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<?php
+require_once 'functions.php';
+include 'head.php'
+?>
+
+<div class="row">
+<div class="col-sm-12">
+<div class="media" style="margin-bottom: 15px; margin-top: 15px;">
+<img class="pull-left" src="./images/seal-80x80.png">
+<div class="media-body">
+<h1 style="color: #7B1113; margin: 0">Dorm Application System</h1>
+<h4 style="margin-top: 0"><span style="color: #335628">OFFICE OF STUDENT AFFAIRS</span>
+<br>
+<span style="color: #8E171A">UNIVERSITY OF THE PHILIPPINES VISAYAS</span></h4>
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-9 col-md-pull-3">
+<ul class="nav nav-tabs nav-justified" style="margin-bottom: 15px">
+<li class="active"><a href="#announcements" data-toggle="tab">Announcements</a></li>
+<li class=""><a href="#about" data-toggle="tab">What is ST?</a></li>
+<li class=""><a href="#application" data-toggle="tab">How Do I Apply?</a></li>
+<li class=""><a href="#accounts" data-toggle="tab">ST Accounts</a></li>
+<li class=""><a href="#helpdesk" data-toggle="tab">ST Helpdesk</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane fade active in" id="announcements">
+<h4>Application and Appeal Period in August</h4>
+<p class="text-muted">30 Jul 2014</p>
+<p></p><p><small>Updated 1 August 2014</small></p>
+<p>To accommodate the rest of the undergraduate population, STS Online will be open for applications and appeals on the following dates:</p>
+<h5>SCHEDULE</h5>
+<div class="table-responsive">
+<table class="table table-condensed table-bordered">
+<thead>
+<tr><th style="text-align: left">Campus</th>
+<th style="text-align: left">Applications</th>
+<th style="text-align: left">Results</th>
+<th style="text-align: left">Appeals</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align: left">UP Baguio</td>
+<td style="text-align: left">August 12-14</td>
+<td style="text-align: left">August 15</td>
+<td style="text-align: left">August 15-17</td>
+</tr>
+<tr>
+<td style="text-align: left">UP Cebu</td>
+<td style="text-align: left">August 11-13</td>
+<td style="text-align: left">August 14</td>
+<td style="text-align: left">August 14-15</td>
+</tr>
+<tr>
+<td style="text-align: left">UP Diliman</td>
+<td style="text-align: left">August 4-5</td>
+<td style="text-align: left">August 6</td>
+<td style="text-align: left">August 6-8</td>
+</tr>
+<tr>
+<td style="text-align: left">UP Los Baños</td>
+<td style="text-align: left">August 4-5</td>
+<td style="text-align: left">August 6</td>
+<td style="text-align: left">August 6-8</td>
+</tr>
+<tr>
+<td style="text-align: left">UP Manila</td>
+<td style="text-align: left">July 30-August 1</td>
+<td style="text-align: left">August 2</td>
+<td style="text-align: left">August 2-5</td>
+</tr>
+<tr>
+<td style="text-align: left">UP Mindanao</td>
+<td style="text-align: left">August 11-13</td>
+<td style="text-align: left">August 14</td>
+<td style="text-align: left">August 14-16</td>
+</tr>
+<tr>
+<td style="text-align: left">UP Visayas</td>
+<td style="text-align: left">August 11-13</td>
+<td style="text-align: left">August 14</td>
+<td style="text-align: left">August 14-15</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For inquiries, please contact the STS Helpdesk in your campus. Check out the STS Helpdesk tab for contact details.</p><p></p>
+<hr>
+<h4>Application Deadline Extended</h4>
+<p class="text-muted">21 Jul 2014</p>
+<p></p><p><small>Updated 24 July 2014</small></p>
+<p>To accommodate applicants from areas affected by Typhoon Glenda, the STS Office will <strong>extend the application and appeal period for July 2014</strong>.</p>
+<p>Please take note of the updated application/appeal schedule:</p>
+<div class="row">
+<div class="col-sm-6">
+<h5>FINAL BATCH OF APPLICATIONS</h5>
+<table class="table table-condensed table-bordered">
+<tbody>
+<tr>
+<td style="text-align: left">Upperclassmen and new students who are eligible to apply for tuition discount</td>
+<td style="text-align: left">July 7-25</td>
+</tr>
+<tr>
+<td style="text-align: left">Posting of results</td>
+<td style="text-align: left">July 26</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="col-sm-6">
+<h5>APPEALS</h5>
+<table class="table table-condensed table-bordered">
+<tbody>
+<tr>
+<td style="text-align: left">Students who received their results on June 30</td>
+<td style="text-align: left">July 1-21</td>
+</tr>
+<tr>
+<td style="text-align: left">All STS applicants</td>
+<td style="text-align: left">July 27-31</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>For inquiries, please contact the STS Helpdesk in your campus. Check out the STS Helpdesk tab for contact details.</p><p></p>
+<hr>
+<h4>STS Information for All Undergraduate Students</h4>
+<p class="text-muted">13 Jun 2014</p>
+<p></p><p>The Socialized Tuition System (STS) will replace the Socialized Tuition and Financial Assistance Program (STFAP) effective 1st semester AY 2014-2015. The STS prescribes the tuition rates by assigning tuition discounts to undergraduate students enrolling in AY 2014-2015.</p>
+<p>To facilitate the assignment of discounts and to determine their tuition rates, all UNDERGRADUATE STUDENTS, including JDs and MDs, must log in to STS Online and accomplish the online forms before the 1st semester AY 2014-2015.</p>
+<p>Students who wish to apply for tuition discounts under STS need not submit any documents. Students who will apply must log-in and submit their online application forms according to the STS application schedule and procedures posted in <a href="https://sts.up.edu.ph/">https://sts.up.edu.ph/</a>.</p>
+<p>Students who do not wish to apply for tuition discount must still log in and explicitly indicate their intent not to apply in STS. Students who will not apply for tuition discounts in STS or fail to log in to STS Online within the application period will not be granted tuition discounts under STS.</p>
+<p>Students who are qualified dependents of UP employees must still log in to STS Online.</p>
+<p>To qualify for tuition discounts from STS, the student must:</p>
+<ol>
+<li>Be a Filipino;</li>
+<li>Be a bonafide undergraduate student. Except for students of Law and Medicine, the applicant must not have a bachelor’s degree. For new students, the applicant must have an admission slip;</li>
+<li>Never have been adjudged guilty of any offense that carries a penalty of more than 30 days suspension; and</li>
+<li>Be in need of financial assistance as determined by the University.</li>
+</ol>
+<p>Students who are not qualified for tuition discounts must contact the Office of Scholarships and Student Services (OSSS) in UP DIliman or the Office of Students Affairs (OSAs) in your campus for information on other financial assistance programs of the University.</p><p></p>
+<hr>
+<h4>Accounts for New Students and Upperclassmen</h4>
+<p class="text-muted">9 May 2014</p>
+<p></p><p><small>Updated 9 June 2014</small></p>
+<h5>NEW STUDENTS</h5>
+<p>All new students will use their <strong class="text-info">Student No. and 5-digit PIN</strong> to access STS. Your 5-digit PIN is indicated on your Admission Slip.</p>
+<p>New students include the following:</p>
+<ul>
+<li>UPCAT Qualifiers</li>
+<li>Incoming freshmen with newly issued Admission Slips</li>
+<li>Incoming freshmen with Admission Slips who were not able to log-in to STS in April 2014</li>
+<li>Incoming freshmen who deferred enrolment in previous years</li>
+<li>Incoming MD [from UP College of Medicine] and JD [from UP College of Law] students</li>
+<li>Transferees from other schools</li>
+<li>Students without Admission Slips but have been duly accepted by a UP unit as an incoming undergraduate student</li>
+</ul>
+<p>
+If you were not issued one, contact the STS Helpdesk in your campus for assistance. Contact details are in the STS Helpdesk tab.
+</p>
+<hr>
+<h5>UPPERCLASSMEN</h5>
+<p>Upperclassmen will use their <strong class="text-info">UP Mail account (e.g. jpdelacruz@up.edu.ph<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script>)</strong> to access STS Online. <strong class="text-info">There is no need to request for a 5-digit PIN.</strong></p>
+<p>UP Mail is a new e-mail service that will consolidate all UP employees and students from all Constituent Universities (CUs) into a single e-mail domain. This is different from your CU specific web mails (e.g. @upd.edu.ph, @uplb.edu.ph, @upb.edu.ph; <strong class="text-info">do not use these emails when logging in to STS</strong>.</p>
+<p>If you're <strong class="text-info">from Diliman</strong>, you may get your account from the eUP helpdesk at Room 308, 3/F Vidal A. Tan Hall, UP Diliman, Quezon City. If you're <strong class="text-info">from another campus</strong>, visit your respective Computer/IT Center for assistance. Present your latest Form 5 and/or UP ID for identity verification.</p>
+<p>If you're asking for <strong class="text-info">assistance via email (helpdesk@up.edu.ph<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script>)</strong>, send your:</p>
+<ul>
+<li>Student number</li>
+<li>Complete name</li>
+<li>Campus</li>
+<li>A scanned copy of your latest Form 5 and UP ID</li>
+</ul>
+<p><strong class="text-info">Please do not send more than one request.</strong> Your requests are given ample attention upon receipt.</p>
+<p>Check out <a target="_blank" href="http://e.up.edu.ph/general-mail-faq/">http://e.up.edu.ph/general-mail-faq/</a> for more information about UP Mail.</p><p></p>
+</div>
+<div class="tab-pane fade" id="accounts">
+<h4>ST Accounts</h4>
+<h5>NEW STUDENTS</h5>
+<p>All new students will use their <strong class="text-info">Student No. and 5-digit PIN</strong> to access ST. Your 5-digit PIN is indicated on your Admission Slip.</p>
+<p>New students include the following:</p>
+<ul>
+<li>UPCAT Qualifiers</li>
+<li>Incoming freshmen with newly issued Admission Slips</li>
+<li>Incoming freshmen with Admission Slips who were not able to log-in to ST in April 2014</li>
+<li>Incoming freshmen who deferred enrolment in previous years</li>
+<li>Incoming MD [from UP College of Medicine] and JD [from UP College of Law] students</li>
+<li>Transferees from other schools</li>
+<li>Students without Admission Slips but have been duly accepted by a UP unit as an incoming undergraduate student</li>
+</ul>
+<p>
+If you were not issued one, contact the ST Helpdesk in your campus for assistance. Contact details are in the ST Helpdesk tab.
+</p>
+<hr>
+<h5>UPPERCLASSMEN</h5>
+<p>Upperclassmen will use their <strong class="text-info">UP Mail account (e.g. jpdelacruz@up.edu.ph<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script>)</strong> to access ST Online. <strong class="text-info">There is no need to request for a 5-digit PIN.</strong></p>
+<p>UP Mail is a new e-mail service that will consolidate all UP employees and students from all Constituent Universities (CUs) into a single e-mail domain. This is different from your CU specific web mails (e.g. @upd.edu.ph, @uplb.edu.ph, @upb.edu.ph; <strong class="text-info">do not use these emails when logging in to ST</strong>.</p>
+<p>If you're <strong class="text-info">from Diliman</strong>, you may get your account from the eUP helpdesk at Room 308, 3/F Vidal A. Tan Hall, UP Diliman, Quezon City. If you're <strong class="text-info">from another campus</strong>, visit your respective Computer/IT Center for assistance. Present your latest Form 5 and/or UP ID for identity verification.</p>
+<p>If you're asking for <strong class="text-info">assistance via email (helpdesk@up.edu.ph<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script>)</strong>, send your:</p>
+<ul>
+<li>Student number</li>
+<li>Complete name</li>
+<li>Campus</li>
+<li>A scanned copy of your latest Form 5 and UP ID</li>
+</ul>
+<p><strong class="text-info">Please do not send more than one request.</strong> Your requests are given ample attention upon receipt.</p>
+<p>Check out <a target="_blank" href="http://e.up.edu.ph/general-mail-faq/">http://e.up.edu.ph/general-mail-faq/</a> for more information about UP Mail.</p>
+</div>
+<div class="tab-pane fade" id="about">
+<h4>What is ST?</h4>
+<p>In the University of the Philippines (UP), all students receive financial support from the National Government since the full tuition is much lower than the cost of education in the University. Given that students in UP come from all walks of life, there are those who may not be able to afford paying the full tuition. So UP created the Socialized Tuition (ST) System which provides tuition discount at rates that are based on the assessment of the paying capacity of the household to which a student belongs. This assessment looks at the income as well as the socio-economic characteristics of the household.</p>
+<p>The current ST was approved by the UP Board of Regents on 13 December 2013.</p>
+<hr>
+<h4>Tuition Discounts</h4>
+<p>UP students who wish to apply for tuition discounts under the ST must supply the information about the income and socio-economic characteristics of their household. The application is done online. Using the information submitted by the students, the University may grant tuition discounts and, in certain cases, monthly stipends, according to the tables below:</p>
+<table style="margin-top: 20px" class="table table-condensed table-bordered">
+<thead>
+<tr>
+<th colspan="4">UP Diliman, UP Los Baños, UP Manila</th>
+</tr>
+<tr>
+<th>Tuition Discount Level</th>
+<th>Tuition Discount</th>
+<th>Tuition in ₱</th>
+<th>Other Financial Assistance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Partial Discount - 33%</td>
+<td>33%</td>
+<td>₱1,000/unit</td>
+<td style="background: #eee"></td>
+</tr>
+<tr>
+<td>Partial Discount - 60%</td>
+<td>60%</td>
+<td>₱600/unit</td>
+<td style="background: #eee"></td>
+</tr>
+<tr>
+<td>Partial Discount - 80%</td>
+<td>80%</td>
+<td>₱300/unit</td>
+<td style="background: #eee"></td>
+</tr>
+<tr>
+<td>Full Discount</td>
+<td>100%</td>
+<td>Free tuition</td>
+<td>Free miscellaneous fees<br>Free laboratory fees</td>
+</tr>
+<tr>
+<td>Full Discount + Stipend</td>
+<td>100%</td>
+<td>Free tuition</td>
+<td>Free miscellaneous fees<br>Free laboratory fees<br>Monthly Stipend</td>
+</tr>
+</tbody>
+</table>
+<table style="margin-top: 20px" class="table table-condensed table-bordered">
+<thead>
+<tr>
+<th colspan="4">UP Baguio, UP Cebu, UP Mindanao, UP Pampanga, UP Visayas</th>
+</tr>
+<tr>
+<th>Tuition Discount Level</th>
+<th>Tuition Discount</th>
+<th>Tuition in ₱</th>
+<th>Other Financial Assistance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Partial Discount - 40%</td>
+<td>40%</td>
+<td>₱600/unit</td>
+<td style="background: #eee"></td>
+</tr>
+<tr>
+<td>Partial Discount - 60%</td>
+<td>60%</td>
+<td>₱400/unit</td>
+<td style="background: #eee"></td>
+</tr>
+<tr>
+<td>Partial Discount - 80%</td>
+<td>80%</td>
+<td>₱200/unit</td>
+<td style="background: #eee"></td>
+</tr>
+<tr>
+<td>Full Discount</td>
+<td>100%</td>
+<td>Free tuition</td>
+<td>Free miscellaneous fees<br>Free laboratory fees</td>
+</tr>
+<tr>
+<td>Full Discount + Stipend</td>
+<td>100%</td>
+<td>Free tuition</td>
+<td>Free miscellaneous fees<br>Free laboratory fees<br>Monthly Stipend</td>
+</tr>
+</tbody>
+</table>
+<p>Tuition discounts and other financial assistance from ST shall be for one academic year, renewable annually.</p>
+<p>Incoming Freshmen (student number beginning 2014 and incoming MD and JD students) <span style="text-decoration: underline">who</span> will be granted <em>Full Discount + Stipend</em> will receive ₱3,500 monthly allowance for two semesters. Said monthly allowance may be in the form of cash, dormitory privilege, and/or meal coupon.</p>
+<p>Upperclassmen (students admitted to the university before 2014) at the same level shall receive ₱2,400 monthly allowance for two semesters.</p>
+</div>
+<div class="tab-pane fade" id="application">
+<h4>Who can apply</h4>
+<p>To qualify for tuition discounts from ST, the student must:</p>
+<ol>
+<li>Be a Filipino;</li>
+<li>Be a bonafide undergraduate student. Except for students of Law and Medicine, the applicant must not have a bachelor’s degree. For new students, the applicant must have an admission slip;</li>
+<li>Never have been adjudged guilty of any offense that carries a penalty of more than 30 days suspension; and</li>
+<li>Be in need of financial assistance as determined by the University.</li>
+</ol>
+<hr>
+<h4>Application Process</h4>
+<ol>
+<li>Visit <a href="http://sts.up.edu.ph/">http://sts.up.edu.ph/</a> and log in using your ST Account:
+<ul>
+<li>New Students: <a href="#" data-toggle="modal" data-target="#newstudents">Student No. (20xx-xxxxx) + 5-digit PIN</a></li>
+<li>Upperclassmen: <a href="#" data-toggle="modal" data-target="#upmail">UP Mail account (jpdelacruz@up.edu.ph<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script>)</a></li>
+</ul>
+</li>
+<li>Indicate your intent to apply and your consent to the terms and conditions of ST.</li>
+<li>Complete your Student Profile with information about yourself and your parents/guardian and siblings.</li>
+<li>Answer the Household Characteristics questionnaire.</li>
+<li>Accomplish the Household Income form.</li>
+<li>Review all entries before proceeding to submission. You cannot view or change your answers after you submit your application.</li>
+<li>Proceed to submission. You and your parents/guardian need to indicate consent to the terms and conditions of the application.</li>
+<li>Confirm submission of your ST application.</li>
+</ol>
+<p>ST applicants are not required to submit any documents (e.g., income tax return, employment contract, etc.) to complete the application process.</p>
+<p>Results will be released according to the posted schedule. You may view the results by logging into <a href="http://sts.up.edu.ph/">http://sts.up.edu.ph/</a> using your account. Check out the Announcements tab for any updates during the application period.</p>
+<hr>
+<h4>Appeal Process</h4>
+<p>ST applicants may be in special situations where they may need additional financial assistance. They may file an APPEAL to inform the ST Office about these circumstances and to request these to be considered in the grant of tuition discounts.</p>
+<p>To file an appeal, follow these steps:</p>
+<ol>
+<li>View announcements on appeal process at <a href="http://sts.up.edu.ph/">http://sts.up.edu.ph/</a>.</li>
+<li>Log in using your ST Account.</li>
+<li>Indicate your consent with the terms and conditions of ST.</li>
+<li>Fill out the ST Appeal questionnaire.</li>
+<li>Indicate your complete permanent address, vicinity map, and landmarks near your home.</li>
+<li>Save your appeal and review your entries.</li>
+<li>Review all entries before you finally submit your appeal. You cannot view or change your answers after you submit your appeal.</li>
+<li>Confirm submission of your appeal.</li>
+</ol>
+<p>Results will be released according to the schedule set by the ST Office and the ODSA/OSA/OVCSA/OSSS in your campus. Students can view results by logging into <a href="http://sts.up.edu.ph/">http://sts.up.edu.ph/</a> using their student number and PIN.</p>
+<hr>
+<h4>Terms and Conditions before applying for tuition discount</h4>
+<p>The University reserves the right to determine whether the student deserves financial assistance, and the amount and form of assistance. The ST Office, in coordination with the Offices of Student Affairs (OSAs) and the Office of Scholarship and Student Services (OSSS), will organize a fact-finding team to check information submitted by the applicants. ST privileges may be withdrawn when a student withholds or gives false information, without prejudice to other penalties that may be imposed by the University.</p>
+<p>All information supplied in the application will be kept secure and confidential. All information may be used by the University for research, with the assurance that personal details of the applicant will be kept secure.</p>
+</div>
+<div class="tab-pane fade" id="helpdesk">
+<h4>ST Helpdesk</h4>
+<p>For more information on ST and other financial assistance services of the University, please contact the ST Helpdesk in your campus. The ST Helpdesk can also assist you with the following:</p>
+<ol>
+<li>Changing your campus</li>
+<li>Making corrections to your student number, name, or course</li>
+<li>Resetting your 5-digit PIN (for new students only)</li>
+<li>Answering the forms</li>
+<li>Other ST-specific concerns (e.g., schedules, applications, appeals)</li>
+</ol>
+<div class="table-responsive" style="margin-top: 20px">
+<table class="table table-bordered table-condensed">
+<thead>
+<tr><th>Campus</th>
+<th>Head of Office</th>
+<th>Email Address</th>
+<th>Contact Numbers</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>UP Baguio</td>
+<td>Dr. Corazon L. Abansi</td>
+<td><a href="mailto: cafacunla@yahoo.com">cafacunla@yahoo.com<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script></a><br><a href="mailto: cafacunla@upb.edu.ph">cafacunla@upb.edu.ph<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script></a></td>
+<td><a href="tel:0744465230">074.446.5230</a></td>
+</tr>
+<tr>
+<td>UP Cebu</td>
+<td>Prof. May Christina G. Bugash</td>
+<td><a href="mailto:upcosaff@gmail.com">upcosaff@gmail.com<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script></a><br><a href="mailto:sts.cebu@up.edu.ph">sts.cebu@up.edu.ph<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script></a></td>
+<td><a href="tel:0322328185">032.232.8185</a></td>
+</tr>
+<tr>
+<td>UP Diliman</td>
+<td>Prof. Niel Kenneth F. Jamandre</td>
+<td><a href="mailto:sts.diliman@up.edu.ph">sts.diliman@up.edu.ph<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script></a></td>
+<td><a href="tel:029818500">02.981.8500<br>local 4505</a></td>
+</tr>
+<tr>
+<td>UP Los Baños</td>
+<td>Dr. Leticia E. Afuang</td>
+<td><a href="mailto:sts.losbanos@up.edu.ph">sts.losbanos@up.edu.ph<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script></a></td>
+<td><a href="tel:0495363212">049.536.3212</a><br><a href="tel:0495363209">049.536.3209</a></td>
+</tr>
+<tr>
+<td>UP Manila</td>
+<td>Dr. Honey Libertine Achanczar-Labor</td>
+<td><a href="mailto:elenventurina@yahoo.com">elenventurina@yahoo.com<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script></a></td>
+<td><a href="tel:025231641">02.523.1641 </a><br><a href="tel:025262274">02.526.2274</a></td>
+</tr>
+<tr>
+<td>UP Mindanao</td>
+<td>Dr. Evelina E. Ayson</td>
+<td><a href="mailto:osa_upmin@yahoo.com">osa_upmin@yahoo.com<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script></a></td>
+<td><a href="tel:0822931353">082.293.1353</a></td>
+</tr>
+<tr>
+<td>UP Visayas</td>
+<td>Prof. Ruben M. Gamala</td>
+<td><a href="mailto:osa@upv.edu.ph">osa@upv.edu.ph<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script></a><br><a href="mailto:maritesgeonanga@yahoo.com">maritesgeonanga@yahoo.com<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script></a></td>
+<td><a href="tel:0535137019">033.513.7019</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<a href="file.php">File Dorm Application</a><br/>
+<a href="admin-login.php">Admin Login</a>
+</body>
+</html>

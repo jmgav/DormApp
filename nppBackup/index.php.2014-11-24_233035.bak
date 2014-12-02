@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<?php
+require_once 'functions.php';
+include 'head.php'
+?>
+
+<div class="row">
+<div class="col-sm-12">
+<div class="media" style="margin-bottom: 15px; margin-top: 15px;">
+<img class="pull-left" src="./images/seal-80x80.png">
+<div class="media-body">
+<h1 style="color: #7B1113; margin: 0">Dorm Application System</h1>
+<h4 style="margin-top: 0"><span style="color: #335628">OFFICE OF STUDENT AFFAIRS</span>
+<br>
+<span style="color: #8E171A">UNIVERSITY OF THE PHILIPPINES VISAYAS</span></h4>
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col-sm-9">
+<ul class="nav nav-tabs" role="tablist" id="myTab">
+  <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+  <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Announcements</a></li>
+  <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">How Do I Apply?</a></li>
+  <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Helpdesk</a></li>
+</ul>
+
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="home">
+  <h4>UPV Dorm Application System</h4>
+<p>You will find relevant stuff here, including an introduction of the system and its purpose.</p>
+  
+  </div>
+  <div role="tabpanel" class="tab-pane" id="profile">
+  
+    <h4>Application and Interview Period for the Second Semester</h4>
+
+<p>To accommodate the rest of the dormitory applicants, DAS Online will follow the schedules on the following dates:</p>
+
+<h4>SCHEDULE</h4>
+
+<table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>Dormitory</th>
+          <th>Applications</th>
+          <th>Results</th>
+          <th>Interview</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lampirong</td>
+          <td>November 17-19</td>
+          <td>December 5</td>
+          <td>December 10</td>
+        </tr>
+		 <tr>
+          <td>Kanlaon</td>
+          <td>November 19-21</td>
+          <td>December 7</td>
+          <td>December 10</td>
+        </tr>
+		 <tr>
+          <td>Gumamela</td>
+          <td>November 17-19</td>
+          <td>December 5</td>
+          <td>December 10</td>
+        </tr>
+        <tr>
+          <td>Madyaas</td>
+          <td>November 19-21</td>
+          <td>December 7</td>
+           <td>December 10</td>
+        </tr>
+        <tr>
+          <td>Apitong</td>
+          <td>November 17-19</td>
+          <td>December 5</td>
+		   <td>December 10</td>
+        </tr>
+		<tr>
+          <td>Illonggo</td>
+          <td>November 18-20</td>
+          <td>December 6</td>
+		   <td>December 10</td>
+        </tr>
+      </tbody>
+    </table>
+
+<p>For inquires, please contact the respective dormitory your will apply for. Check out the DAS Helpdesk tab for contact details.</p>
+  
+  </div>
+  <div role="tabpanel" class="tab-pane" id="messages">
+  <h4>Who can apply</h4>
+
+<p>To qualify for the dormitory application, the student must:
+Be a Filipino*;
+Be a bonafide undergraduate student; Except for students pursuing a Master Degree;
+Never have been adjudged guilty of any offense that carries a penalty of more than 30 days suspension;
+Never have received a memo 2 violation from the previous evaluation; and
+Have remaining tenure for the dormitory.</p>
+
+<hr/>
+
+<h4>Terms and conditions before applying for the dormitory.</h4>
+
+<p>The University reserves the right to determine whether the student deserves to be accepted in the dormitory. The Dormitory Managers, in coordination with the Offices of Student Affairs (OSAs), will organize a fact-finding team to check information submitted by the applicants. Dormitory privileges may be withdrawn when a student withholds or gives false information, without prejudice to other penalties that may be imposed by the University.</p>
+<p>All information supplied in the application will be kept secure and confidential. All information may be used by the University for research, with the assurance that personal details of the applicant will be kept secure.</p>
+  </div>
+  <div role="tabpanel" class="tab-pane" id="settings">
+  <div class="table-responsive">
+  <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>Dormitory</th>
+          <th>Head of Office</th>
+          <th>Email Address</th>
+          <th>Contact Numbers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lampirong</td>
+          <td>Aster Tronco</td>
+          <td>hallone@gmail.com</td>
+          <td>221</td>
+        </tr>
+		 <tr>
+          <td>Kanlaon</td>
+          <td>Divina Punongbayan</td>
+          <td>BKstrong2@yahoo.com</td>
+          <td>129</td>
+        </tr>
+		 <tr>
+          <td>Gumamela</td>
+          <td>Susana Triunfante</td>
+          <td>BestDorm@gmail.com</td>
+          <td>225</td>
+        </tr>
+        <tr>
+          <td>Madyaas</td>
+          <td>Someone</td>
+          <td>BoysDorm@gmail.com</td>
+           <td>226</td>
+        </tr>
+        <tr>
+          <td>Apitong</td>
+          <td>Nida Belas</td>
+          <td>UPVGrad@yahoo.com</td>
+		   <td>222</td>
+        </tr>
+		<tr>
+          <td>Illonggo</td>
+          <td>Princess Sarah</td>
+          <td>c1typ3opl3@outlook.com</td>
+		   <td>33010231</td>
+        </tr>
+      </tbody>
+    </table>
+	</div>
+  
+  </div>
+</div>
+
+</div>
+
+<div class="col-sm-3">
+ 
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Student Login</h3>
+</div>
+<div class="panel-body">
+<form action="https://sts.up.edu.ph/gate/login" method="post" accept-charset="utf-8"> <p><a href="#" data-toggle="modal" data-target="#newstudents"><span>Who are New Students? Where can I get my PIN?</span></a></p>
+<div class="form-group">
+<input type="text" class="form-control" name="student_no" placeholder="Student No. 20xx-xxxxx" value="" autocomplete="off" maxlength="10">
+</div>
+<div class="form-group">
+<input type="password" class="form-control" name="pin" placeholder="5-digit PIN" maxlength="5" value="">
+</div>
+<p><button type="submit" class="btn btn-success">
+Log in
+</button></p>
+</form> <small><strong class="text-info">Forgot your PIN?</strong> Contact the ST Helpdesk in your campus to get a new PIN. Check out the ST Helpdesk tab for their contact details.</small>
+</div>
+</div>
+<div class="panel panel-primary" style="">
+<div class="panel-heading" style="">
+<h3 class="panel-title">Upperclassmen <small style="color: #FFF">2013-xxxxx and older</small></h3>
+</div>
+<div class="panel-body">
+<p><a href="#" data-toggle="modal" data-target="#upmail"><span>Where can I get my UP Mail (@up.edu.ph) account?</span></a></p>
+ 
+<p><a class="btn btn-danger" href="https://sts.up.edu.ph/gate/login_oauth">Sign in with Google</a></p>
+<p class="text-muted"><small><em>Don't forget to include "@up.edu.ph" in the Email field when you sign in.</em></small></p>
+<p><small><strong class="text-info">Forgot your password?</strong> If you're from Diliman, you can get a new password from the eUP helpdesk at Vidal A. Tan Hall. If you're from another campus, you can get a new password from your respective Computer/IT Center.</small></p>
+<p><small>If you're asking for assistance via email (<a href="mailto:helpdesk@up.edu.ph">helpdesk@up.edu.ph<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script></a>), don't forget to send the following:</small></p>
+<small><ul style="padding-left: 15px; list-style: square; margin-bottom: 0">
+<li>Student number</li>
+<li>Complete name</li>
+<li>Campus</li>
+<li>A scanned copy of your latest Form 5 and UP ID</li>
+</ul></small>
+</div>
+</div>
+ 
+<div class="modal fade" id="upmail" tabindex="-1" role="dialog" aria-labelledby="upmail-label" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+×
+</button>
+<h4 class="modal-title" id="upmail-label">Where can I get my UP Mail (@up.edu.ph) account?</h4>
+</div>
+<div class="modal-body">
+<p>Upperclassmen will use their <strong class="text-info">UP Mail account (e.g. jpdelacruz@up.edu.ph<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script>)</strong> to access ST Online. <strong class="text-info">There is no need to request for a 5-digit PIN.</strong></p>
+<p>UP Mail is a new e-mail service that will consolidate all UP employees and students from all Constituent Universities (CUs) into a single e-mail domain. This is different from your CU specific web mails (e.g. @upd.edu.ph, @uplb.edu.ph, @upb.edu.ph; <strong class="text-info">do not use these emails when logging in to ST</strong>.</p>
+<p>If you're <strong class="text-info">from Diliman</strong>, you may get your account from the eUP helpdesk at Room 308, 3/F Vidal A. Tan Hall, UP Diliman, Quezon City. If you're <strong class="text-info">from another campus</strong>, visit your respective Computer/IT Center for assistance. Present your latest Form 5 and/or UP ID for identity verification.</p>
+<p>If you're asking for <strong class="text-info">assistance via email (helpdesk@up.edu.ph<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script>)</strong>, send your:</p>
+<ul>
+<li>Student number</li>
+<li>Complete name</li>
+<li>Campus</li>
+<li>A scanned copy of your latest Form 5 and UP ID</li>
+</ul>
+<p><strong class="text-info">Please do not send more than one request.</strong> Your requests are given ample attention upon receipt.</p>
+<p>Check out <a target="_blank" href="http://e.up.edu.ph/general-mail-faq/">http://e.up.edu.ph/general-mail-faq/</a> for more information about UP Mail.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="newstudents" tabindex="-1" role="dialog" aria-labelledby="newstudents-label" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+×
+</button>
+<h4 class="modal-title" id="newstudents-label">Who are New Students? Where can I get my PIN?</h4>
+</div>
+<div class="modal-body">
+<p>All new students will use their <strong class="text-info">Student No. and 5-digit PIN</strong> to access ST. Your 5-digit PIN is indicated on your Admission Slip.</p>
+<p>New students include the following:</p>
+<ul>
+<li>UPCAT Qualifiers</li>
+<li>Incoming freshmen with newly issued Admission Slips</li>
+<li>Incoming freshmen with Admission Slips who were not able to log-in to ST in April 2014</li>
+<li>Incoming freshmen who deferred enrolment in previous years</li>
+<li>Incoming MD [from UP College of Medicine] and JD [from UP College of Law] students</li>
+<li>Transferees from other schools</li>
+<li>Students without Admission Slips but have been duly accepted by a UP unit as an incoming undergraduate student</li>
+</ul>
+<p>
+If you were not issued one, contact the ST Helpdesk in your campus for assistance. Contact details are in the ST Helpdesk tab.
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+
+<a href="file.php">File Dorm Application</a><br/>
+<a href="admin-login.php">Admin Login</a>
+
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<?php
+require_once 'functions.php';
+include 'head.php'
+?>
+
+<div class="row">
+<div class="col-sm-12">
+<div class="media" style="margin-bottom: 15px">
+<img class="pull-left" src="./images/seal-80x80.png">
+<div class="media-body">
+<h1 style="color: #7B1113; margin: 0">Socialized Tuition (ST) System</h1>
+<h4 style="margin-top: 0"><span style="color: #335628">SOCIALIZED TUITION OFFICE</span>
+<br>
+<span style="color: #8E171A">UNIVERSITY OF THE PHILIPPINES</span></h4>
+</div>
+</div>
+</div>
+
+</div>
+
+<a href="file.php">File Dorm Application</a><br/>
+<a href="admin-login.php">Admin Login</a>
+</body>
+</html>

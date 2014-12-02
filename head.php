@@ -15,8 +15,12 @@
 		
 <link rel='stylesheet' href='bootstrap/css/bootstrap.css' type='text/css' media='all' />
 <link rel='stylesheet' href='style.css' type='text/css' media='all' />
+
+<script src="bootstrap/js/jquery.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
 </head>
 	
 <body>
 <div class="container">
-	
+
+<?php ob_start(); ?>

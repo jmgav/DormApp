@@ -49,17 +49,11 @@ else{
   public static function is_logged_in(){ /*function to check if someone is logged in, either as a normal user or an admin*/
 
       if(isset($_SESSION['dormappid'])) {
-             $u=$_SESSION['dormappid']; 
+			 return true;
       }
       else{
           return false;
-      }
-      
-    if(isset($_SESSION['dormappid'])  && self::is_valid_user($u)){
-        return true;
-    }else{
-        return false;
-    }
+   }
 }    
     
 }

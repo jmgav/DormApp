@@ -1,15 +1,28 @@
 <?php
 require_once 'functions.php';
 require_once 'class_application.php';
-include 'head.php'
-?>
+include 'head.php';
 
+if(login_class::is_logged_in()){
+      
+    }
+	else{
+	 head(index,'');
+	}
+?>
 <div class="alert alert-info fade in" data-alert="alert">
       <h3>
         <strong>
          Application for Admission to UPV Dormitories 
         </strong>
       </h3>
+	  
+	  <a href="logout.php" class="pull-right"> <button type='button' class='btn btn-danger'>Logout</button></a>
+	  
+	  <p>Hello Student, please fill up this form accurately and honestly.</p>
+	  <p>Most</p>  
+	 
+	  
   </div>
   <div class="row">
   <div class="col-sm-4">
@@ -17,10 +30,11 @@ include 'head.php'
   <?php
  if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['agree'])){
           
-		  $coverage = isset($_POST['coverage']) ? $_POST['coverage'] : 'none' ;
+		  $coverage = isset($_POST['coverage[]']) ? $_POST['coverage[]'] : 'none' ;
 	
 		  
-     class_application::submit_app(trim($_POST['first_name']),
+     class_application::submit_app(
+		trim($_POST['first_name']),
         trim($_POST['last_name']),
 		trim($_POST['middle_name']),
 		trim($_POST['student_number']),
@@ -28,9 +42,10 @@ include 'head.php'
 		trim($_POST['year_level']),
 		trim($_POST['units']),
 		trim($_POST['perm_address']),
+		$_POST['home_distance'],
 		trim($_POST['mail_address']),
 		trim($_POST['landline']),
-		trim($_POST['mobile']),
+		$_POST['mobile'],
 		trim($_POST['mother_name']),
 		trim($_POST['father_name']),
 		trim($_POST['mother_address']),
@@ -114,12 +129,67 @@ include 'head.php'
 </div>
 			</div>		
 					</div>
-
-
-
+					
  <div class="form-group">
-		<input type="text" name="perm_address" class="form-control input-md" placeholder="Permanent Address" tabindex="8">
-</div>
+ 
+		<input type="text" name="perm_address" id="perm" class="form-control input-md" placeholder="Permanent Address" tabindex="8" onkeyup="showLocation(); return false;" autocomplete="off" >
+
+		<input type="hidden" name="address2" id="address2" value="Miagao, Iloilo"/>
+		<br/>
+		<div class="alert alert-success" role="alert" id="results"></div>
+		<input type="hidden" name="home_distance" id="distance">
+		
+		</div>
+<script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAA7j_Q-rshuWkc8HyFI4V2HxQYPm-xtd00hTQOC0OXpAMO40FHAxT29dNBGfxqMPq5zwdeiDSHEPL89A" type="text/javascript"></script>
+  <script type="text/javascript">
+    var geocoder, location1, location2;
+
+        geocoder = new GClientGeocoder();
+
+    function showLocation() {
+        geocoder.getLocations(jQuery('#perm').val(), function (response) {
+            if (!response || response.Status.code != 200)
+            {
+                
+            }
+            else
+            {
+                location1 = {lat: response.Placemark[0].Point.coordinates[1], lon: response.Placemark[0].Point.coordinates[0], address: response.Placemark[0].address};
+                geocoder.getLocations(jQuery('#address2').val(), function (response) {
+                    if (!response || response.Status.code != 200)
+                    {
+                       
+                    }
+                    else
+                    {
+                        location2 = {lat: response.Placemark[0].Point.coordinates[1], lon: response.Placemark[0].Point.coordinates[0], address: response.Placemark[0].address};
+                        calculateDistance();
+                    }
+                });
+            }
+        });
+    }
+    
+    function calculateDistance()
+    {
+        try
+        {
+            var glatlng1 = new GLatLng(location1.lat, location1.lon);
+            var glatlng2 = new GLatLng(location2.lat, location2.lon);
+            var miledistance = glatlng1.distanceFrom(glatlng2, 3959).toFixed(1);
+            var kmdistance = (miledistance * 1.609344).toFixed(1);
+
+            document.getElementById('results').innerHTML = '<strong>Home Address: </strong>' + location1.address + '<strong><br/>Distance from UP Visayas: </strong>' + miledistance + ' miles (or ' + kmdistance + ' kilometers)';
+			jQuery('#distance').val(kmdistance);
+		}
+        catch (error)
+        {
+            alert(error);
+        }
+    }
+
+    </script>					
+
 
  <div class="form-group">
 		<input type="text" name="mail_address" class="form-control input-md" placeholder="Mailing Address" tabindex="9">
@@ -351,31 +421,31 @@ include 'head.php'
 <div class="col-sm-7">
 		<div class="radio">
       <label>
-        <input type="radio" name="income" value="80" checked>
-          Below 80,00 
+        <input type="radio" name="income" value="80000" checked>
+          Below 80,000 
       </label>
     </div>
 	<div class="radio">
       <label>
-        <input type="radio" name="income" value="135">
+        <input type="radio" name="income" value="135000">
        80,000-135,000 
       </label>
     </div>
 	<div class="radio">
       <label>
-        <input type="radio" name="income" value="500">
+        <input type="radio" name="income" value="500000">
        135,001-500,000 
       </label>
     </div>
 	<div class="radio">
       <label>
-        <input type="radio" name="income" value="1000">
+        <input type="radio" name="income" value="1000000">
         500,001-1,000,000
       </label>
     </div>
 	<div class="radio">
       <label>
-        <input type="radio" name="income" value="1m">
+        <input type="radio" name="income" value="2000000">
       Above 1 million
       </label>
 	  </div>

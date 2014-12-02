@@ -35,7 +35,9 @@ include 'head.php';
 	      
         <?php }
 
-if($_SERVER['REQUEST_METHOD']=='POST'){  login_class::login($_POST['username'],$_POST['password']); /*login function*/
+if($_SERVER['REQUEST_METHOD']=='POST'){  
+
+login_class::login($_POST['username'],$_POST['password']); /*login function*/
  
     if(login_class::is_logged_in()){
        head(adminindex,""); 

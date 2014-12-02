@@ -13,9 +13,10 @@ class class_application {
         return self::$instance;
     }    
 
-public static function submit_app($fn,$ln,$mn,$sn,$co,$yl,$un,$pa,$ma,$la,$mo,$mon,$fan,$moa,$faa,
+public static function submit_app($fn,$ln,$mn,$sn,$co,$yl,$un,$pa,$hd,$ma,$la,$mo,$mon,$fan,$moo,$fao,$moa,$faa,
 								  $mol,$mom,$fal,$fam,$gn,$ga,$re,$gl,$gm,$sc,$cov,$br,$in){    
-   
+$query_flag=1;   
+
 $firstname = ucwords(strtolower(filter_var($fn,FILTER_SANITIZE_STRING)));
 $lastname = ucwords(strtolower(filter_var($ln,FILTER_SANITIZE_STRING)));
 $middlename = ucwords(strtolower(filter_var($mn,FILTER_SANITIZE_STRING)));
@@ -24,19 +25,22 @@ $course = ucwords(strtolower(filter_var($co,FILTER_SANITIZE_STRING)));
 $year_level = filter_var($yl,FILTER_VALIDATE_INT);
 $units = filter_var($un,FILTER_VALIDATE_INT);
 $perm_address=ucwords(strtolower(filter_var($pa,FILTER_SANITIZE_STRING)));
+$home_distance=$hd;
 $mailing_address=ucwords(strtolower(filter_var($ma,FILTER_SANITIZE_STRING)));
 $landline=filter_var($la,FILTER_VALIDATE_INT);
-$mobile=filter_var($mo,FILTER_VALIDATE_INT);
-
+$mobile=$mo;
+ 
 $mother_name= ucwords(strtolower(filter_var($mon,FILTER_SANITIZE_STRING)));
 $father_name= ucwords(strtolower(filter_var($fan,FILTER_SANITIZE_STRING)));
+$mother_occupation= ucwords(strtolower(filter_var($moo,FILTER_SANITIZE_STRING)));
+$father_occupation= ucwords(strtolower(filter_var($fao,FILTER_SANITIZE_STRING)));
 $mother_address= ucwords(strtolower(filter_var($moa,FILTER_SANITIZE_STRING)));
 $father_address= ucwords(strtolower(filter_var($faa,FILTER_SANITIZE_STRING)));
 $mother_landline= filter_var($mol,FILTER_VALIDATE_INT);
 $mother_mobile= filter_var($mom,FILTER_VALIDATE_INT);
 $father_landline= filter_var($fal,FILTER_VALIDATE_INT);
 $father_mobile= filter_var($fam,FILTER_VALIDATE_INT);
-
+  
 $guardian_name= ucwords(strtolower(filter_var($gn,FILTER_SANITIZE_STRING)));
 $guardian_address= ucwords(strtolower(filter_var($ga,FILTER_SANITIZE_STRING)));
 $relationship = ucwords(strtolower(filter_var($re,FILTER_SANITIZE_STRING)));
@@ -48,94 +52,28 @@ $coverage=$cov;
 $bracket=$br;
 $income=$in;
 
+
+
         
- if(preg_match('/^[a-zA-Z ]{1,30}$/', $firstname )) { }  /*checks for valid input, otherwise displays error*/
- else {
- 	echo  "<li class='list-group-item list-group-item-danger'>Invalid first name!</li>" ;
-  } 
 
- if(preg_match('/^[a-zA-Z ]{2,30}$/', $lastname)) {}
- else {
- 	echo  "<li class='list-group-item list-group-item-danger'>Invalid last name!</li>" ;
-  } 
-  
-  if(preg_match('/^[a-zA-Z ]{2,30}$/', $middlename)) {}
- else {
- 	echo  "<li class='list-group-item list-group-item-danger'>Invalid middle name!</li>" ;
-  } 
- if(preg_match('/^[\d]-{8,11}$/', $student_number))  {}
- else {
- 	echo  "<li class='list-group-item list-group-item-danger'>Invalid student number!</li>" ;
-  }
-  
-  
-  
-  echo'</ul></div><div class="col-sm-4"><ul class="list-group">';
+if($query_flag==1){		
+      
+	  
+mysql_query("INSERT INTO applicants VALUES(0,now(),'$firstname','$lastname','$middlename','$student_number',
+'$course','$year_level','$units','$perm_address','$home_distance','$mailing_address','$landline','$mobile','$mother_name',
+'$father_name','$mother_address','$father_address','$mother_occupation','$father_occupation','$mother_landline',
+'$mother_mobile','$father_landline','$father_mobile','$guardian_name','$guardian_address','$relationship',
+'$guardian_landline','$guardian_mobile','$scholarship','$coverage','$bracket','$income')") or die("Error in query:".mysql_error());	
 
- if(preg_match('/^[\w\d]{4,30}$/', $password)) {}
- else {
- 	echo  "<p id=\"error\">&nbsp&nbspInvalid password!</p>" ;
-  }
-  
-  if(preg_match('/^[\w\d]{4,30}$/', $password2)) {}
- else {
- 	echo  "<p id=\"error\">&nbsp&nbspConfirm password!</p>" ;
-  }
-   if($password==$password2) {}
- else {
- 	echo  "<p id=\"error\">&nbspPasswords don't match!</p>" ;
-  }
- 
-   echo'</ul></div><div class="col-sm-4"><ul class="list-group">';
- 
- if(preg_match('/^[\w\d ,#.]{4,50}$/',$home)) {}
- else {
- 	echo  "<p id=\"error\">&nbsp&nbspInvalid home address!</p>" ;
- return false;
-  }
+echo "<div class='alert alert-success' role='alert'>Thank you for submitting your application!</div>";
+		 }	
 
-  if($bday) {}
- else {
- 	echo  "<p id=\"error\">&nbsp&nbspInvalid birthday!</p>" ;
- return false;
-  }
-if(preg_match('/^[a-zA-Z ]{6,50}$/',$occupation)) {}
- else {
- 	echo  "<p id=\"error\">&nbsp&nbspInvalid occupation!</p>" ;
- return false;
-  }
-  
 
- 
- if(preg_match('/^[\d]{3,8}$/', $income)) {}
- else {
- 	echo  "<p id=\"error\">&nbsp&nbspInvalid income!</p>" ;
- return false;
-  }
+else{
+	//push error array
+}		 
+//logdata( " registered - Name: ".$firstname." ".$lastname." Email: ".$email,null);
 
- if($creditcard)  {}
- else {
- 	echo  "<p id=\"error\">&nbsp&nbspInvalid Credit Card!</p>" ;
- return false;}
-
- if(preg_match('/^[\d]{4,30}$/', $creditno))  {}
- else {
- 	echo  "<p id=\"error\">&nbsp&nbspInvalid Credit Card no.!</p>" ;
- return false;
-  }
-  
-   if(isset($_POST['agree'])) {}
- else {
- 	echo  "<p id=\"error2\">&nbspYou must agree to the &nbsp&nbsp terms and conditions!</p>" ;
- return false;
-  }
-  
-		
-mysql_query("INSERT INTO personalinfo VALUES(0,'$firstname','$lastname','$email','$home','$password','$bday')") or die("Error in query1:".mysql_error());	
-             
-logdata( " registered - Name: ".$firstname." ".$lastname." Email: ".$email,null);
-
-echo "<p id=\"sucess\">&nbspThank you for submitting your application!</p>";
 sleep(1);
 
 
