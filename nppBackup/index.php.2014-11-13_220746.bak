@@ -1,8 +1,0 @@
-<!DOCTYPE html>
-<?php
-require_once 'functions.php';
-include 'head.php'
-?>
-
-</body>
-</html>

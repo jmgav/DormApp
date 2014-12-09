@@ -34,6 +34,47 @@ require_once 'class_login.php';
   <div role="tabpanel" class="tab-pane active" id="home">
   <h4>UPV Dorm Application System</h4>
 <p>You will find relevant stuff here, including an introduction of the system and its purpose.</p>
+
+<?php
+$query=mysql_query("SELECT * FROM deadline")or die(mysql_error());
+  
+while ($row = mysql_fetch_assoc($query)) {
+
+if($row['flag']==1){
+
+echo '<h4>Here are the accepted applicants for UPV dorms</h4>';
+
+echo '<table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+		  <th>Student Number</th>
+          <th>Address</th>
+      
+		    
+        </tr>
+      </thead>
+	    <tbody>';
+
+$query2=mysql_query("SELECT * FROM applicants WHERE accept_flag='Accepted'")or die(mysql_error());
+while ($row2 = mysql_fetch_assoc($query2)) {
+echo '<tr>';
+echo '<th>'.$row2['firstname'].' '.$row2['lastname'].'</th>';
+		echo '<th>'.$row2['student_number'].'</th>';
+		echo '<th>'.$row2['perm_address'].'</th>';
+
+echo '</tr>';
+
+}
+
+echo '</tbody>
+    </table>';
+
+}
+
+}
+?>
+
   
   </div>
   <div role="tabpanel" class="tab-pane" id="profile">
@@ -196,7 +237,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 login_class::login($_POST['username'],$_POST['password']); /*login function*/
  
-    if(login_class::is_logged_in()){
+    if(login_class::is_logged_in_student()){
        head(file,'');
     }
     else{

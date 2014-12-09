@@ -1,9 +1,0 @@
-<!DOCTYPE html>
-<?php
-require_once 'functions.php';
-include 'head.php'
-?>
-
-<a href="file.php">File Dorm Application</a>
-</body>
-</html>

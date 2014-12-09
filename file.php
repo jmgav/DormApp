@@ -3,12 +3,24 @@ require_once 'functions.php';
 require_once 'class_application.php';
 include 'head.php';
 
-if(login_class::is_logged_in()){
-      
-    }
-	else{
-	 head(index,'');
+if(!login_class::is_logged_in_student()) head(index,'');
+
+$id=$_SESSION['username'];
+
+    $result = mysql_query("SELECT flag FROM users WHERE username='$id'") or die(mysql_error());
+    
+    if(mysql_num_rows($result) == 1){
+	
+	$row = mysql_fetch_assoc($result);
+	
+	$flag=$row['flag'];
+	
 	}
+	
+	
+$result2 = mysql_query("SELECT * FROM deadline") or die(mysql_error());
+$deadline = mysql_num_rows($result2);
+	
 ?>
 <div class="alert alert-info fade in" data-alert="alert">
       <h3>
@@ -20,24 +32,26 @@ if(login_class::is_logged_in()){
 	  <a href="logout.php" class="pull-right"> <button type='button' class='btn btn-danger'>Logout</button></a>
 	  
 	  <p>Hello Student, please fill up this form accurately and honestly.</p>
-	  <p>Most</p>  
-	 
+
+		<p>Please enter valid values for each field, incorrectly filled up applications will be discarded.</p>
+		
+		<p>Please enter N/A for fields which are not applicable to you.</p>
 	  
   </div>
-  <div class="row">
-  <div class="col-sm-4">
-<ul class="list-group">
+
   <?php
+  
+  if($flag==0){
+   if($deadline==0){
+  
  if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['agree'])){
           
-		  $coverage = isset($_POST['coverage[]']) ? $_POST['coverage[]'] : 'none' ;
-	
 		  
      class_application::submit_app(
 		trim($_POST['first_name']),
         trim($_POST['last_name']),
 		trim($_POST['middle_name']),
-		trim($_POST['student_number']),
+		$id,
 		trim($_POST['course']),
 		trim($_POST['year_level']),
 		trim($_POST['units']),
@@ -62,7 +76,6 @@ if(login_class::is_logged_in()){
 		trim($_POST['guardian_landline']),
 		trim($_POST['guardian_mobile']),
 		trim($_POST['scholarship']),
-		$coverage,
 		$_POST['bracket'],
 		$_POST['income']		
 		);    
@@ -75,26 +88,24 @@ if(login_class::is_logged_in()){
 </div>';
  }
     ?>
-</ul>
-</div>
-</div>
+
 <form action="file.php" method="post"> 
 	  
  <div class="row">
   <div class="col-md-6">
   <div class="panel panel-info">
-    <div class="panel-heading">A. Student Infomation</div>
+    <div class="panel-heading">Student Infomation</div>
     <div class="panel-body">
      
 	   	<div class="row">
 				<div class="col-sm-6 left">
 					<div class="form-group">
-                        <input type="text" name="first_name" class="form-control input-md" placeholder="Given Name" tabindex="1">
+                        <input type="text" name="first_name" class="form-control input-md" placeholder="Given Name" tabindex="1" required>
 					</div>
 				</div>
 				<div class="col-sm-6 right">
 					<div class="form-group">
-						<input type="text" name="last_name" class="form-control input-md" placeholder="Family Name" tabindex="2">
+						<input type="text" name="last_name" class="form-control input-md" placeholder="Family Name" tabindex="2"  required>
 					</div>
 				</div>
 			</div>
@@ -102,12 +113,12 @@ if(login_class::is_logged_in()){
 				<div class="row">
 				<div class="col-sm-6 left">
 <div class="form-group">
-						<input type="text" name="middle_name" class="form-control input-md" placeholder="Middle Name" tabindex="3">
+						<input type="text" name="middle_name" class="form-control input-md" placeholder="Middle Name" tabindex="3"  required>
 					</div>
 					</div>
 <div class="col-sm-6 right">
 <div class="form-group">
-						<input type="text" name="student_number" class="form-control input-md" placeholder="Student Number" tabindex="4">
+						<input type="text" name="student_number" class="form-control input-md" placeholder="Student Number" tabindex="4" value="<?php echo $id;?>" disabled>
 					</div>
 					</div>
 					</div>
@@ -115,24 +126,32 @@ if(login_class::is_logged_in()){
 <div class="row">
 				<div class="col-sm-6 left">
 <div class="form-group">
-						<input type="text" name="course" class="form-control input-md" placeholder="Course" tabindex="5">
+						<input type="text" name="course" class="form-control input-md" placeholder="Course" tabindex="5"  required>
 					</div>
 					</div>
 <div class="col-sm-3 left right">
 <div class="form-group">
-						<input type="text" name="year_level" class="form-control input-md" placeholder="Year Level" tabindex="6">
+						
+					<select name="year_level" class="form-control input-md" tabindex="6" required>
+  <option value='0'>Year Level</option>
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
 					</div>
 					</div>
 					<div class="col-sm-3 right">
 					 <div class="form-group">
-		<input type="text" name="units" class="form-control input-md" placeholder="Units Enrolled" tabindex="7">
+		<input type="text" name="units" class="form-control input-md" placeholder="Units Enrolled" tabindex="7" required>
 </div>
 			</div>		
 					</div>
 					
  <div class="form-group">
  
-		<input type="text" name="perm_address" id="perm" class="form-control input-md" placeholder="Permanent Address" tabindex="8" onkeyup="showLocation(); return false;" autocomplete="off" >
+		<input type="text" name="perm_address" id="perm" class="form-control input-md" placeholder="Permanent Address" tabindex="8" onkeyup="showLocation(); return false;" autocomplete="off" required>
 
 		<input type="hidden" name="address2" id="address2" value="Miagao, Iloilo"/>
 		<br/>
@@ -192,18 +211,18 @@ if(login_class::is_logged_in()){
 
 
  <div class="form-group">
-		<input type="text" name="mail_address" class="form-control input-md" placeholder="Mailing Address" tabindex="9">
+		<input type="text" name="mail_address" class="form-control input-md" placeholder="Mailing Address" tabindex="9"  required>
 </div>
 
 	<div class="row">
 				<div class="col-sm-6 left">
 <div class="form-group">
-						<input type="text" name="landline" class="form-control input-md" placeholder="Landline no. (with area code)" tabindex="10">
+						<input type="text" name="landline" class="form-control input-md" placeholder="Landline no. (with area code)" tabindex="10"  required>
 					</div>
 					</div>
 <div class="col-sm-6 right">
 <div class="form-group">
-						<input type="text" name="mobile" class="form-control input-md" placeholder="Mobile no." tabindex="11">
+						<input type="text" name="mobile" class="form-control input-md" placeholder="Mobile no." tabindex="11"  required>
 					</div>
 					</div>
 					</div>
@@ -216,32 +235,32 @@ if(login_class::is_logged_in()){
    <div class="col-md-6">
    
      <div class="panel panel-info">
-    <div class="panel-heading">C. Guardians' Information</div>
+    <div class="panel-heading">Guardians' Information</div>
     <div class="panel-body">
      
   <div class="form-group">
  
  <div class="form-group">
-						<input type="text" name="guardian_name" class="form-control input-md" placeholder="Guardians' Name">
+						<input type="text" name="guardian_name" class="form-control input-md" placeholder="Guardians' Name"  required>
 					</div>
 
   <div class="form-group">
-						<input type="text" name="guardian_address" class="form-control input-md" placeholder="Guardians' Address">
+						<input type="text" name="guardian_address" class="form-control input-md" placeholder="Guardians' Address"  required>
 					</div>
 
  <div class="form-group">
-						<input type="text" name="relationship" class="form-control input-md" placeholder="Relationship with Applicant">
+						<input type="text" name="relationship" class="form-control input-md" placeholder="Relationship with Applicant"  required>
 					</div>
 
 <div class="row">
 				<div class="col-sm-6 left">
 <div class="form-group">
-						<input type="text" name="guardian_landline" class="form-control input-md" placeholder="Guardians' Landline no.">
+						<input type="text" name="guardian_landline" class="form-control input-md" placeholder="Guardians' Landline no."  required>
 					</div>
 					</div>
 <div class="col-sm-6 right">
 <div class="form-group">
-						<input type="text" name="guardian_mobile" class="form-control input-md" placeholder="Guardians' Mobile no.">
+						<input type="text" name="guardian_mobile" class="form-control input-md" placeholder="Guardians' Mobile no."  required>
 					</div>
 					</div>
 					</div>
@@ -261,30 +280,30 @@ if(login_class::is_logged_in()){
     <div class="col-md-6">
   
    <div class="panel panel-info">
-    <div class="panel-heading">B. Mothers' Information</div>
+    <div class="panel-heading">Mothers' Information</div>
     <div class="panel-body">
      
  <div class="form-group">
-						<input type="text" name="mother_name" class="form-control input-md" placeholder="Mothers' Name">
+						<input type="text" name="mother_name" class="form-control input-md" placeholder="Mothers' Name"  required>
 					</div>
 					
  <div class="form-group">
-						<input type="text" name="mother_address" class="form-control input-md" placeholder="Mothers' Address">
+						<input type="text" name="mother_address" class="form-control input-md" placeholder="Mothers' Address"  required>
 					</div>
 
  <div class="form-group">
-						<input type="text" name="mother_occupation" class="form-control input-md" placeholder="Mothers' Occupation">
+						<input type="text" name="mother_occupation" class="form-control input-md" placeholder="Mothers' Occupation"  required>
 					</div>
 					
 <div class="row">
 				<div class="col-sm-6 left">
 <div class="form-group">
-						<input type="text" name="mother_landline" class="form-control input-md" placeholder="Mothers' Landline no.">
+						<input type="text" name="mother_landline" class="form-control input-md" placeholder="Mothers' Landline no."  required>
 					</div>
 					</div>
 <div class="col-sm-6 right">
 <div class="form-group">
-						<input type="text" name="mother_mobile" class="form-control input-md" placeholder="Mothers' Mobile no.">
+						<input type="text" name="mother_mobile" class="form-control input-md" placeholder="Mothers' Mobile no."  required>
 					</div>
 					</div>
 					</div>
@@ -294,28 +313,28 @@ if(login_class::is_logged_in()){
 
 
  <div class="panel panel-info">
-    <div class="panel-heading">B. Fathers' Information</div>
+    <div class="panel-heading">Fathers' Information</div>
     <div class="panel-body">
  <div class="form-group">
-						<input type="text" name="father_name" class="form-control input-md" placeholder="Fathers' Name">
+						<input type="text" name="father_name" class="form-control input-md" placeholder="Fathers' Name"  required>
 					</div>
 <div class="form-group">
-						<input type="text" name="father_address" class="form-control input-md" placeholder="Fathers' Address">
+						<input type="text" name="father_address" class="form-control input-md" placeholder="Fathers' Address"  required>
 					</div>
 
  <div class="form-group">
-						<input type="text" name="father_occupation" class="form-control input-md" placeholder="Fathers' Occupation">
+						<input type="text" name="father_occupation" class="form-control input-md" placeholder="Fathers' Occupation"  required>
 					</div>
 					
 <div class="row">
 				<div class="col-sm-6 left">
 <div class="form-group">
-						<input type="text" name="father_landline" class="form-control input-md" placeholder="Fathers' Landline no.">
+						<input type="text" name="father_landline" class="form-control input-md" placeholder="Fathers' Landline no."  required>
 					</div>
 					</div>
 <div class="col-sm-6 right">
 <div class="form-group">
-						<input type="text" name="father_mobile" class="form-control input-md" placeholder="Fathers' Mobile no.">
+						<input type="text" name="father_mobile" class="form-control input-md" placeholder="Fathers' Mobile no."  required>
 					</div>
 					</div>
 					</div>
@@ -330,7 +349,7 @@ if(login_class::is_logged_in()){
 
    <div class="col-md-6">
     <div class="panel panel-info">
-    <div class="panel-heading">D. Scholarship and Financial Assistance</div>
+    <div class="panel-heading">Scholarship and Financial Assistance</div>
     <div class="panel-body">
      
   <div class="form-horizontal">
@@ -338,45 +357,10 @@ if(login_class::is_logged_in()){
 
 <div class="form-group">
 <label class="col-sm-5 control-label" for="scholarship">Name of Scholarship</label>
-<div class="col-sm-7"><input class="form-control" name="scholarship" placeholder="(leave blank if none)" /></div>
+<div class="col-sm-7"><input class="form-control" name="scholarship" placeholder="type N/A if none"  required/></div>
 </div>
 
- <div class="form-group">
 
-<label class="col-sm-5 control-label" for="scholarship">Coverage</label>
-<div class="col-sm-7">
-		<div class="checkbox">
-      <label>
-        <input type="checkbox" name="coverage[]" value="Tuition and Miscellaneous">
-         Tuition and Miscellaneous
-      </label>
-    </div>
-	<div class="checkbox">
-      <label>
-        <input type="checkbox" name="coverage[]" value="Accommodation">
-        Accommodation
-      </label>
-    </div>
-	<div class="checkbox">
-      <label>
-        <input type="checkbox" name="coverage[]" value="Food">
-        Food
-      </label>
-    </div>
-	<div class="checkbox">
-      <label>
-        <input type="checkbox" name="coverage[]" value="Transportation">
-        Transportation
-      </label>
-    </div>
-	<div class="checkbox">
-      <label>
-        <input type="checkbox" name="coverage[]" value="Books">
-       Books
-      </label>
-	  </div>
-    </div>
-</div>
 
  <div class="form-group">
 
@@ -427,25 +411,25 @@ if(login_class::is_logged_in()){
     </div>
 	<div class="radio">
       <label>
-        <input type="radio" name="income" value="135000">
-       80,000-135,000 
+        <input type="radio" name="income" value="80001">
+       80,001-135,000 
       </label>
     </div>
 	<div class="radio">
       <label>
-        <input type="radio" name="income" value="500000">
+        <input type="radio" name="income" value="135001">
        135,001-500,000 
       </label>
     </div>
 	<div class="radio">
       <label>
-        <input type="radio" name="income" value="1000000">
+        <input type="radio" name="income" value="500001">
         500,001-1,000,000
       </label>
     </div>
 	<div class="radio">
       <label>
-        <input type="radio" name="income" value="2000000">
+        <input type="radio" name="income" value="1000000">
       Above 1 million
       </label>
 	  </div>
@@ -473,7 +457,7 @@ non-refundable unless refused admission to the College or upon withdrawal of app
 <p>3. Submit myself to a personal interview (as scheduled).</p>
 <p>I am fully responsible for the information I voluntarily provided. </p>
   
-    <input  name="agree" type="checkbox" checked />
+    <input  name="agree" type="checkbox"  required/>
         <label for="agree">I agree to the terms and conditions.</label> <br/>
 		
   <input class="btn btn-default" name="commit" type="submit" value="Submit Application">
@@ -484,6 +468,19 @@ non-refundable unless refused admission to the College or upon withdrawal of app
   
   </form>
   <?
+  }  
+  else{
+  echo '<a href="logout" class="btn btn-warning">We regret to inform you but the deadline has already passed. The application form has now been DISABLED. Click this button to logout.</a>';
+  }
+  
+  }
+  else{
+  echo '<a href="logout" class="btn btn-warning">You have already submitted your application, please wait for the results or contact the dorm manager. Click this button to logout.</a>';
+  }
+
+  
+  
+  
   include 'footer.php'
 ?>
 

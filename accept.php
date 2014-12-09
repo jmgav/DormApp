@@ -1,0 +1,11 @@
+<?php
+require_once 'dbconnection.php';
+include 'functions.php';
+dbconnection::getConnection();
+
+$id=$_GET['id'];
+
+$query=mysql_query("UPDATE applicants SET `accept_flag`='Accepted' WHERE id='$id'")or die(mysql_error());
+
+head(view,'?id='.$id);
+?>
