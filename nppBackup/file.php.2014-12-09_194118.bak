@@ -89,7 +89,7 @@ $deadline = mysql_num_rows($result2);
  }
     ?>
 
-<form action="file" method="post"> 
+<form action="file.php" method="post"> 
 	  
  <div class="row">
   <div class="col-md-6">

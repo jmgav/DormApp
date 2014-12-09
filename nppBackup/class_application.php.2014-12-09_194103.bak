@@ -97,9 +97,9 @@ mysql_query("UPDATE users SET `flag`=1 WHERE `username`='$student_number'") or d
 
 echo "<div class='alert alert-success' role='alert'>Thank you for submitting your application!</div>";
 
-sleep(1);
+sleep(5);
 
-head(file,'');
+echo "WHAT";
 		 }	
 
     }  
