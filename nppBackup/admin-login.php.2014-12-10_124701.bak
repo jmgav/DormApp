@@ -24,7 +24,7 @@ include 'head.php';
     	    <div class="col-sm-4">
         	    <div class="form-wrap text-center">
                 <h2>Admin Login</h2>
-                    <form action="admin-login.php" method="post">
+                    <form action="admin-login" method="post">
 	
                         <div class="form-group">
                             <label for="username" class="sr-only">Username</label>

@@ -34,7 +34,7 @@ if(!login_class::is_logged_in_admin()) head(index,'');
          Application for Admission to UPV Dormitories 
         </strong>
 		 </h3>
-		 	<p class="pull-right"><a href="adminindex.php" class="btn btn-info">Go back to Admin Panel</a></p>
+		 	<p class="pull-right"><a href="adminindex" class="btn btn-info">Go back to Admin Panel</a></p>
 		 
 	<p>Submitted: <?php echo date("l, M d, Y - h:i a",strtotime($row['received_date']));?></p>
 
@@ -59,7 +59,7 @@ if(!login_class::is_logged_in_admin()) head(index,'');
 <div class="modal-body">
 <p>Are you sure you want to ACCEPT this application? This action cannot be undone.</p>
 
- <a class="btn btn-success" href="accept.php?id=<?php echo $id;?>">Yes, I am sure</a>
+ <a class="btn btn-success" href="accept?id=<?php echo $id;?>">Yes, I am sure</a>
 
  <a class="btn btn-danger"  data-dismiss="modal" >No, I am not sure. Close</a>
 </div>
@@ -79,7 +79,7 @@ if(!login_class::is_logged_in_admin()) head(index,'');
 <div class="modal-body">
 <p>Are you sure you want to REJECT this application? This action cannot be undone.</p>
 
- <a class="btn btn-warning" href="reject.php?id=<?php echo $id;?>">Yes, I am sure</a>
+ <a class="btn btn-warning" href="reject?id=<?php echo $id;?>">Yes, I am sure</a>
 
  <a class="btn btn-danger"  data-dismiss="modal" >No, I am not sure. Close</a>
 </div>

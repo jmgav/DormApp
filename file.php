@@ -31,11 +31,14 @@ $deadline = mysql_num_rows($result2);
 	  
 	  <a href="logout.php" class="pull-right"> <button type='button' class='btn btn-danger'>Logout</button></a>
 	  
+	  	<h4>DO NOT leave anything blank, enter "N/A" for fields which are not applicable to you.</h4>
+	  
 	  <p>Hello Student, please fill up this form accurately and honestly.</p>
 
 		<p>Please enter valid values for each field, incorrectly filled up applications will be discarded.</p>
+
 		
-		<p>Please enter N/A for fields which are not applicable to you.</p>
+	
 	  
   </div>
 
@@ -357,7 +360,7 @@ $deadline = mysql_num_rows($result2);
 
 <div class="form-group">
 <label class="col-sm-5 control-label" for="scholarship">Name of Scholarship</label>
-<div class="col-sm-7"><input class="form-control" name="scholarship" placeholder="type N/A if none"  required/></div>
+<div class="col-sm-7"><input class="form-control" name="scholarship" placeholder="type N/A if none"  required></div>
 </div>
 
 
@@ -470,12 +473,12 @@ non-refundable unless refused admission to the College or upon withdrawal of app
   <?
   }  
   else{
-  echo '<a href="logout" class="btn btn-warning">We regret to inform you but the deadline has already passed. The application form has now been DISABLED. Click this button to logout.</a>';
+  echo '<a href="logout.php" class="btn btn-warning">We regret to inform you but the deadline has already passed. The application form has now been DISABLED. Click this button to logout.</a>';
   }
   
   }
   else{
-  echo '<a href="logout" class="btn btn-warning">You have already submitted your application, please wait for the results or contact the dorm manager. Click this button to logout.</a>';
+  echo '<a href="logout.php" class="btn btn-warning">You have already submitted your application, please wait for the results or contact the dorm manager. Click this button to logout.</a>';
   }
 
   

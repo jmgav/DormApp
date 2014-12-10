@@ -8,10 +8,10 @@ class dbconnection{
         "password" => "",
         "db_name" => "dormapp"
         
-       /*  "host" => "mysql6.000webhost.com",
-        "username" => "a3173412_yabs",
-        "password" => "shaman6869",
-        "db_name" => "a3173412_yabs" */
+         /*"host" => "dormapp.hostei.com",
+        "username" => "a9993421_user",
+        "password" => "dormapp100",
+        "db_name" => "a9993421_dormapp" */
         
     );
     private $connection;

@@ -40,7 +40,7 @@ if(!login_class::is_logged_in_admin()) head(index,'')
 
 <p>Welcome to your control panel</p>
 
-<a href="logout.php" class="btn btn-primary btn-md active" role="button">Logout</a>
+<a href="logout" class="btn btn-primary btn-md active" role="button">Logout</a>
   
   </div>
   <div role="tabpanel" class="tab-pane" id="profile">

@@ -40,7 +40,7 @@ if(!login_class::is_logged_in_admin()) head(index,'')
 
 <p>Welcome to your control panel</p>
 
-<a href="logout.php" class="btn btn-primary btn-md active" role="button">Logout</a>
+<a href="logout" class="btn btn-primary btn-md active" role="button">Logout</a>
   
   </div>
   <div role="tabpanel" class="tab-pane" id="profile">
@@ -76,14 +76,14 @@ while ($row = mysql_fetch_assoc($query)) {
 		else if($row['accept_flag']=='Rejected') {echo '<tr class="danger">'; $rejected++;}
 		
 		
-		echo '<th>'.'<a href="view.php?id='.$row['id'].'">'.$row['firstname'].' '.$row['lastname'].'</a></th>';
+		echo '<th>'.'<a href="view?id='.$row['id'].'">'.$row['firstname'].' '.$row['lastname'].'</a></th>';
 		echo '<th>'.$row['student_number'].'</th>';
 		echo '<th>'.$row['perm_address'].'</th>';
 		echo '<th>'.$row['mobile'].'</th>';
 		
 		echo '<th>'.$row['points_total'].'</th>';
 		
-		if($row['accept_flag']=='Pending') echo '<th><a href="view.php?id='.$row['id'].'">Pending</a></th>';
+		if($row['accept_flag']=='Pending') echo '<th><a href="view?id='.$row['id'].'">Pending</a></th>';
 				
 		else if($row['accept_flag']=='Accepted') echo '<th><span class="green">Accepted</span></th>';
 			
@@ -147,7 +147,7 @@ while ($row = mysql_fetch_assoc($query)) {
 <div class="modal-body">
 
 <p>Are you sure you want to END THE DEADLINE for application? This action cannot be undone. After confirming nobody is allowed to submit applications.</p>
- <a class="btn btn-success" href="confirm.php">Yes, I am sure</a>
+ <a class="btn btn-success" href="confirm">Yes, I am sure</a>
  <a class="btn btn-danger"  data-dismiss="modal" >No, I am not sure. Close</a>
 
 </div>
@@ -167,7 +167,7 @@ while ($row = mysql_fetch_assoc($query)) {
 <div class="modal-body">
 
 <p>Are you sure you want to publish the results for the dorm application process? Please ensure you have accepted the correct number of applicants.</p>
- <a class="btn btn-success" href="publish.php">Yes, I am sure</a>
+ <a class="btn btn-success" href="publish">Yes, I am sure</a>
  <a class="btn btn-danger"  data-dismiss="modal" >No, I am not sure. Close</a>
 
 </div>
