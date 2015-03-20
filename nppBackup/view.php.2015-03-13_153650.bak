@@ -1,28 +1,21 @@
 <!DOCTYPE html>
 <?php
 require_once 'functions.php';
+include 'head.php';
 require_once 'class_application.php';
 require_once 'class_login.php';
 require_once 'dbconnection.php';
-
-include 'head.php';
-include 'logo.php';
-
 dbconnection::getConnection();
 
 $id=$_GET['id'];
 
-if(!login_class::is_logged_in_admin()){
- head(index,'');
-  }
-  
-  else{
-  
-  
+if(!login_class::is_logged_in_admin()) head(index,'');
+
     $userid = mysql_real_escape_string($id);
     $query = "SELECT * FROM applicants WHERE id=$userid";
     $result = mysql_query($query) or die(mysql_error());
 
+    
     if(mysql_num_rows($result) == 1){
 	
 	$row = mysql_fetch_assoc($result);
@@ -31,9 +24,6 @@ if(!login_class::is_logged_in_admin()){
 	$income=$row['family_income_annual'];
 	$accept=$row['accept_flag'];
 	}
-  
-  }
-
 
 ?>
 
@@ -164,7 +154,7 @@ if(!login_class::is_logged_in_admin()){
 					</div>
 <div class="col-sm-6 right">
 <div class="form-group">
-						<input type="text" name="student_number" class="form-control input-md" placeholder="Student Number" tabindex="4" value="<?php echo $row['student_number'];?>" disabled>
+						<input type="text" name="student_number" class="form-control input-md" placeholder="Student Number" tabindex="4" value="<?php echo $row['student_number'];?>">
 					</div>
 					</div>
 					</div>
@@ -197,7 +187,7 @@ if(!login_class::is_logged_in_admin()){
 					
  <div class="form-group">
  
-		<input type="text" name="perm_address" id="perm" class="form-control input-md" placeholder="Permanent Address" tabindex="8" value="<?php echo $row['perm_address'];?>" disabled>
+		<input type="text" name="perm_address" id="perm" class="form-control input-md" placeholder="Permanent Address" tabindex="8" value="<?php echo $row['perm_address'];?>">
 		
 		<input type="hidden" name="home_distance" id="distance" value="<?php echo $row['home_distance'];?>">
 		
@@ -357,42 +347,36 @@ if(!login_class::is_logged_in_admin()){
 
  <div class="form-group">
 
-<label class="col-sm-5 control-label" for="income">Annual Family income</label>
+<label class="col-sm-5 control-label" for="scholarship">Annual Family income</label>
 <div class="col-sm-7">
 		<div class="radio">
       <label>
         <input type="radio" name="income" value="80000" <?php echo $income==80000? "checked" : ""; ?>>
-          Below 80,000 (FDS)
+          Below 80,000 
       </label>
     </div>
 	<div class="radio">
       <label>
         <input type="radio" name="income" value="80001" <?php echo $income==80001? "checked" : ""; ?>>
-       80,001-135,000 (FD)
+       80,001-135,000 
       </label>
     </div>
 	<div class="radio">
       <label>
         <input type="radio" name="income" value="135001" <?php echo $income==135001? "checked" : ""; ?>>
-       135,001-325,000 (PD80)
+       135,001-500,000 
       </label>
     </div>
 	<div class="radio">
       <label>
-        <input type="radio" name="income" value="325001" <?php echo $income==325001? "checked" : ""; ?>>
-        325,001-650,000 (PD60)
+        <input type="radio" name="income" value="500001" <?php echo $income==500001? "checked" : ""; ?>>
+        500,001-1,000,000
       </label>
     </div>
 	<div class="radio">
       <label>
-        <input type="radio" name="income" value="650001" <?php echo $income==650001? "checked" : ""; ?>>
-      650,001-1,300,00 (PD40)
-      </label>
-	  </div>
-	  <div class="radio">
-      <label>
-        <input type="radio" name="income" value="1300001" <?php echo $income==130000? "checked" : ""; ?>>
-      Above 1,300,00 (ND)
+        <input type="radio" name="income" value="1000000" <?php echo $income==1000000? "checked" : ""; ?>>
+      Above 1 million
       </label>
 	  </div>
     </div>

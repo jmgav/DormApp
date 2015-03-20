@@ -42,7 +42,6 @@ $result=mysql_query("SELECT * FROM admins WHERE username='$username' AND passwor
 if(mysql_num_rows($result) == 1){ /*if a users login information is found in the database, sets the SESSION variables*/
         $row = mysql_fetch_assoc($result);
         $_SESSION['dormappadminid'] = $row['id'];
-		$_SESSION['dormnameadmin'] = $row['dorm_name'];
         $_SESSION['usernameadmin'] = $row['username'];
 		$_SESSION['firstnameadmin'] = $row['firstname'];
 		$_SESSION['lastnameadmin'] = $row['lastname'];

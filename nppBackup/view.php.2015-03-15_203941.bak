@@ -164,7 +164,7 @@ if(!login_class::is_logged_in_admin()){
 					</div>
 <div class="col-sm-6 right">
 <div class="form-group">
-						<input type="text" name="student_number" class="form-control input-md" placeholder="Student Number" tabindex="4" value="<?php echo $row['student_number'];?>" disabled>
+						<input type="text" name="student_number" class="form-control input-md" placeholder="Student Number" tabindex="4" value="<?php echo $row['student_number'];?>">
 					</div>
 					</div>
 					</div>
@@ -367,7 +367,7 @@ if(!login_class::is_logged_in_admin()){
     </div>
 	<div class="radio">
       <label>
-        <input type="radio" name="income" value="80001" <?php echo $income==80001? "checked" : ""; ?>>
+        <input type="radio" name="income" value="80001" <?php echo $income==80001? "checked" : ""; ?> disabled>
        80,001-135,000 (FD)
       </label>
     </div>

@@ -4,7 +4,7 @@ require_once 'dbconnection.php';
 function head($page,$extension){
     $host = $_SERVER['HTTP_HOST'];
     $folder = rtrim(dirname($_SERVER['PHP_SELF']),'/\\'); 
-    header ("Location:http://$host$folder/$page$extension");
+    header ("Location:http://$host$folder/$page.php$extension");
 }
 
 function redirect_to_home(){    /*function to redirect the user ot his profile page, or admin page if he is an administrator*/

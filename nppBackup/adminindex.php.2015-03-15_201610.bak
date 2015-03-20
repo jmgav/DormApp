@@ -54,8 +54,7 @@ if(!login_class::is_logged_in_admin()) head(index,'')
 	$accepted=0;
 	$rejected=0;
 	$pending=0;
-	$dorm_name=$_SESSION['dormnameadmin'];
-	$query=mysql_query("SELECT * FROM applicants WHERE dorm_name='$dorm_name' ORDER BY points_total DESC")or die(mysql_error());
+	$query=mysql_query("SELECT * FROM applicants ORDER BY points_total DESC")or die(mysql_error());
   
 while ($row = mysql_fetch_assoc($query)) {
 		
@@ -92,7 +91,7 @@ while ($row = mysql_fetch_assoc($query)) {
 	<p class="red"><?php echo 'Rejected: '.$rejected;?></p>
 	<p><?php echo 'Pending: '.$pending;?></p>
 	
-<p></p>
+<p>For inquires, please contact the respective dormitory your will apply for. Check out the DAS Helpdesk tab for contact details.</p>
   
   </div>
   

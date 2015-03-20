@@ -53,7 +53,6 @@ $deadline = mysql_num_rows($result2);
           
 		  
      class_application::submit_app(
-		$_POST['dormname'],
 		trim($_POST['first_name']),
         trim($_POST['last_name']),
 		trim($_POST['middle_name']),
@@ -347,23 +346,26 @@ $deadline = mysql_num_rows($result2);
      
   <div class="form-horizontal">
  
- 
- <div class="form-group">
-<label class="col-sm-5 control-label" for="dorm">Dorm Application</label> 
-
-<div class="col-sm-7">
-<select class="form-control" name="dormname">
-<option value="hall1">Balay Lampirong (Hall 1)</option>
-<option value="hall2">Balay Kanlaon (Hall 2)</option>
-</select>
- </div>
- </div>
 
 <div class="form-group">
 <label class="col-sm-5 control-label" for="scholarship">Name of Scholarship</label>
 <div class="col-sm-7"><input class="form-control" name="scholarship" placeholder="type N/A if none"  required></div>
 </div>
 
+
+
+ <div class="form-group">
+
+
+<label class="col-sm-5 control-label" for="dorm">Dorm Application</label> 
+
+<div class="col-sm-7">
+<select>
+<option value="hall1">Balay Lampirong (Hall 1)</option>
+<option value="hall2">Balay Kanlaon (Hall 2)</option>
+</select>
+ </div>
+ </div>
  
  <div class="form-group">
  

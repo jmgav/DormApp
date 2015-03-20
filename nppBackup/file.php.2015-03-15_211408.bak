@@ -53,7 +53,6 @@ $deadline = mysql_num_rows($result2);
           
 		  
      class_application::submit_app(
-		$_POST['dormname'],
 		trim($_POST['first_name']),
         trim($_POST['last_name']),
 		trim($_POST['middle_name']),
