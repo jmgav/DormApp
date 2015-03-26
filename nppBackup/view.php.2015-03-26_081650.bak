@@ -51,18 +51,8 @@ if(!login_class::is_logged_in_admin()){
 	<?php if($accept=='Pending'){ ?>
 	<p>Would you like to <a href="#" class="btn btn-success" data-toggle="modal" data-target="#accept">Accept</a> or <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#reject">Reject</a> this Application?</p>
 	<?php }
-	else if($accept=='Rejected') {
-	echo 'This Application is already <span class="red">REJECTED</span>';
-	?>
-	<p>Would you like to <a href="#" class="btn btn-success" data-toggle="modal" data-target="#accept">Accept</a> or <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#reject">Reject</a> this Application?</p>
-	<?
-	}
-	else if($accept=='Accepted') {
-	echo 'This Application is already <span class="green">ACCEPTED</span>';
-	?>
-	<p>Would you like to <a href="#" class="btn btn-success" data-toggle="modal" data-target="#accept">Accept</a> or <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#reject">Reject</a> this Application?</p>
-	<?
-	}
+	else if($accept=='Rejected') echo 'This Application is already <span class="red">REJECTED</span>';
+	else if($accept=='Accepted') echo 'This Application is already <span class="green">ACCEPTED</span>';
 	
 	?>
 	

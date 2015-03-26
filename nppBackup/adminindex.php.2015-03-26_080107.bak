@@ -92,7 +92,7 @@ while ($row = mysql_fetch_assoc($query)) {
       </tbody>
     </table>
 	<p class="green"><?php echo 'Accepted: '.$accepted;?></p>
-	<a href="view-rejected"><p class="red"><?php echo 'Rejected: '.$rejected;?></p></a>
+	<p class="red"><?php echo 'Rejected: '.$rejected;?></p>
 	<p><?php echo 'Pending: '.$pending;?></p>
 	
 <p></p>
@@ -155,7 +155,7 @@ while ($row = mysql_fetch_assoc($query)) {
       </tbody>
     </table>
 	<p class="green"><?php echo 'Accepted: '.$accepted;?></p>
-	<a href="view-rejected"><p class="red"><?php echo 'Rejected: '.$rejected;?></p></a>
+	<p class="red"><?php echo 'Rejected: '.$rejected;?></p>
 	<p><?php echo 'Pending: '.$pending;?></p>
 	
 <p></p>

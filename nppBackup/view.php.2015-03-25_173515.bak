@@ -30,7 +30,6 @@ if(!login_class::is_logged_in_admin()){
 	$year=$row['year_level'];
 	$income=$row['family_income_annual'];
 	$accept=$row['accept_flag'];
-	$gender=$row['gender'];
 	}
   
   }
@@ -51,18 +50,8 @@ if(!login_class::is_logged_in_admin()){
 	<?php if($accept=='Pending'){ ?>
 	<p>Would you like to <a href="#" class="btn btn-success" data-toggle="modal" data-target="#accept">Accept</a> or <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#reject">Reject</a> this Application?</p>
 	<?php }
-	else if($accept=='Rejected') {
-	echo 'This Application is already <span class="red">REJECTED</span>';
-	?>
-	<p>Would you like to <a href="#" class="btn btn-success" data-toggle="modal" data-target="#accept">Accept</a> or <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#reject">Reject</a> this Application?</p>
-	<?
-	}
-	else if($accept=='Accepted') {
-	echo 'This Application is already <span class="green">ACCEPTED</span>';
-	?>
-	<p>Would you like to <a href="#" class="btn btn-success" data-toggle="modal" data-target="#accept">Accept</a> or <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#reject">Reject</a> this Application?</p>
-	<?
-	}
+	else if($accept=='Rejected') echo 'This Application is already <span class="red">REJECTED</span>';
+	else if($accept=='Accepted') echo 'This Application is already <span class="green">ACCEPTED</span>';
 	
 	?>
 	
@@ -117,7 +106,6 @@ if(!login_class::is_logged_in_admin()){
 		trim($_POST['first_name']),
         trim($_POST['last_name']),
 		trim($_POST['middle_name']),
-		$_POST['gender'],
 		trim($_POST['course']),
 		trim($_POST['year_level']),
 		trim($_POST['units']),
@@ -169,17 +157,7 @@ if(!login_class::is_logged_in_admin()){
 						<input type="text" name="middle_name" class="form-control input-md" placeholder="Middle Name" tabindex="3" value="<?php echo $row['middlename'];?>">
 					</div>
 					</div>
-					
-		<div class="col-sm-3 left right">
-<div class="form-group">
-						<select name="gender" class="form-control input-md" required>
-						<option  <?php echo $gender=='male'? 'selected="selected"' : ""; ?> value="male">Male</option>
-						<option  <?php echo $gender=='female'? 'selected="selected"' : ""; ?>value="female">Female</option>
-						</select>
-					</div>
-					</div>
-					
-<div class="col-sm-3 right">
+<div class="col-sm-6 right">
 <div class="form-group">
 						<input type="text" name="student_number" class="form-control input-md" placeholder="Student Number" tabindex="4" value="<?php echo $row['student_number'];?>" disabled>
 					</div>

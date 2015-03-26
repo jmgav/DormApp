@@ -35,9 +35,9 @@ echo '<h4>Here are the accepted applicants for UPV dorms</h4>';
 echo '<table class="table table-hover table-bordered">
       <thead>
         <tr>
-          <th><b>Name</b></th>
-		  <th><b>Student Number</b></th>
-          <th><b>Dorm</b></th>
+          <th>Name</th>
+		  <th>Student Number</th>
+          <th>Dorm</th>
       
 		    
         </tr>

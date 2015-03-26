@@ -32,12 +32,14 @@ $deadline = mysql_num_rows($result2);
       </h3>
 	  
 	  <a href="logout.php" class="pull-right"> <button type='button' class='btn btn-danger'>Logout</button></a>
-	   <p>Hello Student, please be reminded of the following when filling up this application form.</p>
-	   
-	  	<p>1. <b>DO NOT leave anything blank</b>, enter "N/A" for fields which are not applicable to you.</p>	  
-<p>2. Please enter correct values for each field.</p>
-<p>3. Applications that are incorrectly filled up, contain false information and no valid Guardian Information <b>will be discarded.</b></p>
-<p>All UPV dormitories require a legal Guardian for each of its dormers, if you do not have a Guardian yet, <b>DO NOT CONTINUE</b> with this application.</p>	
+	   <p>Hello Student, please fill up this form accurately and honestly.</p>
+	  	<p><b>DO NOT leave anything blank</b>, enter "N/A" for fields which are not applicable to you.</p>
+		<p></p>
+	  
+<p>Please enter correct values for each field.</p>
+<p>Applications that are incorrectly filled up, contain false information and no valid Guardian Information <b>will be discarded.</b></p>
+
+		
 	
 	  
   </div>
@@ -187,8 +189,45 @@ $deadline = mysql_num_rows($result2);
 		<input type="hidden" name="home_distance" id="distance">
 		
 		</div>
+		    <div id="panel">
+      <input id="address" type="textbox" value="Sydney, NSW">
+      <input type="button" value="Geocode" onclick="codeAddress()">
+    </div>
+    <div id="map-canvas"></div>
+		
 <script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAA7j_Q-rshuWkc8HyFI4V2HxQYPm-xtd00hTQOC0OXpAMO40FHAxT29dNBGfxqMPq5zwdeiDSHEPL89A" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script> 
   <script type="text/javascript">
+  var geocoder;
+var map;
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+  var latlng = new google.maps.LatLng(-34.397, 150.644);
+  var mapOptions = {
+    zoom: 8,
+    center: latlng
+  }
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+}
+
+function codeAddress() {
+  var address = document.getElementById('address').value;
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+  
+  
     var geocoder, location1, location2,gDir;
 
         geocoder = new GClientGeocoder();
@@ -241,10 +280,6 @@ $deadline = mysql_num_rows($result2);
         }
     }
 
-	
-	jQuery( "#perm" ).focusout(function() {
-showLocation();
-  })
     </script>					
 
 

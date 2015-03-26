@@ -35,9 +35,9 @@ echo '<h4>Here are the accepted applicants for UPV dorms</h4>';
 echo '<table class="table table-hover table-bordered">
       <thead>
         <tr>
-          <th><b>Name</b></th>
-		  <th><b>Student Number</b></th>
-          <th><b>Dorm</b></th>
+          <th>Name</th>
+		  <th>Student Number</th>
+          <th>Dorm</th>
       
 		    
         </tr>
@@ -49,13 +49,7 @@ while ($row2 = mysql_fetch_assoc($query2)) {
 echo '<tr>';
 echo '<th>'.$row2['firstname'].' '.$row2['lastname'].'</th>';
 		echo '<th>'.$row2['student_number'].'</th>';
-		
-		if($row2['dorm_name']=='hall1'){
-		echo '<th>Balay Lampirong</th>';
-		}
-		else{
-		echo '<th>Balay Kanlaon</th>';
-		}
+		echo '<th>'.$row2['dorm_name'].'</th>';
 
 echo '</tr>';
 

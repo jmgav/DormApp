@@ -108,7 +108,7 @@ head(file,'');
 	
 	
 	
-public static function submit_edited_app($id,$fn,$ln,$mn,$gen,$co,$yl,$un,$ma,$la,$mo,$mon,$fan,$moo,$fao,$moa,$faa,
+public static function submit_edited_app($id,$fn,$ln,$mn,$co,$yl,$un,$ma,$la,$mo,$mon,$fan,$moo,$fao,$moa,$faa,
 								  $mol,$mom,$fal,$fam,$gn,$ga,$re,$gl,$gm){    
 $query_flag=1;   
 
@@ -181,7 +181,7 @@ case '80000':
 
 if($query_flag==1){		
       
-mysql_query("UPDATE applicants SET firstname='$firstname' ,lastname='$lastname' ,middlename='$middlename',gender='$gen', landline='$landline', mobile='$mobile', course='$course', year_level='$year_level', units_enrolled='$units',
+mysql_query("UPDATE applicants SET firstname='$firstname' ,lastname='$lastname' ,middlename='$middlename', landline='$landline', mobile='$mobile', course='$course', year_level='$year_level', units_enrolled='$units',
 mother_job='$mother_occupation',father_job='$father_occupation',
 mother_landline='$mother_landline',mother_mobile='$mother_mobile',father_landline='$father_landline',father_mobile='$father_mobile',
 guardian_name='$guardian_name',guardian_address='$guardian_address',guardian_relationship='$relationship',

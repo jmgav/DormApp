@@ -18,27 +18,15 @@ if(!login_class::is_logged_in_admin()) head(index,'')
 
 
 <ul class="nav nav-tabs" role="tablist" id="myTab">
-  <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-  <li role="presentation"><a href="#profilem" aria-controls="profilem" role="tab" data-toggle="tab">View Male Applicants</a></li>
-  <li role="presentation"><a href="#profilef" aria-controls="profilef" role="tab" data-toggle="tab">View Female Applicants</a></li>
-  <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Other Actions</a></li>
+  <li role="presentation"><a href="#profilem" aria-controls="profilem" role="tab" data-toggle="tab">Rejected Male Applicants</a></li>
+  <li role="presentation"><a href="#profilef" aria-controls="profilef" role="tab" data-toggle="tab">Rejected Female Applicants</a></li>
 </ul>
 
 <div class="tab-content">
-  <div role="tabpanel" class="tab-pane active" id="home">
-  <h4>UPV Dorm Application System - Dorm Managers Panel</h4>
-<p>Hello <b><?php echo $_SESSION['firstnameadmin']." ".$_SESSION['lastnameadmin'];?></b></p>
 
-<p>Welcome to your control panel</p>
-
-
-
-<a href="logout" class="btn btn-primary btn-md active" role="button">Logout</a>
-  
-  </div>
   <div role="tabpanel" class="tab-pane" id="profilem">
   
-    <h4>Pending Applications (Male)</h4>
+    <h4>Rejected Applications (Male)</h4>
 	
 <table class="table table-hover table-bordered">
       <thead>
@@ -54,20 +42,15 @@ if(!login_class::is_logged_in_admin()) head(index,'')
       </thead>
 	    <tbody>
 	<?php
-	$accepted=0;
 	$rejected=0;
-	$pending=0;
+
 	$dorm_name=$_SESSION['dormnameadmin'];
-	$query=mysql_query("SELECT * FROM applicants WHERE dorm_name='$dorm_name' and gender='male' ORDER BY points_total DESC")or die(mysql_error());
+	$query=mysql_query("SELECT * FROM applicants WHERE dorm_name='$dorm_name' and gender='male' and accept_flag='Rejected' ORDER BY points_total DESC")or die(mysql_error());
   
-while ($row = mysql_fetch_assoc($query)) {
-		
-		
-		if($row['accept_flag']=='Pending') {echo '<tr>'; $pending++;}
-				
-		else if($row['accept_flag']=='Accepted') {echo '<tr class="success">'; $accepted++;}
+while ($row = mysql_fetch_assoc($query)) {			
+
 			
-		else if($row['accept_flag']=='Rejected') {echo '<tr class="danger" style="display:none">'; $rejected++;}
+echo '<tr class="danger" style="display:none">'; $rejected++;
 		
 		
 		echo '<th>'.'<a href="view?id='.$row['id'].'">'.$row['firstname'].' '.$row['lastname'].'</a></th>';
@@ -77,11 +60,7 @@ while ($row = mysql_fetch_assoc($query)) {
 		
 		echo '<th>'.$row['points_total'].'</th>';
 		
-		if($row['accept_flag']=='Pending') echo '<th><a href="view.php?id='.$row['id'].'">Pending</a></th>';
-				
-		else if($row['accept_flag']=='Accepted') echo '<th><span class="green">Accepted</span></th>';
-			
-		else if($row['accept_flag']=='Rejected') echo '<th><span class="red">Rejected</span></th>';
+echo '<th><span class="red">Rejected</span></th>';
 			
 		
 		echo '</tr>';
@@ -91,9 +70,7 @@ while ($row = mysql_fetch_assoc($query)) {
 
       </tbody>
     </table>
-	<p class="green"><?php echo 'Accepted: '.$accepted;?></p>
 	<a href="view-rejected"><p class="red"><?php echo 'Rejected: '.$rejected;?></p></a>
-	<p><?php echo 'Pending: '.$pending;?></p>
 	
 <p></p>
   
@@ -101,7 +78,7 @@ while ($row = mysql_fetch_assoc($query)) {
   
   <div role="tabpanel" class="tab-pane" id="profilef">
   
-    <h4>Pending Applications (Female)</h4>
+    <h4>Rejected Applications (Female)</h4>
 	
 <table class="table table-hover table-bordered">
       <thead>
@@ -117,11 +94,11 @@ while ($row = mysql_fetch_assoc($query)) {
       </thead>
 	    <tbody>
 	<?php
-	$accepted=0;
+
 	$rejected=0;
-	$pending=0;
+
 	$dorm_name=$_SESSION['dormnameadmin'];
-	$query=mysql_query("SELECT * FROM applicants WHERE dorm_name='$dorm_name' and gender='female' ORDER BY points_total DESC")or die(mysql_error());
+	$query=mysql_query("SELECT * FROM applicants WHERE dorm_name='$dorm_name' and gender='female' and accept_flag='Rejected' ORDER BY points_total DESC")or die(mysql_error());
   
 while ($row = mysql_fetch_assoc($query)) {
 		
@@ -155,7 +132,7 @@ while ($row = mysql_fetch_assoc($query)) {
       </tbody>
     </table>
 	<p class="green"><?php echo 'Accepted: '.$accepted;?></p>
-	<a href="view-rejected"><p class="red"><?php echo 'Rejected: '.$rejected;?></p></a>
+	<p class="red"><?php echo 'Rejected: '.$rejected;?></p>
 	<p><?php echo 'Pending: '.$pending;?></p>
 	
 <p></p>

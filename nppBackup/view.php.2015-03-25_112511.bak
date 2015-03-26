@@ -30,7 +30,6 @@ if(!login_class::is_logged_in_admin()){
 	$year=$row['year_level'];
 	$income=$row['family_income_annual'];
 	$accept=$row['accept_flag'];
-	$gender=$row['gender'];
 	}
   
   }
@@ -51,18 +50,8 @@ if(!login_class::is_logged_in_admin()){
 	<?php if($accept=='Pending'){ ?>
 	<p>Would you like to <a href="#" class="btn btn-success" data-toggle="modal" data-target="#accept">Accept</a> or <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#reject">Reject</a> this Application?</p>
 	<?php }
-	else if($accept=='Rejected') {
-	echo 'This Application is already <span class="red">REJECTED</span>';
-	?>
-	<p>Would you like to <a href="#" class="btn btn-success" data-toggle="modal" data-target="#accept">Accept</a> or <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#reject">Reject</a> this Application?</p>
-	<?
-	}
-	else if($accept=='Accepted') {
-	echo 'This Application is already <span class="green">ACCEPTED</span>';
-	?>
-	<p>Would you like to <a href="#" class="btn btn-success" data-toggle="modal" data-target="#accept">Accept</a> or <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#reject">Reject</a> this Application?</p>
-	<?
-	}
+	else if($accept=='Rejected') echo 'This Application is already <span class="red">REJECTED</span>';
+	else if($accept=='Accepted') echo 'This Application is already <span class="green">ACCEPTED</span>';
 	
 	?>
 	
@@ -117,10 +106,12 @@ if(!login_class::is_logged_in_admin()){
 		trim($_POST['first_name']),
         trim($_POST['last_name']),
 		trim($_POST['middle_name']),
-		$_POST['gender'],
+		trim($_POST['student_number']),
 		trim($_POST['course']),
 		trim($_POST['year_level']),
 		trim($_POST['units']),
+		trim($_POST['perm_address']),
+		$_POST['home_distance'],
 		trim($_POST['mail_address']),
 		trim($_POST['landline']),
 		$_POST['mobile'],
@@ -138,7 +129,9 @@ if(!login_class::is_logged_in_admin()){
 		trim($_POST['guardian_address']),
 		trim($_POST['relationship']),
 		trim($_POST['guardian_landline']),
-		trim($_POST['guardian_mobile'])	
+		trim($_POST['guardian_mobile']),
+		trim($_POST['scholarship']),
+		$_POST['income']		
 		);    
  }
  ?>
@@ -169,17 +162,7 @@ if(!login_class::is_logged_in_admin()){
 						<input type="text" name="middle_name" class="form-control input-md" placeholder="Middle Name" tabindex="3" value="<?php echo $row['middlename'];?>">
 					</div>
 					</div>
-					
-		<div class="col-sm-3 left right">
-<div class="form-group">
-						<select name="gender" class="form-control input-md" required>
-						<option  <?php echo $gender=='male'? 'selected="selected"' : ""; ?> value="male">Male</option>
-						<option  <?php echo $gender=='female'? 'selected="selected"' : ""; ?>value="female">Female</option>
-						</select>
-					</div>
-					</div>
-					
-<div class="col-sm-3 right">
+<div class="col-sm-6 right">
 <div class="form-group">
 						<input type="text" name="student_number" class="form-control input-md" placeholder="Student Number" tabindex="4" value="<?php echo $row['student_number'];?>" disabled>
 					</div>
@@ -319,9 +302,9 @@ if(!login_class::is_logged_in_admin()){
 					</div>
 
 </div>
-</div></div>
+</div>
 
-  <div class="col-md-6">
+
  <div class="panel panel-info">
     <div class="panel-heading">Fathers' Information</div>
     <div class="panel-body">
@@ -352,46 +335,76 @@ if(!login_class::is_logged_in_admin()){
 
 </div>
 </div>
+</div>
+  
 
   
 
-
-
+   <div class="col-md-6">
     <div class="panel panel-info">
     <div class="panel-heading">Scholarship and Financial Assistance</div>
     <div class="panel-body">
      
-
   <div class="form-horizontal">
  
 
+<div class="form-group">
+<label class="col-sm-5 control-label" for="scholarship">Name of Scholarship</label>
+<div class="col-sm-7"><input class="form-control" name="scholarship" placeholder="(leave blank if none)"  value="<?php echo $row['scholarship'];?>"/></div>
+</div>
+
+
+
  <div class="form-group">
 
-<label class="col-sm-5 control-label" for="income">Annual Family income: </label>
+<label class="col-sm-5 control-label" for="income">Annual Family income</label>
 <div class="col-sm-7">
 		<div class="radio">
       <label>
-        <?php echo $income==80000? "Below 80,000 (FDS)" : ""; ?>
-        <?php echo $income==80001? "80,001-135,000 (FD)" : ""; ?>
-		<?php echo $income==135001? "135,001-325,000 (PD80)" : ""; ?>
-		<?php echo $income==325001? "325,001-650,000 (PD60)" : ""; ?>
-		<?php echo $income==650001? "650,001-1,300,00 (PD40)" : ""; ?>
-		<?php echo $income==1300001? "Above 1,300,00 (ND)" : ""; ?>
+        <input type="radio" name="income" value="80000" <?php echo $income==80000? "checked" : ""; ?>>
+          Below 80,000 (FDS)
       </label>
     </div>
-
-
+	<div class="radio">
+      <label>
+        <input type="radio" name="income" value="80001" <?php echo $income==80001? "checked" : ""; ?>>
+       80,001-135,000 (FD)
+      </label>
+    </div>
+	<div class="radio">
+      <label>
+        <input type="radio" name="income" value="135001" <?php echo $income==135001? "checked" : ""; ?>>
+       135,001-325,000 (PD80)
+      </label>
+    </div>
+	<div class="radio">
+      <label>
+        <input type="radio" name="income" value="325001" <?php echo $income==325001? "checked" : ""; ?>>
+        325,001-650,000 (PD60)
+      </label>
+    </div>
+	<div class="radio">
+      <label>
+        <input type="radio" name="income" value="650001" <?php echo $income==650001? "checked" : ""; ?>>
+      650,001-1,300,00 (PD40)
+      </label>
+	  </div>
+	  <div class="radio">
+      <label>
+        <input type="radio" name="income" value="1300001" <?php echo $income==130000? "checked" : ""; ?>>
+      Above 1,300,00 (ND)
+      </label>
+	  </div>
     </div>
 </div>
    
    
   </div>
-  
+
 
     </div>
   </div>
-
-</div>
+  </div>
   
   </div>
   
@@ -400,8 +413,9 @@ if(!login_class::is_logged_in_admin()){
   
   <p>Please take note of the following</p>
   <ul>
+  <li>You can edit the applicants home address, but the pre-calculated distance to his/her home when he/she submitted the application form will not change, as well as the calculated points for this.</li>
   
-  <li>Pre-calculated points from Home address distance and ST bracket <b>cannot</b> be changed.</li>
+  <li>Pre-calculated points from STFAP bracket and family income will not change.</li>
   
   <li>Please be mindful about making changes to applications since applicants were reminded to fill-up this form honestly and accurately.</li>
   </ul>

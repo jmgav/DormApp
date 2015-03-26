@@ -81,7 +81,7 @@ while ($row = mysql_fetch_assoc($query)) {
 				
 		else if($row['accept_flag']=='Accepted') echo '<th><span class="green">Accepted</span></th>';
 			
-		else if($row['accept_flag']=='Rejected') echo '<th><span class="red">Rejected</span></th>';
+		else if($row['accept_flag']=='Rejected') echo '<th><span class="red">Rejected</span><a href="view-rejected">(view rejected)</a></th>';
 			
 		
 		echo '</tr>';
@@ -92,7 +92,7 @@ while ($row = mysql_fetch_assoc($query)) {
       </tbody>
     </table>
 	<p class="green"><?php echo 'Accepted: '.$accepted;?></p>
-	<a href="view-rejected"><p class="red"><?php echo 'Rejected: '.$rejected;?></p></a>
+	<p class="red"><?php echo 'Rejected: '.$rejected;?></p>
 	<p><?php echo 'Pending: '.$pending;?></p>
 	
 <p></p>
@@ -155,7 +155,7 @@ while ($row = mysql_fetch_assoc($query)) {
       </tbody>
     </table>
 	<p class="green"><?php echo 'Accepted: '.$accepted;?></p>
-	<a href="view-rejected"><p class="red"><?php echo 'Rejected: '.$rejected;?></p></a>
+	<p class="red"><?php echo 'Rejected: '.$rejected;?></p>
 	<p><?php echo 'Pending: '.$pending;?></p>
 	
 <p></p>

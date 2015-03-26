@@ -32,12 +32,12 @@ $deadline = mysql_num_rows($result2);
       </h3>
 	  
 	  <a href="logout.php" class="pull-right"> <button type='button' class='btn btn-danger'>Logout</button></a>
-	   <p>Hello Student, please be reminded of the following when filling up this application form.</p>
-	   
-	  	<p>1. <b>DO NOT leave anything blank</b>, enter "N/A" for fields which are not applicable to you.</p>	  
-<p>2. Please enter correct values for each field.</p>
-<p>3. Applications that are incorrectly filled up, contain false information and no valid Guardian Information <b>will be discarded.</b></p>
-<p>All UPV dormitories require a legal Guardian for each of its dormers, if you do not have a Guardian yet, <b>DO NOT CONTINUE</b> with this application.</p>	
+	   <p>Hello Student, please fill up this form accurately and honestly.</p>
+	  	<p><b>DO NOT leave anything blank</b>, enter "N/A" for fields which are not applicable to you.</p>
+	  
+<p>Please enter correct values for each field, incorrectly filled up applications will be discarded.</p>
+
+		
 	
 	  
   </div>
@@ -124,7 +124,7 @@ $deadline = mysql_num_rows($result2);
 					<div class="col-sm-3 left right">
 <div class="form-group">
 						<select name="gender" class="form-control input-md" required>
-						<option>Sex</option>
+						<option>Gender</option>
 						<option value="male">Male</option>
 						<option value="female">Female</option>
 						</select>
@@ -181,7 +181,7 @@ $deadline = mysql_num_rows($result2);
  
 		<input type="text" name="perm_address" id="perm" class="form-control input-md" placeholder="Permanent Address" tabindex="8" onkeyup="showLocation(); return false;" autocomplete="off" required>
 
-		<input type="hidden" name="address2" id="address2" value="University of the Philippines Visayas, Miagao, 5023 Iloilo"/>
+		<input type="hidden" name="address2" id="address2" value="Miagao, Iloilo"/>
 		<br/>
 		<div class="alert alert-success" role="alert" id="results"></div>
 		<input type="hidden" name="home_distance" id="distance">
@@ -189,10 +189,9 @@ $deadline = mysql_num_rows($result2);
 		</div>
 <script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAA7j_Q-rshuWkc8HyFI4V2HxQYPm-xtd00hTQOC0OXpAMO40FHAxT29dNBGfxqMPq5zwdeiDSHEPL89A" type="text/javascript"></script>
   <script type="text/javascript">
-    var geocoder, location1, location2,gDir;
+    var geocoder, location1, location2;
 
         geocoder = new GClientGeocoder();
-		gDir = new GDirections();
 
     function showLocation() {
         geocoder.getLocations(jQuery('#perm').val(), function (response) {
@@ -212,7 +211,6 @@ $deadline = mysql_num_rows($result2);
                     {
                         location2 = {lat: response.Placemark[0].Point.coordinates[1], lon: response.Placemark[0].Point.coordinates[0], address: response.Placemark[0].address};
                         calculateDistance();
-						
                     }
                 });
             }
@@ -227,13 +225,9 @@ $deadline = mysql_num_rows($result2);
             var glatlng2 = new GLatLng(location2.lat, location2.lon);
             var miledistance = glatlng1.distanceFrom(glatlng2, 3959).toFixed(1);
             var kmdistance = (miledistance * 1.609344).toFixed(1);
-			
-			gDir.load('from: ' + location1.address + ' to: ' + location2.address);
-			var drivingDistanceMiles = (gDir.getDistance().meters / 1609.344).toFixed(1);
-            var drivingDistanceKilometers = (gDir.getDistance().meters / 1000).toFixed(1);
 
-            document.getElementById('results').innerHTML = '<strong>General Area: </strong>' + location1.address + '<strong><br/>Distance from UP Visayas: </strong>' + miledistance + ' miles (' + kmdistance + ' kilometers)<br/><strong>Driving Distance: </strong>' +drivingDistanceMiles+' miles ('+drivingDistanceKilometers+' kilometers)';
-			jQuery('#distance').val(drivingDistanceKilometers);
+            document.getElementById('results').innerHTML = '<strong>General Area: </strong>' + location1.address + '<strong><br/>Distance from UP Visayas: </strong>' + miledistance + ' miles (or ' + kmdistance + ' kilometers)';
+			jQuery('#distance').val(kmdistance);
 		}
         catch (error)
         {
@@ -241,10 +235,6 @@ $deadline = mysql_num_rows($result2);
         }
     }
 
-	
-	jQuery( "#perm" ).focusout(function() {
-showLocation();
-  })
     </script>					
 
 

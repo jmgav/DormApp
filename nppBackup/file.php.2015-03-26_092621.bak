@@ -37,7 +37,8 @@ $deadline = mysql_num_rows($result2);
 	  	<p>1. <b>DO NOT leave anything blank</b>, enter "N/A" for fields which are not applicable to you.</p>	  
 <p>2. Please enter correct values for each field.</p>
 <p>3. Applications that are incorrectly filled up, contain false information and no valid Guardian Information <b>will be discarded.</b></p>
-<p>All UPV dormitories require a legal Guardian for each of its dormers, if you do not have a Guardian yet, <b>DO NOT CONTINUE</b> with this application.</p>	
+
+		
 	
 	  
   </div>

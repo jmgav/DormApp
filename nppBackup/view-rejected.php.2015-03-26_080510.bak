@@ -18,10 +18,8 @@ if(!login_class::is_logged_in_admin()) head(index,'')
 
 
 <ul class="nav nav-tabs" role="tablist" id="myTab">
-  <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-  <li role="presentation"><a href="#profilem" aria-controls="profilem" role="tab" data-toggle="tab">View Male Applicants</a></li>
-  <li role="presentation"><a href="#profilef" aria-controls="profilef" role="tab" data-toggle="tab">View Female Applicants</a></li>
-  <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Other Actions</a></li>
+  <li role="presentation"><a href="#profilem" aria-controls="profilem" role="tab" data-toggle="tab">Rejected Male Applicants</a></li>
+  <li role="presentation"><a href="#profilef" aria-controls="profilef" role="tab" data-toggle="tab">Rejected Female Applicants</a></li>
 </ul>
 
 <div class="tab-content">
@@ -155,7 +153,7 @@ while ($row = mysql_fetch_assoc($query)) {
       </tbody>
     </table>
 	<p class="green"><?php echo 'Accepted: '.$accepted;?></p>
-	<a href="view-rejected"><p class="red"><?php echo 'Rejected: '.$rejected;?></p></a>
+	<p class="red"><?php echo 'Rejected: '.$rejected;?></p>
 	<p><?php echo 'Pending: '.$pending;?></p>
 	
 <p></p>
