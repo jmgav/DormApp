@@ -21,7 +21,7 @@ if(!login_class::is_logged_in_admin()) head(index,'');
 
 <div class="row">
 
-		 	<p class="pull-right"><a href="adminindex.php" class="btn btn-info">Go back to Admin Panel</a></p>
+		 	<p class="pull-right"><a href="adminindex" class="btn btn-info">Go back to Admin Panel</a></p>
 
 <ul class="nav nav-tabs" role="tablist" id="myTab">
  <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
@@ -45,7 +45,7 @@ if(!login_class::is_logged_in_admin()) head(index,'');
   
     <h4>Rejected Applications (Male)</h4>
 	
-<table class="table table-hover table-bordered">
+<table class="table table-hover table-bordered tablesorter">
       <thead>
         <tr>
           <th>Name</th>
@@ -67,7 +67,7 @@ echo '<tr class="danger">';
 $rejected++;
 		
 		
-		echo '<th>'.'<a href="view?id='.$row['id'].'">'.$row['firstname'].' '.$row['lastname'].'</a></th>';
+		echo '<th>'.'<a href="view?id='.$row['id'].'">'.$row['lastname'].', '.$row['firstname'].'</a></th>';
 		echo '<th>'.$row['student_number'].'</th>';
 		echo '<th>'.$row['perm_address'].'</th>';
 		echo '<th>'.$row['mobile'].'</th>';
@@ -94,7 +94,7 @@ echo '<th><span class="red">Rejected</span></th>';
   
     <h4>Rejected Applications (Female)</h4>
 	
-<table class="table table-hover table-bordered">
+<table class="table table-hover table-bordered tablesorter">
       <thead>
         <tr>
           <th>Name</th>
@@ -120,7 +120,7 @@ echo '<tr class="danger">';
  $rejected++;
 		
 		
-		echo '<th>'.'<a href="view.php?id='.$row['id'].'">'.$row['firstname'].' '.$row['lastname'].'</a></th>';
+		echo '<th>'.'<a href="view.php?id='.$row['id'].'">'.$row['lastname'].', '.$row['firstname'].'</a></th>';
 		echo '<th>'.$row['student_number'].'</th>';
 		echo '<th>'.$row['perm_address'].'</th>';
 		echo '<th>'.$row['mobile'].'</th>';

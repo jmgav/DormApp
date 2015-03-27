@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<?php
+require_once 'functions.php';
+include 'head.php';
+require_once 'class_login.php';
+
+include 'logo.php';
+?>
+

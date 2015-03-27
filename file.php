@@ -2,7 +2,9 @@
 require_once 'functions.php';
 require_once 'class_application.php';
 include 'head.php';
-
+?>
+<script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAA7j_Q-rshuWkc8HyFI4V2HxQYPm-xtd00hTQOC0OXpAMO40FHAxT29dNBGfxqMPq5zwdeiDSHEPL89A" type="text/javascript"></script>
+<?
 include 'logo.php';
 
 if(!login_class::is_logged_in_student()) head(index,'');
@@ -19,33 +21,14 @@ $id=$_SESSION['username'];
 	
 	}
 	
+		$result2 = mysql_query("SELECT * FROM deadline WHERE date = (SELECT MAX(date) FROM deadline) LIMIT 1") or die(mysql_error());
 	
-$result2 = mysql_query("SELECT * FROM deadline") or die(mysql_error());
-$deadline = mysql_num_rows($result2);
+	$deadline = mysql_num_rows($result2);
 	
-?>
-<div class="alert alert-info fade in" data-alert="alert">
-      <h3>
-        <strong>
-         Application for Admission to UPV Dormitories 
-        </strong>
-      </h3>
-	  
-	  <a href="logout.php" class="pull-right"> <button type='button' class='btn btn-danger'>Logout</button></a>
-	   <p>Hello Student, please be reminded of the following when filling up this application form.</p>
-	   
-	  	<p>1. <b>DO NOT leave anything blank</b>, enter "N/A" for fields which are not applicable to you.</p>	  
-<p>2. Please enter correct values for each field.</p>
-<p>3. Applications that are incorrectly filled up, contain false information and no valid Guardian Information <b>will be discarded.</b></p>
-<p>All UPV dormitories require a legal Guardian for each of its dormers, if you do not have a Guardian yet, <b>DO NOT CONTINUE</b> with this application.</p>	
+	$row = mysql_fetch_assoc($result2);
 	
-	  
-  </div>
-
-  <?php
-  
   if($flag==0){
-   if($deadline==0){
+   if($deadline==0 || ($deadline>0 && $row['flag']=='open')){
   
  if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['agree'])){
           
@@ -93,6 +76,25 @@ $deadline = mysql_num_rows($result2);
  }
     ?>
 
+
+<div class="alert alert-info" data-alert="alert">
+      <h3>
+        <strong>
+         Application for Admission to UPV Dormitories 
+        </strong>
+      </h3>
+	  
+	  <a href="logout" class="pull-right"> <button type='button' class='btn btn-danger'>Logout</button></a>
+	   <p>Hello Student, please be reminded of the following when filling up this application form.</p>
+	   
+	  	<p>1. <b>DO NOT leave anything blank</b>, enter "N/A" for fields which are not applicable to you.</p>	  
+<p>2. Please enter correct values for each field.</p>
+<p>3. Applications that are incorrectly filled up, contain false information and no valid Guardian Information <b>will be discarded.</b></p>
+<p>All UPV dormitories require a legal Guardian for each of its dormers, if you do not have a Guardian yet, <b>DO NOT CONTINUE</b> with this application.</p>	
+	
+	  
+  </div>	
+	
 <form action="file" method="post"> 
 	  
  <div class="row">
@@ -187,8 +189,8 @@ $deadline = mysql_num_rows($result2);
 		<input type="hidden" name="home_distance" id="distance">
 		
 		</div>
-<script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAA7j_Q-rshuWkc8HyFI4V2HxQYPm-xtd00hTQOC0OXpAMO40FHAxT29dNBGfxqMPq5zwdeiDSHEPL89A" type="text/javascript"></script>
-  <script type="text/javascript">
+		
+		<script type="text/javascript">
     var geocoder, location1, location2,gDir;
 
         geocoder = new GClientGeocoder();
@@ -241,10 +243,6 @@ $deadline = mysql_num_rows($result2);
         }
     }
 
-	
-	jQuery( "#perm" ).focusout(function() {
-showLocation();
-  })
     </script>					
 
 
@@ -464,6 +462,15 @@ showLocation();
   
   </div>
   
+    
+  <script>
+  jQuery( "input.form-control" ).each(function(){
+	jQuery(this).focusout(function(){
+showLocation();
+	});
+  });
+  </script>
+
   
   <div class="row">
   <div class="col-md-10 col-md-offset-1">
@@ -489,18 +496,28 @@ non-refundable unless refused admission to the College or upon withdrawal of app
   </form>
   <?
   }  
-  else{
-  echo '<a href="logout.php" class="btn btn-warning">We regret to inform you but the deadline has already passed. The application form has now been DISABLED. Click this button to logout.</a>';
-  }
+  else{?>
+  <hr/>
+  <p>We regret to inform you but the <b>deadline has already passed.</b> The dorm application process has now been <b>DISABLED.</b></p>
+    
+  <p>Please check the homepage for any changes in schedule.</p>
+  
+  <a href="logout" class="btn btn-warning">Click this button to logout.</a>
+  
+  <?}
   
   }
-  else{
-  echo '<a href="logout.php" class="btn btn-warning">You have already submitted your application, please wait for the results or contact the dorm manager. Click this button to logout.</a>';
-  }
-
+  else{?>
+  <hr/>
+  <p>You have already submitted your application, please wait for the results on the homepage.</p>
+  
+  <p>You may contact the dorm manager of the dorm you have applied for if you have any questions.</p>
   
   
+  <a href="logout" class="btn btn-warning">Click this button to logout</a>
   
-  include 'footer.php'
+  <?}
+  
+  include 'footer.php';
 ?>
 

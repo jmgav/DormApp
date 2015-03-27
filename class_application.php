@@ -116,7 +116,7 @@ $firstname = ucwords(strtolower(filter_var($fn,FILTER_SANITIZE_STRING)));
 $lastname = ucwords(strtolower(filter_var($ln,FILTER_SANITIZE_STRING)));
 $middlename = ucwords(strtolower(filter_var($mn,FILTER_SANITIZE_STRING)));
 
-$course = ucwords(strtolower(filter_var($co,FILTER_SANITIZE_STRING)));
+$course = filter_var($co,FILTER_SANITIZE_STRING);
 $year_level = filter_var($yl,FILTER_VALIDATE_INT);
 $units = filter_var($un,FILTER_VALIDATE_INT);
 $mailing_address=ucwords(strtolower(filter_var($ma,FILTER_SANITIZE_STRING)));

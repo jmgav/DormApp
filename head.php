@@ -18,9 +18,19 @@
 
 <script src="bootstrap/js/jquery.js"></script>
 <script src="bootstrap/js/bootstrap.js"></script>
+<script src="bootstrap/js/jquery.tablesorter.min.js"></script>
+
+<script>
+jQuery(document).ready(function() 
+    { 
+        jQuery(".tablesorter").tablesorter(); 
+    } 
+); 
+</script>
+
 </head>
 	
 <body>
-<div class="container">
+<div class="container main">
 
 <?php ob_start(); ?>

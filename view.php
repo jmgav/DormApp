@@ -44,7 +44,7 @@ if(!login_class::is_logged_in_admin()){
          Application for Admission to UPV Dormitories 
         </strong>
 		 </h3>
-		 	<p class="pull-right"><a href="adminindex.php" class="btn btn-info">Go back to Admin Panel</a></p>
+		 	<p class="pull-right"><a href="adminindex" class="btn btn-info">Go back to Admin Panel</a></p>
 		 
 	<p>Submitted: <?php echo date("l, M d, Y - h:i a",strtotime($row['received_date']));?></p>
 
@@ -52,15 +52,15 @@ if(!login_class::is_logged_in_admin()){
 	<p>Would you like to <a href="#" class="btn btn-success" data-toggle="modal" data-target="#accept">Accept</a> or <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#reject">Reject</a> this Application?</p>
 	<?php }
 	else if($accept=='Rejected') {
-	echo 'This Application is already <span class="red">REJECTED</span>';
+	echo 'This Application is already <b><span class="red">REJECTED</span></b><hr/>';
 	?>
-	<p>Would you like to <a href="#" class="btn btn-success" data-toggle="modal" data-target="#accept">Accept</a> or <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#reject">Reject</a> this Application?</p>
+	<p>Would you like to <a href="#" class="btn btn-success" data-toggle="modal" data-target="#accept">Accept</a> this application instead? Or put it back on <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#pending">Pending</a> status?</p>
 	<?
 	}
 	else if($accept=='Accepted') {
-	echo 'This Application is already <span class="green">ACCEPTED</span>';
+	echo 'This Application is already <b><span class="green">ACCEPTED</span></b><hr/>';
 	?>
-	<p>Would you like to <a href="#" class="btn btn-success" data-toggle="modal" data-target="#accept">Accept</a> or <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#reject">Reject</a> this Application?</p>
+	<p>Would you like to <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#reject">Reject</a> this application instead? Or put it back on <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#pending">Pending</a> status?</p>
 	<?
 	}
 	
@@ -79,7 +79,27 @@ if(!login_class::is_logged_in_admin()){
 <div class="modal-body">
 <p>Are you sure you want to ACCEPT this application? This action cannot be undone.</p>
 
- <a class="btn btn-success" href="accept.php?id=<?php echo $id;?>">Yes, I am sure</a>
+ <a class="btn btn-success" href="accept?id=<?php echo $id;?>">Yes, I am sure</a>
+
+ <a class="btn btn-danger"  data-dismiss="modal" >No, I am not sure. Close</a>
+</div>
+</div>
+</div>
+</div>	
+
+<div class="modal fade" id="pending" tabindex="-1" role="dialog" aria-labelledby="accept-label" aria-hidden="true" style="display: none;">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+×
+</button>
+<h4 class="modal-title" id="newstudents-label">Confirmation</h4>
+</div>
+<div class="modal-body">
+<p>Are you sure you want to return this application to PENDING?</p>
+
+ <a class="btn btn-warning" href="pending?id=<?php echo $id;?>">Yes, I am sure</a>
 
  <a class="btn btn-danger"  data-dismiss="modal" >No, I am not sure. Close</a>
 </div>
@@ -97,9 +117,9 @@ if(!login_class::is_logged_in_admin()){
 <h4 class="modal-title" id="newstudents-label">Confirmation</h4>
 </div>
 <div class="modal-body">
-<p>Are you sure you want to REJECT this application? This action cannot be undone.</p>
+<p>Are you sure you want to REJECT this application?</p>
 
- <a class="btn btn-warning" href="reject.php?id=<?php echo $id;?>">Yes, I am sure</a>
+ <a class="btn btn-warning" href="reject?id=<?php echo $id;?>">Yes, I am sure</a>
 
  <a class="btn btn-danger"  data-dismiss="modal" >No, I am not sure. Close</a>
 </div>
@@ -409,8 +429,8 @@ if(!login_class::is_logged_in_admin()){
   <p>I am fully aware of the changes I am about to do to this application.</p>
 
 		
-	<?php if($accept=='Pending'){ ?>
-  <input class="btn btn-default" name="commit" type="submit" value="Edit Application">
+	<?php if($accept=='Pending' || $accept=='Accepted'){ ?>
+  <input class="btn btn-success" name="commit" type="submit" value="Edit Application">
   <?php }
   else{
   echo "You can only edit applications that are PENDING acceptance or rejection.";
@@ -421,6 +441,7 @@ if(!login_class::is_logged_in_admin()){
   </div>
   
   </form>
+  <hr/>
 
 <?php
 include 'footer.php';

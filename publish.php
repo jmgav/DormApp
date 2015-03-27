@@ -5,8 +5,10 @@ dbconnection::getConnection();
 require_once 'class_login.php';
 
 $name=$_SESSION['firstnameadmin'].' '.$_SESSION['lastnameadmin'];
+$dorm=$_SESSION['dormnameadmin'];
 
-$query=mysql_query("UPDATE deadline SET flag=1 WHERE user='$name'") or die(mysql_error());
+
+$query=mysql_query("INSERT INTO publish VALUES(now(),'$name','$dorm')") or die(mysql_error());
 
 head(adminindex,'');
 ?>

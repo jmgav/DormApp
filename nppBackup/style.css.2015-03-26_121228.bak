@@ -1,0 +1,49 @@
+html{
+overflow-y:scroll;
+}
+
+body{
+padding-top: 0px;
+}
+
+.login-row{
+margin: 0 auto;
+margin-top: 5%;
+}
+
+#wronglogin{
+width: 100%;
+}
+
+.green{
+color: green;
+}
+
+.red{
+color: red;
+}
+
+.footer {
+padding: 10px 0;
+margin-top: 70px;
+border-top: 1px solid #e5e5e5;
+background-color: #f5f5f5;
+}
+
+th{
+font-weight:normal;
+}
+
+@media (min-width: 768px) {
+.right{
+padding-left: 3px;
+}
+
+.left{
+padding-right: 3px;
+}
+}
+
+h3{
+margin-top: 0px;
+}

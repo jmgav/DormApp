@@ -19,43 +19,32 @@ include 'logo.php';
 </ul>
 
 <div class="tab-content">
-  <div role="tabpanel" class="tab-pane active" id="home">
+  <div role="tabpanel" class="tab-pane active fade in" id="home">
   <h4>UPV Dorm Application System</h4>
-<p>You will find relevant stuff here, including an introduction of the system and its purpose.</p>
 
 <?php
-$query=mysql_query("SELECT * FROM deadline")or die(mysql_error());
+$query=mysql_query("SELECT * FROM publish WHERE dorm_name='hall1'")or die(mysql_error());
   
 while ($row = mysql_fetch_assoc($query)) {
 
-if($row['flag']==1){
-
-echo '<h4>Here are the accepted applicants for UPV dorms</h4>';
+echo '<hr/>';
+echo '<h4>Final list of accepted applicants for UPV dorm <b>Balay Lampirong (Hall1)</b></h4>';
 
 echo '<table class="table table-hover table-bordered">
       <thead>
         <tr>
           <th><b>Name</b></th>
 		  <th><b>Student Number</b></th>
-          <th><b>Dorm</b></th>
-      
-		    
+    
         </tr>
       </thead>
 	    <tbody>';
 
-$query2=mysql_query("SELECT * FROM applicants WHERE accept_flag='Accepted'")or die(mysql_error());
+$query2=mysql_query("SELECT * FROM applicants WHERE dorm_name='hall1' AND accept_flag='Accepted'")or die(mysql_error());
 while ($row2 = mysql_fetch_assoc($query2)) {
 echo '<tr>';
 echo '<th>'.$row2['firstname'].' '.$row2['lastname'].'</th>';
 		echo '<th>'.$row2['student_number'].'</th>';
-		
-		if($row2['dorm_name']=='hall1'){
-		echo '<th>Balay Lampirong</th>';
-		}
-		else{
-		echo '<th>Balay Kanlaon</th>';
-		}
 
 echo '</tr>';
 
@@ -63,15 +52,76 @@ echo '</tr>';
 
 echo '</tbody>
     </table>';
+}
+
+$query=mysql_query("SELECT * FROM publish WHERE dorm_name='hall2'")or die(mysql_error());
+  
+while ($row = mysql_fetch_assoc($query)) {
+echo '<hr/>';
+echo '<h4>Final list of accepted applicants for UPV dorm <b>Balay Kanlaon (Hall2)</b></h4>';
+
+echo '<table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th><b>Name</b></th>
+		  <th><b>Student Number</b></th>
+	    
+        </tr>
+      </thead>
+	    <tbody>';
+
+$query2=mysql_query("SELECT * FROM applicants WHERE dorm_name='hall2' AND accept_flag='Accepted'")or die(mysql_error());
+while ($row2 = mysql_fetch_assoc($query2)) {
+echo '<tr>';
+echo '<th>'.$row2['firstname'].' '.$row2['lastname'].'</th>';
+		echo '<th>'.$row2['student_number'].'</th>';
+		
+
+echo '</tr>';
 
 }
 
+echo '</tbody>
+    </table>';
+}
+?>
+
+<?php
+$query=mysql_query("SELECT * FROM publish WHERE dorm_name='ilonggo'")or die(mysql_error());
+  
+while ($row = mysql_fetch_assoc($query)) {
+echo '<hr/>';
+echo '<h4>Final list of accepted applicants for UPV dorm <b>Balay Ilonggo (UP City Campus)</b></h4>';
+
+echo '<table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th><b>Name</b></th>
+		  <th><b>Student Number</b></th>      
+		    
+        </tr>
+      </thead>
+	    <tbody>';
+
+$query2=mysql_query("SELECT * FROM applicants WHERE dorm_name='ilonggo' AND accept_flag='Accepted'")or die(mysql_error());
+while ($row2 = mysql_fetch_assoc($query2)) {
+echo '<tr>';
+echo '<th>'.$row2['firstname'].' '.$row2['lastname'].'</th>';
+		echo '<th>'.$row2['student_number'].'</th>';
+
+
+echo '</tr>';
+
+}
+
+echo '</tbody>
+    </table>';
 }
 ?>
 
   
   </div>
-  <div role="tabpanel" class="tab-pane" id="profile">
+  <div role="tabpanel" class="tab-pane  fade" id="profile">
   
     <h4>Application and Interview Period for the Second Semester</h4>
 
@@ -131,7 +181,7 @@ echo '</tbody>
 <p>For inquires, please contact the respective dormitory your will apply for. Check out the DAS Helpdesk tab for contact details.</p>
   
   </div>
-  <div role="tabpanel" class="tab-pane" id="messages">
+  <div role="tabpanel" class="tab-pane fade" id="messages">
   <h4>Who can apply</h4>
 
 <p>To qualify for the dormitory application, the student must:
