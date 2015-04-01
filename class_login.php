@@ -23,18 +23,34 @@ if(mysql_num_rows($result) == 1){ /*if a users login information is found in the
         $row = mysql_fetch_assoc($result);
         $_SESSION['dormappid'] = $row['id'];
         $_SESSION['username'] = $row['username'];
-        
-        return true; /*for TDD test purposes, indicator of sucesful login*/
+		$_SESSION['student_number'] = $row['student_number'];
+			   
+		if(md5($row['student_number'])==$row['password']){
+        return 'reset'; 
+		}
+		
+		else{
+		
+		return 'file';
+		}
+			
 }
-
 else{
-          
-          return false; /*for TDD test purposes, indicator of unsucesful login*/
-}
+return false; 
 }
 
+}
 
- 
+public static function change_password($pass,$pass2,$user){
+	if($pass!=$pass2){
+	return 'no_match';
+	}
+	else{
+	$query=mysql_query("UPDATE users set password=md5('$pass') WHERE id='$user'") or die(mysql_error());
+	return 'ok';
+	}
+}
+
 public static function admin_login($username,$password){ /*funtion to login*/
 
 $result=mysql_query("SELECT * FROM admins WHERE username='$username' AND password=md5('$password')")or die(mysql_error());

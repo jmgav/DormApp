@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <?php
 require_once 'functions.php';
-include 'head.php';
 require_once 'class_login.php';
-
+include 'head.php';
 include 'logo.php';
 ?>
 
@@ -262,11 +261,11 @@ Have remaining tenure for the dormitory.</p>
 <h3 class="panel-title">Student Login</h3>
 </div>
 <div class="panel-body">
-<form action="index.php" method="post" accept-charset="utf-8">
+<form action="index" method="post" accept-charset="utf-8">
 <p><a href="#" data-toggle="modal" data-target="#newstudents"><span>Where can I get my password?</span></a></p>
 
 <div class="form-group">
-<input type="text" class="form-control" name="username" placeholder="Student No. 20xxxxxxx" value="" autocomplete="off" maxlength="10">
+<input type="text" class="form-control" name="username" placeholder="E-mail" value="" autocomplete="off" maxlength="64">
 </div>
 <div class="form-group">
 <input type="password" class="form-control" name="password" placeholder="Password" maxlength="20" value="">
@@ -279,15 +278,15 @@ Log in
   <?php 
 if($_SERVER['REQUEST_METHOD']=='POST'){  
 
-login_class::login($_POST['username'],$_POST['password']); /*login function*/
- 
-    if(login_class::is_logged_in_student()){
+if(login_class::login($_POST['username'],$_POST['password'])=='file' && login_class::is_logged_in_student()){
        head(file,'');
     }
+	else if(login_class::login($_POST['username'],$_POST['password'])=='reset'){
+		head(reset,'');
+	}
     else{
-        echo "<button type='button' class='btn btn-danger' id='wronglogin'>Wrong Username or Password!</button>"; /*unsecesfull login displays error message*/
+        echo "<div class='alert alert-danger' role='alert'>Wrong Username or Password!</div>"; /*unsecesfull login displays error message*/
     }
- 
  }
 
  ?> 
@@ -306,10 +305,10 @@ login_class::login($_POST['username'],$_POST['password']); /*login function*/
 <h4 class="modal-title" id="newstudents-label">What is my login password?</h4>
 </div>
 <div class="modal-body">
-<p>All students who wish to apply for a UP dorm will login <strong class="text-info">using the same login credentials used in the CRS</strong> to access the dorm application form.</p>
+<p>All students who wish to apply for a UPV dorm will login using the <strong class="text-info">E-mail address</strong> they used in applying for the UPCAT. Your temporary password is your <b>student number (201xxxxx).</b></p>
 
 <p>
-If you do not have one yet, contact the CRS office for your temporary password.
+If you do not have one yet, please contact the CRS office for account activation.
 </p>
 </div>
 </div>

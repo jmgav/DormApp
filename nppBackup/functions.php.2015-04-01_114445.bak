@@ -1,0 +1,65 @@
+<?php
+require_once 'dbconnection.php';
+
+function head($page,$extension){
+    $host = $_SERVER['HTTP_HOST'];
+    $folder = rtrim(dirname($_SERVER['PHP_SELF']),'/\\'); 
+    header ("Location:http://$host$folder/$page$extension");
+}
+
+function redirect_to_home(){    /*function to redirect the user ot his profile page, or admin page if he is an administrator*/
+
+    head(profile,""); 
+    exit();
+    
+}
+
+function redirect_to_welcome(){
+    head(index,""); 
+    exit();
+}
+
+
+function logdata($data,$arg){
+  // date_default_timezone_set("Asia/Manila");
+$my_file = "log ".date('m-d-Y',time()-(60*60*8)).'.txt';
+
+if($arg!=null){
+ $uid=$arg;   
+ dbconnection::getConnection();
+
+$query=mysql_query("SELECT firstname,lastname FROM `personalinfo` WHERE userid=$uid")  or  die(mysql_error());    
+$row = mysql_fetch_assoc($query);
+
+$handle = fopen('./logs/'.$my_file, 'a') or die('Cannot open file:  '.$my_file);
+fwrite($handle, 'User '.$row['firstname']." ".$row['lastname'].$data.' at '.date('g:i A'). "\r\n");
+}else{
+    
+$handle = fopen('./logs/'.$my_file, 'a') or die('Cannot open file:  '.$my_file);
+fwrite($handle, "New user".$data.' at '.date('g:i A'). "\r\n");
+      
+}
+
+}
+
+function additional_instructions(){
+?>
+ <p><b>Instructions for additional dorm requirements.</b></p>
+  
+  <p>To proceed with your application, you need to mail the following documents to the dorm you applied for.</p>
+  <ul>
+  <li>2 copies of recent 2x2 Picture with your name written on the back of each</li>
+  <li>Income tax return of parents for the current year</li>
+  <li>UP admission notice</li>
+  <li></li>
+  </ul>
+  <p>Please send these documents via courier to..</p>
+  
+  <p>-Balay Ilonggo, University of the Philippines Visayas, Molo, Iloilo City</p>
+  <p>-Balay Kanlaon, University of the Philippines Visayas, Miag-ao, Iloilo</p>
+  <p>-Balay Lampirong, University of the Philippines Visayas, Miag-ao, Iloilo</p>
+
+<?
+}
+
+?>

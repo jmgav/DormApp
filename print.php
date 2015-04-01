@@ -25,7 +25,7 @@ echo '<table class="table table-hover table-bordered">
       <thead>
         <tr>
           <th class="col-xs-6"><b>Name</b></th>
-		  <th class="col-xs-2"><b>Student Number</b></th>
+		  <th class="col-xs-2"><b>Student No.</b></th>
 		  <th class="col-xs-4"><b>Course</b></th>
     
         </tr>

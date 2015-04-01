@@ -24,13 +24,21 @@ body{
 padding-top: 0px;
 }
 
+.red a{
+color: red;
+}
+
+.file-row .col-md-12{
+padding: 0px;
+}
+
+.applicants{
+margin-top: 10px;
+}
+
 .login-row{
 margin: 0 auto;
 margin-top: 5%;
-}
-
-#wronglogin{
-width: 100%;
 }
 
 .green{
@@ -63,6 +71,14 @@ padding-right: 3px;
 
 h3{
 margin-top: 0px;
+}
+
+p.bg-primary{
+padding: 15px;
+}
+
+.alert-danger{
+padding: 10px;
 }
 
 /* tables */

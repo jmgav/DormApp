@@ -31,37 +31,55 @@ if(!login_class::is_logged_in_admin()) head(index,'')
 
 <p>Welcome to your control panel</p>
 
-
-
 <a href="logout" class="btn btn-primary btn-md active" role="button">Logout</a>
   
   </div>
   <div role="tabpanel" class="tab-pane" id="profilem">
-  
-    <h4>Pending Applications (Male)</h4>
+  	
+		<?php
+	$dorm_name=$_SESSION['dormnameadmin'];
+	$query_accepted=mysql_query("SELECT COUNT(accept_flag) FROM applicants WHERE accept_flag='Accepted' and gender='male' and dorm_name='$dorm_name'")or die(mysql_error());
+	$query_rejected=mysql_query("SELECT COUNT(accept_flag) FROM applicants WHERE accept_flag='Rejected' and gender='male' and dorm_name='$dorm_name'")or die(mysql_error());
+	$query_pending=mysql_query("SELECT COUNT(accept_flag) FROM applicants WHERE accept_flag='Pending' and gender='male' and dorm_name='$dorm_name'")or die(mysql_error());
+
+	$accepted=mysql_result($query_accepted, 0);
+	$rejected=mysql_result($query_rejected, 0);
+	$pending=mysql_result($query_pending, 0);
+  ?>
+		
+	<div class="row applicants">
+	<div class="col-sm-2"><h4>Male Applicants</h4></div>
+	<div class="col-sm-2 col-sm-offset-4"><h4 class="green"><?php echo 'Accepted: '.$accepted;?></h4></div>
+	<div class="col-sm-2"><h4 class="red"><a href="view-rejected"><?php echo 'Rejected: '.$rejected;?></a></h4></div>
+	<div class="col-sm-2"><h4><?php echo 'Pending: '.$pending;?></h4></div>
+	</div>
 	
 <table class="table table-hover table-bordered tablesorter">
       <thead>
         <tr>
-          <th>Name</th>
-		  <th>Student Number</th>
-          <th>Address</th>
-          <th>Mobile number</th>
-		  <th>Points</th>
-		  <th>Accepted or Rejected</th>
+          <th class="col-sm-3">Name</th>
+		  <th class="col-sm-1">Student No.</th>
+          <th class="col-sm-2">Address</th>
+          <th class="col-sm-2">Mobile No.</th>
+		  <th class="col-sm-1">Points</th>
+		  <th class="col-sm-1">Status</th>
+		  <th class="col-sm-2">Remarks</th>
 		    
         </tr>
       </thead>
 	    <tbody>
 	<?php
-	$accepted=0;
-	$rejected=0;
-	$pending=0;
-	$dorm_name=$_SESSION['dormnameadmin'];
+
 	$query=mysql_query("SELECT * FROM applicants WHERE dorm_name='$dorm_name' and gender='male' ORDER BY points_total DESC")or die(mysql_error());
   
 while ($row = mysql_fetch_assoc($query)) {
 		
+		if($row['confirm_flag']=='confirmed'){
+		$confirm='(C)';
+		}
+		else{
+		$confirm='(N)';
+		}
 		
 		if($row['accept_flag']=='Pending') {echo '<tr>'; $pending++;}
 				
@@ -79,10 +97,11 @@ while ($row = mysql_fetch_assoc($query)) {
 		
 		if($row['accept_flag']=='Pending') echo '<th><a href="view?id='.$row['id'].'">Pending</a></th>';
 				
-		else if($row['accept_flag']=='Accepted') echo '<th><span class="green">Accepted</span></th>';
+		else if($row['accept_flag']=='Accepted') echo '<th><span class="green">Accepted '.$confirm.'</span></th>';
 			
 		else if($row['accept_flag']=='Rejected') echo '<th><span class="red">Rejected</span></th>';
 			
+		echo '<th>'.$row['remarks'].'</th>';
 		
 		echo '</tr>';
 		
@@ -90,19 +109,33 @@ while ($row = mysql_fetch_assoc($query)) {
 	?>
 
       </tbody>
-    </table>
-	<p class="green"><?php echo 'Accepted: '.$accepted;?></p>
-	<a href="view-rejected"><p class="red"><?php echo 'Rejected: '.$rejected;?></p></a>
-	<p><?php echo 'Pending: '.$pending;?></p>
-	
+    </table>	
 <p></p>
   
   </div>
   
   <div role="tabpanel" class="tab-pane" id="profilef">
   
-    <h4>Pending Applications (Female)</h4>
-	
+    
+	<?
+	$dorm_name=$_SESSION['dormnameadmin'];
+	$query=mysql_query("SELECT * FROM applicants WHERE dorm_name='$dorm_name' and gender='female' ORDER BY points_total DESC")or die(mysql_error());
+  
+  $query_acceptedf=mysql_query("SELECT COUNT(accept_flag) FROM applicants WHERE accept_flag='Accepted' and gender='female' and dorm_name='$dorm_name'")or die(mysql_error());
+	$query_rejectedf=mysql_query("SELECT COUNT(accept_flag) FROM applicants WHERE accept_flag='Rejected' and gender='female' and dorm_name='$dorm_name'")or die(mysql_error());
+	$query_pendingf=mysql_query("SELECT COUNT(accept_flag) FROM applicants WHERE accept_flag='Pending' and gender='female' and dorm_name='$dorm_name'")or die(mysql_error());
+
+	$acceptedf=mysql_result($query_acceptedf, 0);
+	$rejectedf=mysql_result($query_rejectedf, 0);
+	$pendingf=mysql_result($query_pendingf, 0);
+	?>
+
+	<div class="row applicants">
+	<div class="col-sm-2"><h4>Female Applicants</h4></div>
+	<div class="col-sm-2 col-sm-offset-4"><h4 class="green"><?php echo 'Accepted: '.$acceptedf;?></h4></div>
+	<div class="col-sm-2"><h4 class="red"><a href="view-rejected"><?php echo 'Rejected: '.$rejectedf;?></a></h4></div>
+	<div class="col-sm-2"><h4><?php echo 'Pending: '.$pendingf;?></h4></div>
+	</div>
 <table class="table table-hover table-bordered tablesorter">
       <thead>
         <tr>
@@ -117,22 +150,17 @@ while ($row = mysql_fetch_assoc($query)) {
       </thead>
 	    <tbody>
 	<?php
-	$accepted=0;
-	$rejected=0;
-	$pending=0;
-	$dorm_name=$_SESSION['dormnameadmin'];
-	$query=mysql_query("SELECT * FROM applicants WHERE dorm_name='$dorm_name' and gender='female' ORDER BY points_total DESC")or die(mysql_error());
-  
-  
+
+	
   
 while ($row = mysql_fetch_assoc($query)) {
 		
 		
-		if($row['accept_flag']=='Pending') {echo '<tr>'; $pending++;}
+		if($row['accept_flag']=='Pending') {echo '<tr>';}
 				
-		else if($row['accept_flag']=='Accepted') {echo '<tr class="success">'; $accepted++;}
+		else if($row['accept_flag']=='Accepted') {echo '<tr class="success">';}
 			
-		else if($row['accept_flag']=='Rejected') {echo '<tr class="danger" style="display:none">'; $rejected++;}
+		else if($row['accept_flag']=='Rejected') {echo '<tr class="danger" style="display:none">';}
 		
 		
 		echo '<th>'.'<a href="view?id='.$row['id'].'">'.$row['lastname'].', '.$row['firstname'].'</a></th>';
@@ -156,10 +184,7 @@ while ($row = mysql_fetch_assoc($query)) {
 
       </tbody>
     </table>
-	<p class="green"><?php echo 'Accepted: '.$accepted;?></p>
-	<a href="view-rejected"><p class="red"><?php echo 'Rejected: '.$rejected;?></p></a>
-	<p><?php echo 'Pending: '.$pending;?></p>
-	
+
 <p></p>
   
   </div>
@@ -235,7 +260,8 @@ while ($row = mysql_fetch_assoc($query)) {
   echo $_SESSION['dormnameadmin']=='ilonggo'? 'Balay Ilonggo': '';
   ?></b></p>
   
-  <p>You may now <b><a href="print">print the results</a></b></p>
+  <p>You may now <b><a href="print" target="_blank">print the results.</a></b></p>
+  <p>Click the link, then press CTRL + P to print.</p>
 
   <p>Congratulations!</p>
   

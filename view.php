@@ -158,12 +158,28 @@ if(!login_class::is_logged_in_admin()){
 		trim($_POST['guardian_address']),
 		trim($_POST['relationship']),
 		trim($_POST['guardian_landline']),
-		trim($_POST['guardian_mobile'])	
+		trim($_POST['guardian_mobile']),
+		trim($_POST['remarks'])	
 		);    
  }
  ?>
   
   <form action="view?id=<?php echo $id?>" method="post" id="formview"> 
+   <div class="row">
+   
+  <div class="col-sm-3 left">
+ <div class="form-group">
+ <input type="text" name="remarks" class="form-control input-md" placeholder="Remarks" tabindex="1" value="<?php echo $row['remarks'];?>">
+</div>
+</div>
+ <div class="col-sm-1">
+
+  <input class="btn btn-success" name="commit" type="submit" value="Edit Application">
+
+</div>
+
+</div>
+  
  <div class="row">
   <div class="col-md-6">
   <div class="panel panel-info">
@@ -429,13 +445,7 @@ if(!login_class::is_logged_in_admin()){
   <p>I am fully aware of the changes I am about to do to this application.</p>
 
 		
-	<?php if($accept=='Pending' || $accept=='Accepted'){ ?>
-  <input class="btn btn-success" name="commit" type="submit" value="Edit Application">
-  <?php }
-  else{
-  echo "You can only edit applications that are PENDING acceptance or rejection.";
-  }
-  ?>
+	
   		
     </div>
   </div>

@@ -52,34 +52,32 @@ $income=$in;
 
 $points_total=0;
 
-if ($home_distance >= 120){
+$home_points=$home_distance/6;
+
+if($home_points>=50){
 $points_total+=50;
 }
-
-else if($home_distance > 40 && $home_distance < 120){
-$points_total+=40;
+else{
+$points_total+=round($home_points,0);
 }
 
-else if($home_distance <= 40){
-$points_total+=30;
-}
  
 switch($income){
 
 case '1300001':
-	$points_total+=25;
+	$points_total+=15;
 	break;
 case '650001':
-	$points_total+=30;
+	$points_total+=25;
 	break;
 case '325001':
-	$points_total+=35;
+	$points_total+=30;
 	break;
 case '135001':
-	$points_total+=40;
+	$points_total+=35;
 	break;
 case '80001':
-	$points_total+=45;
+	$points_total+=40;
 	break;
 case '80000':
 	$points_total+=50;
@@ -93,23 +91,19 @@ mysql_query("INSERT INTO applicants VALUES(0,now(),'$dn','$firstname','$lastname
 '$course','$year_level','$units','$perm_address','$home_distance','$mailing_address','$landline','$mobile','$mother_name',
 '$father_name','$mother_address','$father_address','$mother_occupation','$father_occupation','$mother_landline',
 '$mother_mobile','$father_landline','$father_mobile','$guardian_name','$guardian_address','$relationship',
-'$guardian_landline','$guardian_mobile','$scholarship','$income','$points_total','Pending')") or die("Error in query:".mysql_error());	
+'$guardian_landline','$guardian_mobile','$scholarship','$income','$points_total','Pending','unconfirmed','no remarks')") or die("Error in query:".mysql_error());	
 
-mysql_query("UPDATE users SET `flag`=1 WHERE `username`='$student_number'") or die("Error in query:".mysql_error());	
-
-echo "<div class='alert alert-success' role='alert'>Thank you for submitting your application!</div>";
-
-sleep(1);
+mysql_query("UPDATE users SET `flag`=1 WHERE `student_number`='$student_number'") or die("Error in query:".mysql_error());	
 
 head(file,'');
-		 }	
+}	
 
     }  
 	
 	
 	
 public static function submit_edited_app($id,$fn,$ln,$mn,$gen,$co,$yl,$un,$ma,$la,$mo,$mon,$fan,$moo,$fao,$moa,$faa,
-								  $mol,$mom,$fal,$fam,$gn,$ga,$re,$gl,$gm){    
+								  $mol,$mom,$fal,$fam,$gn,$ga,$re,$gl,$gm,$rm){    
 $query_flag=1;   
 
 $firstname = ucwords(strtolower(filter_var($fn,FILTER_SANITIZE_STRING)));
@@ -139,45 +133,9 @@ $guardian_address= ucwords(strtolower(filter_var($ga,FILTER_SANITIZE_STRING)));
 $relationship = ucwords(strtolower(filter_var($re,FILTER_SANITIZE_STRING)));
 $guardian_landline= $gl;
 $guardian_mobile= $gm;
+$remarks = filter_var($rm,FILTER_SANITIZE_STRING);
 
 
-/*
-$points_total=0;
-
-if ($home_distance >= 120){
-$points_total+=50;
-}
-
-else if($home_distance > 40 && $home_distance < 120){
-$points_total+=40;
-}
-
-else if($home_distance <= 40){
-$points_total+=30;
-}
- 
-switch($income){
-
-case '1300001':
-	$points_total+=25;
-	break;
-case '650001':
-	$points_total+=30;
-	break;
-case '325001':
-	$points_total+=35;
-	break;
-case '135001':
-	$points_total+=40;
-	break;
-case '80001':
-	$points_total+=45;
-	break;
-case '80000':
-	$points_total+=50;
-	break;
-}
-*/
 
 if($query_flag==1){		
       
@@ -185,14 +143,12 @@ mysql_query("UPDATE applicants SET firstname='$firstname' ,lastname='$lastname' 
 mother_job='$mother_occupation',father_job='$father_occupation',
 mother_landline='$mother_landline',mother_mobile='$mother_mobile',father_landline='$father_landline',father_mobile='$father_mobile',
 guardian_name='$guardian_name',guardian_address='$guardian_address',guardian_relationship='$relationship',
-guardian_landline='$guardian_landline',guardian_mobile='$guardian_mobile' WHERE id='$id'") or die("Error in query:".mysql_error());	
+guardian_landline='$guardian_landline',guardian_mobile='$guardian_mobile', remarks='$remarks' WHERE id='$id'") or die("Error in query:".mysql_error());	
 
 echo "<div class='alert alert-success' role='alert'>The application has been edited.</div>";
 
 echo '<meta http-equiv="refresh" content="1">';
 
-
-//head(view,'?id='.$id);
 		 }	
 
     }  

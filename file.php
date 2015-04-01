@@ -9,26 +9,45 @@ include 'logo.php';
 
 if(!login_class::is_logged_in_student()) head(index,'');
 
-$id=$_SESSION['username'];
+$id=$_SESSION['student_number'];
 
-    $result = mysql_query("SELECT flag FROM users WHERE username='$id'") or die(mysql_error());
+    $result = mysql_query("SELECT flag FROM users WHERE student_number='$id'") or die(mysql_error());
     
     if(mysql_num_rows($result) == 1){
 	
 	$row = mysql_fetch_assoc($result);
 	
-	$flag=$row['flag'];
+	$submit_flag=$row['flag'];
 	
 	}
 	
-		$result2 = mysql_query("SELECT * FROM deadline WHERE date = (SELECT MAX(date) FROM deadline) LIMIT 1") or die(mysql_error());
+	$result2 = mysql_query("SELECT * FROM deadline WHERE date = (SELECT MAX(date) FROM deadline) LIMIT 1") or die(mysql_error());
 	
 	$deadline = mysql_num_rows($result2);
 	
 	$row = mysql_fetch_assoc($result2);
 	
-  if($flag==0){
-   if($deadline==0 || ($deadline>0 && $row['flag']=='open')){
+	$result3 = mysql_query("SELECT * FROM applicants WHERE student_number='$id'") or die(mysql_error());
+	
+	$row2 = mysql_fetch_assoc($result3);
+	
+	$accept_flag=$row2['accept_flag'];
+	$confirm_flag=$row2['confirm_flag'];
+	
+	if($row2['dorm_name']=='hall1'){ 
+	$dorm='Balay Lampirong';
+	}
+	else if($row2['dorm_name']=='hall2'){ 
+	$dorm='Balay Kanlaon';
+	}
+	else if($row2['dorm_name']=='ilonggo'){ 
+	$dorm='Balay Ilonggo';
+	}
+	
+	
+	
+  if($submit_flag==0){
+   if($deadline>0 && $row['flag']=='open'){
   
  if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['agree'])){
           
@@ -76,8 +95,9 @@ $id=$_SESSION['username'];
  }
     ?>
 
+<form action="file" method="post"> 
 
-<div class="alert alert-info" data-alert="alert">
+<div class="alert" data-alert="alert">
       <h3>
         <strong>
          Application for Admission to UPV Dormitories 
@@ -89,20 +109,37 @@ $id=$_SESSION['username'];
 	   
 	  	<p>1. <b>DO NOT leave anything blank</b>, enter "N/A" for fields which are not applicable to you.</p>	  
 <p>2. Please enter correct values for each field.</p>
-<p>3. Applications that are incorrectly filled up, contain false information and no valid Guardian Information <b>will be discarded.</b></p>
-<p>All UPV dormitories require a legal Guardian for each of its dormers, if you do not have a Guardian yet, <b>DO NOT CONTINUE</b> with this application.</p>	
-	
+<p>3. Applications that are incorrectly filled up, contain false information, or no valid Guardian information <b>will be discarded.</b></p>
+<p>4. All UPV dormitories require a legal Guardian for each of its dormers, if you do not have a Guardian yet, <b>DO NOT CONTINUE</b> with this application.</p>	
+	<hr/>
+	<p>Please select a dorm to apply for <b>first</b> then continue filling up the application form.</p>
+	<p>Balay Ilonggo is located in the UP Iloilo city campus. Balay Kanlaon and Balay Lampirong are both located inside the UP Miag-ao campus.</p>
+	<br/>
+
+	 <div class="row">
+ 
+<div class="col-sm-3">
+<select class="form-control" name="dormname" id="dormname" required>
+<option value="">Select Dorm</option>
+<option value="hall1">Balay Lampirong (Hall 1)</option>
+<option value="hall2">Balay Kanlaon (Hall 2)</option>
+<option value="ilonggo">Balay Ilonggo (UP City Campus)</option>
+</select>
+ </div>
+
+ </div>
 	  
   </div>	
 	
-<form action="file" method="post"> 
-	  
- <div class="row">
+<div class="row file-row">
   <div class="col-md-6">
+  
+  <div class="col-md-12">
   <div class="panel panel-info">
     <div class="panel-heading">Student Infomation</div>
     <div class="panel-body">
-     
+      
+	 
 	   	<div class="row">
 				<div class="col-sm-6 left">
 					<div class="form-group">
@@ -126,7 +163,7 @@ $id=$_SESSION['username'];
 					<div class="col-sm-3 left right">
 <div class="form-group">
 						<select name="gender" class="form-control input-md" required>
-						<option>Sex</option>
+						<option value="">Sex</option>
 						<option value="male">Male</option>
 						<option value="female">Female</option>
 						</select>
@@ -147,7 +184,7 @@ $id=$_SESSION['username'];
 												
 
 <select name="course" class="form-control input-md" tabindex="5"  required>
-<option>Course</option>
+<option value="">Course</option>
 <option>BS in Accountancy (5 yrs)</option>
 <option>BS in Business Administration (Marketing) </option>
 <option>BS in Management</option>
@@ -181,9 +218,10 @@ $id=$_SESSION['username'];
 					
  <div class="form-group">
  
-		<input type="text" name="perm_address" id="perm" class="form-control input-md" placeholder="Permanent Address" tabindex="8" onkeyup="showLocation(); return false;" autocomplete="off" required>
+		<input type="text" name="perm_address" id="perm" class="form-control input-md" placeholder="Complete Permanent Address" tabindex="8" onkeyup="showLocation(); return false;" autocomplete="off" required>
 
 		<input type="hidden" name="address2" id="address2" value="University of the Philippines Visayas, Miagao, 5023 Iloilo"/>
+		
 		<br/>
 		<div class="alert alert-success" role="alert" id="results"></div>
 		<input type="hidden" name="home_distance" id="distance">
@@ -191,6 +229,26 @@ $id=$_SESSION['username'];
 		</div>
 		
 		<script type="text/javascript">
+		
+		var upv = 'Driving Distance from UP Visayas (Miag-ao): ';
+		
+		
+		jQuery( "#dormname" ).change(function () {
+		
+		if(jQuery( this ).val()=='ilonggo'){
+			jQuery('#address2').val("University of the Philippines in the Visayas, Up Visayas, Molo, Iloilo City, 5000 Iloilo, Philippines");
+			upv = 'Driving Distance from UP Visayas (Iloilo City): ';
+		}
+		else{
+			jQuery('#address2').val("University of the Philippines Visayas, Miagao, 5023 Iloilo");
+			upv = 'Driving Distance from UP Visayas (Miag-ao): ';
+		}
+		
+		showLocation();
+		
+		})	
+		
+		
     var geocoder, location1, location2,gDir;
 
         geocoder = new GClientGeocoder();
@@ -234,7 +292,7 @@ $id=$_SESSION['username'];
 			var drivingDistanceMiles = (gDir.getDistance().meters / 1609.344).toFixed(1);
             var drivingDistanceKilometers = (gDir.getDistance().meters / 1000).toFixed(1);
 
-            document.getElementById('results').innerHTML = '<strong>General Area: </strong>' + location1.address + '<strong><br/>Distance from UP Visayas: </strong>' + miledistance + ' miles (' + kmdistance + ' kilometers)<br/><strong>Driving Distance: </strong>' +drivingDistanceMiles+' miles ('+drivingDistanceKilometers+' kilometers)';
+            document.getElementById('results').innerHTML = '<strong>General Area: </strong>' + location1.address + '<br/><strong>'+upv+'</strong>' +drivingDistanceMiles+' miles ('+drivingDistanceKilometers+' kilometers)';
 			jQuery('#distance').val(drivingDistanceKilometers);
 		}
         catch (error)
@@ -268,38 +326,64 @@ $id=$_SESSION['username'];
   </div>
   </div>
   
-   <div class="col-md-6">
-   
-     <div class="panel panel-info">
-    <div class="panel-heading">Guardians' Information</div>
+
+
+ <div class="col-md-12">
+    <div class="panel panel-info">
+    <div class="panel-heading">Scholarship and Financial Assistance</div>
     <div class="panel-body">
      
-  <div class="form-group">
+  <div class="form-horizontal">
+ 
+ 
+
+<div class="form-group">
+<label class="col-sm-5 control-label" for="scholarship">Name of Scholarship</label>
+<div class="col-sm-7"><input class="form-control" name="scholarship" placeholder="type N/A if none"  required></div>
+</div>
+
  
  <div class="form-group">
-						<input type="text" name="guardian_name" class="form-control input-md" placeholder="Guardians' Name"  required>
-					</div>
-
-  <div class="form-group">
-						<input type="text" name="guardian_address" class="form-control input-md" placeholder="Guardians' Address"  required>
-					</div>
-
- <div class="form-group">
-						<input type="text" name="relationship" class="form-control input-md" placeholder="Relationship with Applicant"  required>
-					</div>
-
-<div class="row">
-				<div class="col-sm-6 left">
-<div class="form-group">
-						<input type="text" name="guardian_landline" class="form-control input-md" placeholder="Guardians' Landline no."  required>
-					</div>
-					</div>
-<div class="col-sm-6 right">
-<div class="form-group">
-						<input type="text" name="guardian_mobile" class="form-control input-md" placeholder="Guardians' Mobile no."  required>
-					</div>
-					</div>
-					</div>
+ 
+<label class="col-sm-5 control-label" for="scholarship">Gross Annual Family income</label>
+<div class="col-sm-7">
+		<div class="radio">
+      <label>
+        <input type="radio" name="income" value="80000">
+          Below 80,000
+      </label>
+    </div>
+	<div class="radio">
+      <label>
+        <input type="radio" name="income" value="80001">
+       80,001-135,000
+      </label>
+    </div>
+	<div class="radio">
+      <label>
+        <input type="radio" name="income" value="135001">
+       135,001-325,000
+    </div>
+	<div class="radio">
+      <label>
+        <input type="radio" name="income" value="325001">
+        325,001-650,000
+      </label>
+    </div>
+	<div class="radio">
+      <label>
+        <input type="radio" name="income" value="650001">
+      650,001-1,300,00
+      </label>
+	  </div>
+	  <div class="radio">
+      <label>
+        <input type="radio" name="income" value="1300001" checked>
+      Above 1,300,00
+      </label>
+	  </div>
+    </div>
+</div>
    
    
   </div>
@@ -307,13 +391,14 @@ $id=$_SESSION['username'];
 
     </div>
   </div>
-   
-   
+  </div>
+
 </div>
-</div>
-  
-  <div class="row">
+
+
     <div class="col-md-6">
+
+    <div class="col-md-12">
   
    <div class="panel panel-info">
     <div class="panel-heading">Mothers' Information</div>
@@ -380,77 +465,38 @@ $id=$_SESSION['username'];
 </div>
 </div>
   
-
-  
-
-   <div class="col-md-6">
-    <div class="panel panel-info">
-    <div class="panel-heading">Scholarship and Financial Assistance</div>
+   <div class="col-md-12">
+   
+     <div class="panel panel-info">
+    <div class="panel-heading">Guardians' Information</div>
     <div class="panel-body">
      
-  <div class="form-horizontal">
- 
+  <div class="form-group">
  
  <div class="form-group">
-<label class="col-sm-5 control-label" for="dorm">Dorm Application</label> 
+						<input type="text" name="guardian_name" class="form-control input-md" placeholder="Guardians' Name"  required>
+					</div>
 
-<div class="col-sm-7">
-<select class="form-control" name="dormname">
-<option value="hall1">Balay Lampirong (Hall 1)</option>
-<option value="hall2">Balay Kanlaon (Hall 2)</option>
-<option value="ilonggo">Balay Ilonggo (UP City Campus)</option>
-</select>
- </div>
- </div>
+  <div class="form-group">
+						<input type="text" name="guardian_address" class="form-control input-md" placeholder="Guardians' Address"  required>
+					</div>
 
+ <div class="form-group">
+						<input type="text" name="relationship" class="form-control input-md" placeholder="Relationship with Applicant"  required>
+					</div>
+
+<div class="row">
+				<div class="col-sm-6 left">
 <div class="form-group">
-<label class="col-sm-5 control-label" for="scholarship">Name of Scholarship</label>
-<div class="col-sm-7"><input class="form-control" name="scholarship" placeholder="type N/A if none"  required></div>
-</div>
-
- 
- <div class="form-group">
- 
-<label class="col-sm-5 control-label" for="scholarship">Annual Family income</label>
-<div class="col-sm-7">
-		<div class="radio">
-      <label>
-        <input type="radio" name="income" value="80000">
-          Below 80,000 (FDS)
-      </label>
-    </div>
-	<div class="radio">
-      <label>
-        <input type="radio" name="income" value="80001">
-       80,001-135,000 (FD)
-      </label>
-    </div>
-	<div class="radio">
-      <label>
-        <input type="radio" name="income" value="135001">
-       135,001-325,000 (PD80)
-      </label>
-    </div>
-	<div class="radio">
-      <label>
-        <input type="radio" name="income" value="325001">
-        325,001-650,000 (PD60)
-      </label>
-    </div>
-	<div class="radio">
-      <label>
-        <input type="radio" name="income" value="650001">
-      650,001-1,300,00 (PD40)
-      </label>
-	  </div>
-	  <div class="radio">
-      <label>
-        <input type="radio" name="income" value="1300001" checked>
-      Above 1,300,00 (ND)
-      </label>
-	  </div>
-    </div>
-</div>
+						<input type="text" name="guardian_landline" class="form-control input-md" placeholder="Guardians' Landline no."  required>
+					</div>
+					</div>
+<div class="col-sm-6 right">
+<div class="form-group">
+						<input type="text" name="guardian_mobile" class="form-control input-md" placeholder="Guardians' Mobile no."  required>
+					</div>
+					</div>
+					</div>
    
    
   </div>
@@ -458,9 +504,14 @@ $id=$_SESSION['username'];
 
     </div>
   </div>
-  </div>
+   
+   
+</div>
   
-  </div>
+
+  
+    </div>
+  
   
     
   <script>
@@ -471,9 +522,9 @@ showLocation();
   });
   </script>
 
-  
+  </div>
   <div class="row">
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-sm-12">
   <p>Through this Application, I am binding myself to the following conditions:</p>
 <p>1. Initial lodging fee equivalent to two (2) months upon check-in to cover for the first and last month of stay, 
 non-refundable unless refused admission to the College or upon withdrawal of application within seven (7) days 
@@ -487,15 +538,25 @@ non-refundable unless refused admission to the College or upon withdrawal of app
     <input  name="agree" type="checkbox"  required/>
         <label for="agree">I agree to the terms and conditions.</label> <br/>
 		
-  <input class="btn btn-default" name="commit" type="submit" value="Submit Application">
+  <input class="btn btn-success" name="commit" type="submit" value="Submit Application">
   
   		
     </div>
   </div>
   
   </form>
+  <hr/>
   <?
   }  
+  
+  else if($deadline==0){ ?>
+  <hr/>
+  <p>The application process <b>has not been opened yet.</b> Please see the exact dates and login again during that time period.</p>
+      
+  <a href="logout" class="btn btn-warning">Click this button to logout.</a>
+  <?
+  }
+  
   else{?>
   <hr/>
   <p>We regret to inform you but the <b>deadline has already passed.</b> The dorm application process has now been <b>DISABLED.</b></p>
@@ -507,16 +568,78 @@ non-refundable unless refused admission to the College or upon withdrawal of app
   <?}
   
   }
-  else{?>
+  else if($submit_flag==1 && $accept_flag!='Accepted'){
+  ?>
   <hr/>
-  <p>You have already submitted your application, please wait for the results on the homepage.</p>
+  <p>You have already submitted your application, please wait for the results on the homepage. Results will be posted on <? echo $date_post_results?>.</p>
   
   <p>You may contact the dorm manager of the dorm you have applied for if you have any questions.</p>
+  
+ <? additional_instructions($id); ?>
+ 
+   <p>The deadline for acceptance of these documents (including delays on the courier) will be on <? echo $date_deadline_requirements; ?>.</p>
+  
   
   
   <a href="logout" class="btn btn-warning">Click this button to logout</a>
   
   <?}
+  
+  else if ($submit_flag==1 && $accept_flag=='Accepted' && $confirm_flag=='unconfirmed'){
+  
+  
+  
+  ?>
+  <hr/>
+  <p>Congratulations! Your application has been accepted, you may stay in freshman dorm <b><? echo $dorm ?></b>.</p>
+  
+  <p>You may confirm your slot by clicking "Confirm" below.</p>
+  
+  <p>If you do not confirm before the deadline, your slot will automatically be forfeited</p>
+  <p>Please make your decision to stay or not to stay in <b><? echo $dorm ?></b> for the upcoming school year.</p>
+
+  <a href="#" class="btn btn-info" data-toggle="modal" data-target="#confirm">CONFIRM</a>
+  
+  <hr/>
+  <a href="logout" class="btn btn-warning">Click this button to logout</a>
+  
+  
+  <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="accept-label" aria-hidden="true" style="display: none;">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+×
+</button>
+<h4 class="modal-title" id="newstudents-label">Confirmation</h4>
+</div>
+<div class="modal-body">
+
+<p>Are you sure you want to <b>CONFIRM</b> your slot?</p>
+
+   <a href="confirm_dorm?id=<? echo $id?>" class="btn btn-info">CONFIRM</a>
+ <a class="btn btn-danger"  data-dismiss="modal" >No, I am not sure. Close</a>
+
+</div>
+</div>
+</div>
+</div>	
+
+  
+  <?
+  }
+  else if ($submit_flag==1 && $accept_flag=='Accepted' && $confirm_flag=='confirmed'){
+  ?>
+   <hr/>
+  <p>Congratulations! You have CONFIRMED your slot in freshman dorm <b><? echo $dorm ?></b>.</p>
+  <p>Please check the homepage for announcements on when you can check-in.</p>
+  
+    <a href="logout" class="btn btn-warning">Logout</a>
+
+  
+  <?
+  }
+  
   
   include 'footer.php';
 ?>
