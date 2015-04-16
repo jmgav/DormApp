@@ -2,10 +2,10 @@
 require_once 'functions.php';
 require_once 'class_application.php';
 include 'head.php';
+include 'logo.php';
 ?>
 <script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAA7j_Q-rshuWkc8HyFI4V2HxQYPm-xtd00hTQOC0OXpAMO40FHAxT29dNBGfxqMPq5zwdeiDSHEPL89A" type="text/javascript"></script>
-<?
-include 'logo.php';
+<?php
 
 if(!login_class::is_logged_in_student()) head(index,'');
 
@@ -46,10 +46,10 @@ $id=$_SESSION['student_number'];
 	
 	
 	
-  if($submit_flag==0){
-   if($deadline>0 && $row['flag']=='open'){
+if($submit_flag==0){
+	if($deadline>0 && $row['flag']=='open'){
   
- if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['agree'])){
+		if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['agree'])){
           
 		  
      class_application::submit_app(
@@ -87,13 +87,13 @@ $id=$_SESSION['student_number'];
 		);    
  }
  
- else if($_SERVER['REQUEST_METHOD']=='POST' && empty($_POST['agree'])){
+		else if($_SERVER['REQUEST_METHOD']=='POST' && empty($_POST['agree'])){
 
  echo '<div class="alert alert-danger" role="alert">
   You must Agree to the Terms & Conditions
 </div>';
  }
-    ?>
+?>
 
 <form action="file" method="post"> 
 
@@ -226,6 +226,7 @@ $id=$_SESSION['student_number'];
 		<div class="alert alert-success" role="alert" id="results"></div>
 		<input type="hidden" name="home_distance" id="distance">
 		
+		<img class="img-responsive pull-right" src="images/gmaps.jpg" style="margin-bottom: 15px" />
 		</div>
 		
 		<script type="text/javascript">
@@ -525,18 +526,14 @@ showLocation();
   </div>
   <div class="row">
   <div class="col-sm-12">
-  <p>Through this Application, I am binding myself to the following conditions:</p>
-<p>1. Initial lodging fee equivalent to two (2) months upon check-in to cover for the first and last month of stay, 
-non-refundable unless refused admission to the College or upon withdrawal of application within seven (7) days 
- after the start of classes or payment of lodging fee (P1,500.00 per semester) and other dorm fees. </p>
-<p>2. Payment of 50% of the remaining months in case of leaving the dormitory before the end of the semester. </p>
-<p>3. Submit myself to a personal interview (as scheduled).</p>
-<p>I am fully responsible for the information I voluntarily provided. </p>
-
-
+  <p>Through this Application, I am willing to submit the following document and pay following dorm fees:</p>
   
+<p>Lodging Fee : P 1,500.00/semester</p>
+<p>P 600.00 or 40% payment is required upon check-in.</p>
+<p>Electrical Fees: will be assessed upon issuance of Charge Slips</p>
+
     <input  name="agree" type="checkbox"  required/>
-        <label for="agree">I agree to the terms and conditions.</label> <br/>
+        <label for="agree">I attest that the information provided above is true and correct.</label> <br/>
 		
   <input class="btn btn-success" name="commit" type="submit" value="Submit Application">
   
@@ -546,18 +543,15 @@ non-refundable unless refused admission to the College or upon withdrawal of app
   
   </form>
   <hr/>
-  <?
+  <?php
   }  
-  
   else if($deadline==0){ ?>
   <hr/>
   <p>The application process <b>has not been opened yet.</b> Please see the exact dates and login again during that time period.</p>
       
   <a href="logout" class="btn btn-warning">Click this button to logout.</a>
-  <?
-  }
-  
-  else{?>
+  <?php
+  }else{?>
   <hr/>
   <p>We regret to inform you but the <b>deadline has already passed.</b> The dorm application process has now been <b>DISABLED.</b></p>
     
@@ -565,9 +559,9 @@ non-refundable unless refused admission to the College or upon withdrawal of app
   
   <a href="logout" class="btn btn-warning">Click this button to logout.</a>
   
-  <?}
-  
+  <?php 
   }
+  }  
   else if($submit_flag==1 && $accept_flag!='Accepted'){
   ?>
   <hr/>
@@ -575,20 +569,16 @@ non-refundable unless refused admission to the College or upon withdrawal of app
   
   <p>You may contact the dorm manager of the dorm you have applied for if you have any questions.</p>
   
- <? additional_instructions($id); ?>
+ <?php additional_instructions($id); ?>
  
-   <p>The deadline for acceptance of these documents (including delays on the courier) will be on <? echo $date_deadline_requirements; ?>.</p>
-  
-  
+ 
   
   <a href="logout" class="btn btn-warning">Click this button to logout</a>
   
-  <?}
+  <?php }
   
   else if ($submit_flag==1 && $accept_flag=='Accepted' && $confirm_flag=='unconfirmed'){
-  
-  
-  
+
   ?>
   <hr/>
   <p>Congratulations! Your application has been accepted, you may stay in freshman dorm <b><? echo $dorm ?></b>.</p>
@@ -617,7 +607,7 @@ non-refundable unless refused admission to the College or upon withdrawal of app
 
 <p>Are you sure you want to <b>CONFIRM</b> your slot?</p>
 
-   <a href="confirm_dorm?id=<? echo $id?>" class="btn btn-info">CONFIRM</a>
+   <a href="confirm_dorm?id=<?php echo $id; ?>" class="btn btn-info">CONFIRM</a>
  <a class="btn btn-danger"  data-dismiss="modal" >No, I am not sure. Close</a>
 
 </div>
@@ -626,21 +616,22 @@ non-refundable unless refused admission to the College or upon withdrawal of app
 </div>	
 
   
-  <?
+  <?php
   }
   else if ($submit_flag==1 && $accept_flag=='Accepted' && $confirm_flag=='confirmed'){
   ?>
    <hr/>
-  <p>Congratulations! You have CONFIRMED your slot in freshman dorm <b><? echo $dorm ?></b>.</p>
+  <p>Congratulations! You have successfully <b>CONFIRMED</b> your slot in freshman dorm <b><?php echo $dorm ?></b>.</p>
   <p>Please check the homepage for announcements on when you can check-in.</p>
   
+  <p><b>Check-in Requirements</b></p>
+    <ul class="list-unstyled">
+<li>a. ReHa forms (download at UPV CRS)</li>
+<li>b. Form 5</li>
+<li>c. Official Receipt of Dorm Fees</li>
+</ul>
+  
     <a href="logout" class="btn btn-warning">Logout</a>
-
-  
-  <?
-  }
-  
-  
-  include 'footer.php';
-?>
-
+<?php
+} 
+include 'footer.php'; ?>

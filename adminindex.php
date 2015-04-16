@@ -3,19 +3,19 @@ require_once 'dbconnection.php';
 require_once 'class_login.php';
 require_once 'functions.php';
 include 'head.php';
-
 include 'logo.php';
 
 dbconnection::getConnection();
 
-if(!login_class::is_logged_in_admin()) head(index,'')
-
-
+if(!login_class::is_logged_in_admin()) head(index,'');
 ?>
-
+<script>
+jQuery(document).ready(function(){ 
+        jQuery(".tablesorter").tablesorter(); 
+}); 
+</script>
 
 <div class="row">
-
 
 <ul class="nav nav-tabs" role="tablist" id="myTab">
   <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
@@ -31,12 +31,19 @@ if(!login_class::is_logged_in_admin()) head(index,'')
 
 <p>Welcome to your control panel</p>
 
+<p>Please take note of the following dates</p>
+
+<p>Open application period - <b><?php echo $date_open_application.' - '.$date_close_application;?></b></p>
+<p>Deadline for submission of documents - <b><?php echo $date_deadline_requirements;?></b></p>
+<p>Posting of results - <b><?php echo $date_post_results;?></b></p>
+<p>Confirmation period - <b><?php echo $date_confirmation_start.' - '.$date_confirmation_end;?></b></p>
+
 <a href="logout" class="btn btn-primary btn-md active" role="button">Logout</a>
   
   </div>
   <div role="tabpanel" class="tab-pane" id="profilem">
   	
-		<?php
+<?php
 	$dorm_name=$_SESSION['dormnameadmin'];
 	$query_accepted=mysql_query("SELECT COUNT(accept_flag) FROM applicants WHERE accept_flag='Accepted' and gender='male' and dorm_name='$dorm_name'")or die(mysql_error());
 	$query_rejected=mysql_query("SELECT COUNT(accept_flag) FROM applicants WHERE accept_flag='Rejected' and gender='male' and dorm_name='$dorm_name'")or die(mysql_error());
@@ -68,8 +75,7 @@ if(!login_class::is_logged_in_admin()) head(index,'')
         </tr>
       </thead>
 	    <tbody>
-	<?php
-
+<?php
 	$query=mysql_query("SELECT * FROM applicants WHERE dorm_name='$dorm_name' and gender='male' ORDER BY points_total DESC")or die(mysql_error());
   
 while ($row = mysql_fetch_assoc($query)) {
@@ -106,7 +112,7 @@ while ($row = mysql_fetch_assoc($query)) {
 		echo '</tr>';
 		
 		}
-	?>
+?>
 
       </tbody>
     </table>	
@@ -116,8 +122,7 @@ while ($row = mysql_fetch_assoc($query)) {
   
   <div role="tabpanel" class="tab-pane" id="profilef">
   
-    
-	<?
+<?php
 	$dorm_name=$_SESSION['dormnameadmin'];
 	$query=mysql_query("SELECT * FROM applicants WHERE dorm_name='$dorm_name' and gender='female' ORDER BY points_total DESC")or die(mysql_error());
   
@@ -128,8 +133,7 @@ while ($row = mysql_fetch_assoc($query)) {
 	$acceptedf=mysql_result($query_acceptedf, 0);
 	$rejectedf=mysql_result($query_rejectedf, 0);
 	$pendingf=mysql_result($query_pendingf, 0);
-	?>
-
+?>
 	<div class="row applicants">
 	<div class="col-sm-2"><h4>Female Applicants</h4></div>
 	<div class="col-sm-2 col-sm-offset-4"><h4 class="green"><?php echo 'Accepted: '.$acceptedf;?></h4></div>
@@ -149,10 +153,7 @@ while ($row = mysql_fetch_assoc($query)) {
         </tr>
       </thead>
 	    <tbody>
-	<?php
-
-	
-  
+<?php
 while ($row = mysql_fetch_assoc($query)) {
 		
 		
@@ -178,9 +179,8 @@ while ($row = mysql_fetch_assoc($query)) {
 			
 		
 		echo '</tr>';
-		
 		}
-	?>
+?>
 
       </tbody>
     </table>
@@ -192,73 +192,74 @@ while ($row = mysql_fetch_assoc($query)) {
   
   <div role="tabpanel" class="tab-pane" id="settings">
 <?php
+
+date_default_timezone_set('Asia/Manila');
+
 	$result2 = mysql_query("SELECT * FROM deadline WHERE date = (SELECT MAX(date) FROM deadline) LIMIT 1") or die(mysql_error());
 	
 	$deadline = mysql_num_rows($result2);
 	
 	$row = mysql_fetch_assoc($result2);
 	
+	
 	$date = date_create($row['date']);
 	
 	$result3= mysql_query("SELECT * FROM publish WHERE dorm_name='$dorm_name'") or die(mysql_error());
 	$published=mysql_num_rows($result3);
 	
-	if($deadline==0){
+if($deadline==0){
 ?>
   <h4>Open Application Process</h4>
  <p>Do you want to OPEN the application process?</p>
  
   <a href="#" class="btn btn-success" data-toggle="modal" data-target="#open">CONFIRM</a>
   
-<?
-	}
-	else if($deadline>0 && $row['flag']=='open'){
-	?>
+<?php
+} else if($deadline>0 && $row['flag']=='open'){
+?>
 		<h4>CLOSE APPLICATIONS</h4>
 		<p>Applications are currently being accepted.</p> 
-		<p>The application process was opened by <b><?echo $row['user'].'</b> on <b>'.date_format($date, 'l\, F d, Y </b>\a\t<b> g:ia');?></b></p>
+		<p>The application process was opened by <b><?php echo $row['user'].'</b> on <b>'.date_format($date, 'l\, F d, Y </b>\a\t<b> g:ia');?></b></p>
 		
 		
 		<p>Do you want to END the application process?</p>
 
 		<a href="#" class="btn btn-success" data-toggle="modal" data-target="#confirm">CLOSE</a>
-	<?
-	}
-	
-	else if($deadline>0 && $row['flag']=='closed' && $published==0){
-	?>
+<?php
+} else if($deadline>0 && $row['flag']=='closed' && $published==0){
+?>
 	<h4>CLOSE APPLICATIONS</h4>
-	<p>The application process has been closed by <b><?echo $row['user'].'</b> on <b>'.date_format($date, 'l\, F d, Y </b>\a\t<b> g:ia');?></b>.</p>
+	<p>The application process has been closed by <b><?php echo $row['user'].'</b> on <b>'.date_format($date, 'l\, F d, Y </b>\a\t<b> g:ia');?></b>.</p>
 	<p>Students are unable to submit any more Application Forms.</p>
 	<p>Do you want to RE-OPEN the application process?</p>
  
   <a href="#" class="btn btn-success" data-toggle="modal" data-target="#open">RE-OPEN PROCESS</a>
   <hr/>
   <h4>PUBLISH RESULTS</h4>
-  <p>Do you want to publish results for <b><?
+  <p>Do you want to publish results for <b><?php
   echo $_SESSION['dormnameadmin']=='hall1'? 'Balay Lampirong': '';
   echo $_SESSION['dormnameadmin']=='hall2'? 'Balay Kanlaon': '';
   echo $_SESSION['dormnameadmin']=='ilonggo'? 'Balay Ilonggo': '';
-  ?></b></p>
+?></b></p>
    <a href="#" class="btn btn-success" data-toggle="modal" data-target="#publish">PUBLISH MY RESULTS</a>
   
-	<?
-	}
-	else if($published==1){
-	?>
+<?php
+} else if($published==1){
+?>
 	<h4>CLOSE APPLICATIONS</h4>
-		<p>The application process has been closed by <b><?echo $row['user'].'</b> on <b>'.date_format($date, 'l\, F d, Y </b>\a\t<b> g:ia');?></b>.</p>
+		<p>The application process has been closed by <b><?php echo $row['user'].'</b> on <b>'.date_format($date, 'l\, F d, Y </b>\a\t<b> g:ia');?></b>.</p>
 	<p>Students are unable to submit any more Application Forms.</p>
 	<p>Do you want to RE-OPEN the application process?</p>
  
   <a href="#" class="btn btn-success" data-toggle="modal" data-target="#open">RE-OPEN PROCESS</a>
   <hr/>
   <h4>PUBLISH RESULTS</h4>
-  <p>You have already published the results for <b><?
+  <p>You have already published the results for <b>\
+<?php
   echo $_SESSION['dormnameadmin']=='hall1'? 'Balay Lampirong': '';
   echo $_SESSION['dormnameadmin']=='hall2'? 'Balay Kanlaon': '';
   echo $_SESSION['dormnameadmin']=='ilonggo'? 'Balay Ilonggo': '';
-  ?></b></p>
+?></b></p>
   
   <p>You may now <b><a href="print" target="_blank">print the results.</a></b></p>
   <p>Click the link, then press CTRL + P to print.</p>
@@ -266,14 +267,14 @@ while ($row = mysql_fetch_assoc($query)) {
   <p>Congratulations!</p>
   
 	
-	<?}?>
+<?php } ?>
   
   <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="accept-label" aria-hidden="true" style="display: none;">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-Ã—
+×
 </button>
 <h4 class="modal-title" id="newstudents-label">Confirmation</h4>
 </div>
@@ -293,7 +294,7 @@ while ($row = mysql_fetch_assoc($query)) {
 <div class="modal-content">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-Ã—
+×
 </button>
 <h4 class="modal-title" id="newstudents-label">Confirmation</h4>
 </div>
@@ -314,7 +315,7 @@ while ($row = mysql_fetch_assoc($query)) {
 <div class="modal-content">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-Ã—
+×
 </button>
 <h4 class="modal-title" id="newstudents-label">Publish Results</h4>
 </div>
@@ -334,4 +335,6 @@ while ($row = mysql_fetch_assoc($query)) {
 </div>
 
 
-<?  include 'footer.php' ?>
+<?php
+
+include 'footer.php'; ?>

@@ -20,14 +20,6 @@
 <script src="bootstrap/js/bootstrap.js"></script>
 <script src="bootstrap/js/jquery.tablesorter.min.js"></script>
 
-<script>
-jQuery(document).ready(function() 
-    { 
-        jQuery(".tablesorter").tablesorter(); 
-    } 
-); 
-</script>
-
 </head>
 	
 <body>

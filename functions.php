@@ -1,11 +1,17 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
+
 require_once 'dbconnection.php';
 
 $date_open_application = 'April 14, 2015';
 $date_close_application = 'April 24, 2015';
-$date_deadline_requirements = 'April 29, 2015';
-$date_post_results = 'May 7, 2015';
+$date_deadline_requirements = 'April 28, 2015';
+$date_post_results = 'May 8, 2015';
 $date_check_in = '';
+$date_confirmation_start = 'May 9, 2015';
+$date_confirmation_end = 'May 15, 2015';
 
 function head($page,$extension){
     $host = $_SERVER['HTTP_HOST'];
@@ -48,6 +54,8 @@ fwrite($handle, "New user".$data.' at '.date('g:i A'). "\r\n");
 
 function additional_instructions($id){
 
+global $date_deadline_requirements;
+
  $result = mysql_query("SELECT dorm_name FROM applicants WHERE `student_number`='$id'") or die(mysql_error());
 
  $row = mysql_fetch_assoc($result);
@@ -64,24 +72,21 @@ function additional_instructions($id){
 	$dorm='Balay Ilonggo';
 	$send='Balay Ilonggo, University of the Philippines Visayas, Molo, Iloilo City';
 	}
-	
-
-
 ?>
  <p><b>Instructions for additional dorm requirements.</b></p>
   
-  <p>To proceed with your application, you need to send the following documents via courier (LBC, Xend, 2GO etc.) to <b><? echo $dorm; ?>.</b></p>
-  <ul>
-  <li>UP admission notice</li>
-  <li>2 copies of recent 2x2 Picture with your name written on the back of each</li>
-  <li>Income tax return of parents for the current year</li>
-
+  <p>To proceed with your application, you need to send the following documents via courier (LBC, Xend, 2GO etc.) to <b><? echo $dorm; ?></b>.</p>
+  <ul class="list-unstyled">
+<li>a. UPCAT Admission Notice</li>
+<li>b. Certificate of Good Moral Character</li>
+<li>c. Income Tax Return for AY 2014</li>
+<li>d. Special Power of Attorney (for Guardians)</li>
+<li>e. 3 pcs. 2x2 ID picture</li>
+<li>f. Cream folder (long)</li>
   </ul>
-  <p>Please send these documents via courier to <b><? echo $send; ?></b></p>
+ <p>Please send these documents via courier to <b><? echo $send; ?></b></p>
+ <p>The deadline for acceptance of these documents (including delays on the courier) will be on <b><? echo $date_deadline_requirements; ?>.</b></p>
   
-
-
-<?
+  
+<?php
 }
-
-?>

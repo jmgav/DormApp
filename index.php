@@ -1,44 +1,50 @@
-<!DOCTYPE html>
 <?php
-require_once 'functions.php';
-require_once 'class_login.php';
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
+
+require 'functions.php';
+require 'class_login.php';
 include 'head.php';
 include 'logo.php';
 ?>
-
-
 <div class="row">
 
 <div class="col-sm-9">
 <ul class="nav nav-tabs" role="tablist" id="myTab">
   <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-  <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Announcements</a></li>
   <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">How Do I Apply?</a></li>
+  <!--
   <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Helpdesk</a></li>
+  -->
 </ul>
 
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active fade in" id="home">
-  <h4>UPV Dorm Application System</h4>
+  <br/>
+  <h4>Welcome to the UPV online dormitory application system </h4>
+  <p>Incoming freshmen may login using the form on the right</p>
+  <hr/>
+  <h4>Login Instructions</h4>
+  <p>All students who wish to apply for a UPV dorm will login using the E-mail address they used in applying for the UPCAT. Your temporary password is your student number (201xxxxx).</p>
+  <p>If you do not have one yet, please contact the CRS office at (033) 315-8556 local 190 for account activation.</p>
 
 <?php
 $query=mysql_query("SELECT * FROM publish WHERE dorm_name='hall1'")or die(mysql_error());
   
 while ($row = mysql_fetch_assoc($query)) {
-
-echo '<hr/>';
-echo '<h4>Final list of accepted applicants for UPV dorm <b>Balay Lampirong (Hall1)</b></h4>';
-
-echo '<table class="table table-hover table-bordered">
+?>
+<hr/>
+<h4>Final list of accepted applicants for UPV dorm <b>Balay Lampirong (Hall1)</b></h4>
+<table class="table table-hover table-bordered">
       <thead>
         <tr>
           <th><b>Name</b></th>
-		  <th><b>Student Number</b></th>
-    
+		  <th><b>Student Number</b></th>   
         </tr>
       </thead>
-	    <tbody>';
-
+	    <tbody>
+<?php
 $query2=mysql_query("SELECT * FROM applicants WHERE dorm_name='hall1' AND accept_flag='Accepted'")or die(mysql_error());
 while ($row2 = mysql_fetch_assoc($query2)) {
 echo '<tr>';
@@ -46,9 +52,7 @@ echo '<th>'.$row2['firstname'].' '.$row2['lastname'].'</th>';
 		echo '<th>'.$row2['student_number'].'</th>';
 
 echo '</tr>';
-
 }
-
 echo '</tbody>
     </table>';
 }
@@ -56,129 +60,55 @@ echo '</tbody>
 $query=mysql_query("SELECT * FROM publish WHERE dorm_name='hall2'")or die(mysql_error());
   
 while ($row = mysql_fetch_assoc($query)) {
-echo '<hr/>';
-echo '<h4>Final list of accepted applicants for UPV dorm <b>Balay Kanlaon (Hall2)</b></h4>';
+?>
+<hr/>
+<h4>Final list of accepted applicants for UPV dorm <b>Balay Kanlaon (Hall2)</b></h4>
 
-echo '<table class="table table-hover table-bordered">
+<table class="table table-hover table-bordered">
       <thead>
         <tr>
           <th><b>Name</b></th>
-		  <th><b>Student Number</b></th>
-	    
+		  <th><b>Student Number</b></th>  
         </tr>
       </thead>
-	    <tbody>';
-
+	    <tbody>
+<?php
 $query2=mysql_query("SELECT * FROM applicants WHERE dorm_name='hall2' AND accept_flag='Accepted'")or die(mysql_error());
 while ($row2 = mysql_fetch_assoc($query2)) {
 echo '<tr>';
 echo '<th>'.$row2['firstname'].' '.$row2['lastname'].'</th>';
 		echo '<th>'.$row2['student_number'].'</th>';
-		
-
 echo '</tr>';
-
 }
-
 echo '</tbody>
     </table>';
 }
-?>
 
-<?php
 $query=mysql_query("SELECT * FROM publish WHERE dorm_name='ilonggo'")or die(mysql_error());
   
 while ($row = mysql_fetch_assoc($query)) {
-echo '<hr/>';
-echo '<h4>Final list of accepted applicants for UPV dorm <b>Balay Ilonggo (UP City Campus)</b></h4>';
-
-echo '<table class="table table-hover table-bordered">
+?>
+<hr/>
+<h4>Final list of accepted applicants for UPV dorm <b>Balay Ilonggo (UP City Campus)</b></h4>
+<table class="table table-hover table-bordered">
       <thead>
         <tr>
           <th><b>Name</b></th>
-		  <th><b>Student Number</b></th>      
-		    
+		  <th><b>Student Number</b></th>      	    
         </tr>
       </thead>
-	    <tbody>';
-
+	    <tbody>
+<?php
 $query2=mysql_query("SELECT * FROM applicants WHERE dorm_name='ilonggo' AND accept_flag='Accepted'")or die(mysql_error());
 while ($row2 = mysql_fetch_assoc($query2)) {
 echo '<tr>';
 echo '<th>'.$row2['firstname'].' '.$row2['lastname'].'</th>';
 		echo '<th>'.$row2['student_number'].'</th>';
-
-
 echo '</tr>';
-
 }
-
-echo '</tbody>
-    </table>';
+echo '</tbody></table>';
 }
 ?>
-
-  
-  </div>
-  <div role="tabpanel" class="tab-pane  fade" id="profile">
-  
-    <h4>Application and Interview Period for the Second Semester</h4>
-
-<p>To accommodate the rest of the dormitory applicants, DAS Online will follow the schedules on the following dates:</p>
-
-<h4>SCHEDULE</h4>
-
-<table class="table table-hover table-bordered">
-      <thead>
-        <tr>
-          <th>Dormitory</th>
-          <th>Applications</th>
-          <th>Results</th>
-          <th>Interview</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Lampirong</td>
-          <td>November 17-19</td>
-          <td>December 5</td>
-          <td>December 10</td>
-        </tr>
-		 <tr>
-          <td>Kanlaon</td>
-          <td>November 19-21</td>
-          <td>December 7</td>
-          <td>December 10</td>
-        </tr>
-		 <tr>
-          <td>Gumamela</td>
-          <td>November 17-19</td>
-          <td>December 5</td>
-          <td>December 10</td>
-        </tr>
-        <tr>
-          <td>Madyaas</td>
-          <td>November 19-21</td>
-          <td>December 7</td>
-           <td>December 10</td>
-        </tr>
-        <tr>
-          <td>Apitong</td>
-          <td>November 17-19</td>
-          <td>December 5</td>
-		   <td>December 10</td>
-        </tr>
-		<tr>
-          <td>Illonggo</td>
-          <td>November 18-20</td>
-          <td>December 6</td>
-		   <td>December 10</td>
-        </tr>
-      </tbody>
-    </table>
-
-<p>For inquires, please contact the respective dormitory your will apply for. Check out the DAS Helpdesk tab for contact details.</p>
-  
   </div>
   <div role="tabpanel" class="tab-pane fade" id="messages">
   <h4>Who can apply</h4>
@@ -275,7 +205,7 @@ Have remaining tenure for the dormitory.</p>
 Log in
 </button></p>
 
-  <?php 
+<?php 
 if($_SERVER['REQUEST_METHOD']=='POST'){  
 
 if(login_class::login($_POST['username'],$_POST['password'])=='file' && login_class::is_logged_in_student()){
@@ -321,8 +251,4 @@ If you do not have one yet, please contact the CRS office for account activation
 
 </div>
 
- 
-
-  <?
-  include 'footer.php'
-?>
+<?php include 'footer.php'; ?>
